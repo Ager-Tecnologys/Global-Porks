@@ -39,6 +39,7 @@ body {
     margin-left: 4px;
     text-shadow: 1px 1px 2px #777;
     cursor: default;
+    font-size: 3.5vh;
 }
 
 .header img {
@@ -54,7 +55,7 @@ body {
     color: #05396B;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.3em;
+    font-size: 2.3vh;
     text-shadow: 1px 1px 2px #777;
     box-shadow: 1px 1px 2px #777;
     transition: 0.3s;
@@ -75,7 +76,7 @@ body {
     flex-direction: row;
     width: 30%;
     justify-content: space-between;
-    font-size: 1.1em;
+    font-size: 1.7vh;
     color: #05396B;
     text-shadow: 1px 1px 1px #777;
 }
@@ -99,6 +100,10 @@ body {
     float: bottom;
 }
 
+.footer h1 {
+    font-size: 3vh;
+}
+
 .footer button {
     height: 40%;
     width: 15%;
@@ -108,7 +113,7 @@ body {
     color: #F9FCF8;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.3em;
+    font-size: 2.3vh;
     text-shadow: 1px 1px 2px #777;
     box-shadow: 1px 1px 2px #777;
     transition: 0.3s;
@@ -136,7 +141,7 @@ body {
     flex-direction: row;
     width: 30%;
     justify-content: space-between;
-    font-size: 1em;
+    font-size: 1.6vh;
     color: #F9FCF8;
     text-shadow: 1px 1px 1px #777;
 }
