@@ -169,3 +169,59 @@ body {
     height: 5vh;
     cursor: pointer;
 }
+
+.container2{
+    width: 80%;
+    margin: auto;
+}
+
+.form-box{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    height: 30px;
+    border: 3px solid #05396B ;
+    border-radius: 05px;
+}
+
+.banner .container2{
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    color: 777;
+}
+
+.btn-form-box{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    width: 270px;
+   
+}
+
+.btn1{
+    font-family: Poppins;
+    border: 2px solid #05396B;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0;
+    color: white;
+    background-color: #05396B;
+    width: 100px;
+}
+
+.btn2{
+    font-family: Poppins;
+    border: 2px solid #05396B;
+    border-radius: 8px;
+    font-weight: bolder;
+    font-size: 18px;
+    padding: 0;
+    color: white;
+    background-color: #05396B;
+    width: 100px;
+}
