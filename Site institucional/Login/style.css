@@ -178,12 +178,23 @@ body {
 .form-box{
     display: flex;
     flex-direction: column;
+    height: 250px;
+    justify-content: space-around;
 }
 
+
 input{
-    height: 30px;
-    border: 3px solid #05396B ;
+    width: 260.49px;
+    height: 41px;
+    left: 732.46px;
+    top: 510.14px;
+    background-color: #C4C4C4;
     border-radius: 05px;
+   
+}
+
+.banner{
+    height: 88vh;
 }
 
 .banner .container2{
@@ -192,6 +203,15 @@ input{
     justify-content: center; 
     align-items: center;
     color: 777;
+}
+
+.card{
+    left: 679px;
+    top: 208px;
+    background-color: #F9FCF8;
+    box-shadow: 0px 6px 10px 10px;
+    border-radius: 31px;
+    padding: 90px;
 }
 
 .btn-form-box{
@@ -204,24 +224,26 @@ input{
 
 .btn1{
     font-family: Poppins;
-    border: 2px solid #05396B;
-    border-radius: 8px;
-    font-weight: bolder;
-    font-size: 18px;
-    padding: 0;
+    border: 7px solid #05396B;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 3px;
     color: white;
     background-color: #05396B;
-    width: 100px;
+    width: 110px;
+    margin-top: 35px;
 }
 
 .btn2{
     font-family: Poppins;
-    border: 2px solid #05396B;
-    border-radius: 8px;
-    font-weight: bolder;
-    font-size: 18px;
-    padding: 0;
+    border: 7px solid #05396B;
+    border-radius: 20px;
+    font-size: 15px;
+    padding: 3px;
     color: white;
     background-color: #05396B;
-    width: 100px;
+    width: 110px;
+    margin-top: 35px;
 }
+
+    
