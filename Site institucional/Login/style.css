@@ -4,8 +4,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    background-color: #A9E884;
 }
-
+.agora{
+    font-weight: 1000;
+}
+li a{
+    text-decoration: none;
+    color: #05396B;
+}
+button a{
+    text-decoration: none;
+    color: #05396B;
+}
 
 .header {
     height: 12vh;
@@ -183,15 +194,7 @@ body {
 }
 
 
-input{
-    width: 260.49px;
-    height: 41px;
-    left: 732.46px;
-    top: 510.14px;
-    background-color: #C4C4C4;
-    border-radius: 05px;
-   
-}
+
 
 .banner{
     height: 88vh;
@@ -222,10 +225,17 @@ input{
    
 }
 
+input {
+    border: 0;
+    background-color: #C4C4C4;
+    height: 45px;
+    width: 290px;
+    
+}
 .btn1{
     font-family: Poppins;
     border: 7px solid #05396B;
-    border-radius: 20px;
+    border-radius: 9px;
     font-size: 15px;
     padding: 3px;
     color: white;
@@ -237,7 +247,7 @@ input{
 .btn2{
     font-family: Poppins;
     border: 7px solid #05396B;
-    border-radius: 20px;
+    border-radius: 9px;
     font-size: 15px;
     padding: 3px;
     color: white;

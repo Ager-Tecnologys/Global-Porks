@@ -15,7 +15,17 @@ body {
     align-items: center;
     border-bottom: solid 4px #05396B;
 }
-
+.agora{
+    font-weight: 1000;
+}
+li a{
+    text-decoration: none;
+    color: #05396B;
+}
+button a{
+    text-decoration: none;
+    color: #05396B;
+}
 .footer {
     height: 12vh;
     background-color: #292930;
