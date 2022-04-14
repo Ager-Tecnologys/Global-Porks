@@ -6,6 +6,14 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+.header a {
+    text-decoration: none;
+    color: #05396B;
+}
 
 .header {
     height: 12vh;
@@ -46,13 +54,12 @@ body {
     height: 70%;
 }
 
-.header button {
+.header .btnCadastro {
     height: 50%;
     width: 11%;
     background-color: transparent;
-    border: 3px solid #05396B;
+    border: 3px solid #05396B; 
     border-radius: 10px;
-    color: #05396B;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     font-size: 2.3vh;
@@ -60,9 +67,12 @@ body {
     box-shadow: 1px 1px 2px #777;
     transition: 0.3s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.header button:hover {
+.header .btnCadastro:hover {
     background-color: #05396B;
     color: #F9FCF8;
     transition: 0.3s;
@@ -76,7 +86,7 @@ body {
     flex-direction: row;
     width: 30%;
     justify-content: space-between;
-    font-size: 1.7vh;
+    font-size: clamp(0.8rem, 1vh, 2rem);
     color: #05396B;
     text-shadow: 1px 1px 1px #777;
 }
@@ -215,6 +225,7 @@ body {
 .wrap span {
     color: #05396B;
     text-shadow: 1px 1px 1px #777;
+    font-size: clamp(0.8rem, 1vh, 2rem);
 }
 
 .wrap.btn {
