@@ -22,7 +22,7 @@ body {
     font-weight: 1000;
 }
 
-.header a {
+a {
     text-decoration: none;
     color: #05396B;
 }
@@ -169,6 +169,7 @@ body {
 .container.logo {
     width: 50%;
     justify-content: left;
+    margin: 0;
 }
 
 .container.middle {
@@ -224,7 +225,7 @@ body {
     justify-content: center;
 }
 
-.container.products button{
+.container.products a{
     height: 45%;
     width: 25%;
     background-color: transparent;
@@ -238,9 +239,12 @@ body {
     box-shadow: 1px 1px 2px #777;
     transition: 0.3s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container.products button:hover{
+.container.products a:hover{
     background-color: #F9FCF8;
     color: #292930;
 }

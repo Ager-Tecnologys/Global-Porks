@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produtos</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../../favicon.ico">
 </head>
 
 <div class="header">
@@ -30,39 +31,50 @@
     </div>
 
     <div class="containerCard">
-        <card class="Card1">
-            <center>
+        <div class="Card"> 
                 <div class="Imagem1"><img src="./imgs/logo_porco.png" alt=""></div>
                 <div class="Title">
                     <h2>Pigsty</h2>
                 </div>
                 <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Quod reiciendis molestias quaerat</span>
-                    <button class="buttonOn">Exibir detalhes</button>
-            </center>
-        </card>
-        <card class="Card2">
-            <center>
+                    Quod reiciendis molestias</span>
+                    <button class="botao" onclick="abrir()">Exibir detalhes</button>
+        </div>
+        <div class="Card">
                 <div class="Imagem"></div>
                 <div class="Title">
                     <h2>Em breve</h2>
                 </div>
                 <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Quod reiciendis molestias quaerat</span>
-                    <button class="buttonOff">Exibir detalhes</button>
-            </center>
-        </card>
-        <card class="Card3">
-            <center>
+                    Quod reiciendis molestias</span>
+                    <button class="botao off">Exibir detalhes</button>
+        </div>
+        <div class="Card">
                 <div class="Imagem"></div>
                 <div class="Title">
                     <h2>Em breve</h2>
                 </div>
                 <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Quod reiciendis molestias quaerat</span>
-                    <button class="buttonOff">Exibir detalhes</button>
-            </center>
-        </card>
+                    Quod reiciendis molestias</span>
+                    <button class="botao off">Exibir detalhes</button>
+        </div>
+    </div>
+
+    <div id="id_modal" class="modal">
+        <div id="id_content" class="content">
+          <header class="modalHeader"> 
+            <button onclick="fechar()">&times;</button>
+            <h2>Modal Header</h2>
+          </header>
+          <div class="container">
+            <p>Some text..</p>
+            <p>Some text..</p>
+          </div>
+          <footer class="modalFooter">
+            <p>Modal Footer</p>
+          </footer>
+        </div>
+      </div>
     </div>
 
 </div>
@@ -91,3 +103,15 @@
 </body>
 
 </html>
+
+<script>
+
+    function abrir() {
+        id_modal.style.display="block"
+    }
+
+    function fechar() {
+        id_modal.style.display="none"
+    }
+
+</script>
