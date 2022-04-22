@@ -23,7 +23,7 @@
           <li><a href="../Produtos/Produtos.html">Produtos</a></li>
           <li><a href="../Login/Tela-login.html">Entrar</a></li>
         </ul>
-        <a class="btnCadastro" href="../Cadastro/Cadastro.html">Cadastrar-se</a>
+        <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
     var login = usuario_input.value;
     var senha = senha_input.value;
 
-    if (login == "ager@gmail.com" || senha == "ager123") {
+    if (login == "ager@gmail.com" && senha == "ager123") {
       alert("Login efetuado com sucesso!!");
       setTimeout(function () {
         window.location.href = "../Home-Page/home.html";

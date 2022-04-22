@@ -44,11 +44,11 @@
                 </div>
                 <div class="wrap single">
                     <span>Senha:</span>
-                    <input type="text">
+                    <input type="password">
                 </div>
                 <div class="wrap single">
                     <span>Confirmar Senha:</span>
-                    <input type="text">
+                    <input type="password">
                 </div>
                 <div class="wrap btn">
                     <button onclick="change()">Próximo</button>
@@ -99,6 +99,9 @@
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
                         <option value="EX">Estrangeiro</option>
+                
+                
+                
                     </select>
                 </div>
                 <div class="wrap single">
@@ -114,6 +117,7 @@
                     <input type="text">
                 </div>
                 <div class="wrap btn">
+                    <button onclick="voltar()">Retornar</button>
                     <button>Cadastrar</button>
                 </div>
             </div>
@@ -159,6 +163,13 @@
         cad1.style.display = "none"
         cad2.style.display = "flex"
         setTimeout(()=>{cad2.style.opacity = "1"},10)
+    }
+
+    function voltar() {
+        cad2.style.opacity = "0"
+        cad2.style.display = "none"
+        cad1.style.display = "flex"
+        setTimeout(()=>{cad1.style.opacity = "1"},10)
     }
 
 </script>
