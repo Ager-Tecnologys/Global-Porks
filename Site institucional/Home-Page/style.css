@@ -22,6 +22,7 @@ html {
     justify-content: center;
     align-items: center;
     border-bottom: solid 4px #05396B;
+    
 }
 
 .footer {
@@ -181,16 +182,16 @@ html {
 }
 
 .banner {
-    height: 150vh;
+    height: flex;
     background-image: linear-gradient(#A7E784, #41B276);
-    padding-top: 100px;
+    padding-top: 150px;
     display: flex;
     justify-content: center;
 }
 
 .container.areas {
     width: 80%;
-    height: 120vh; 
+    height: flex; 
     background-color: #F9FCF8;
     border-radius: 35px;
     flex-direction: column;
@@ -198,6 +199,9 @@ html {
     align-items: center;
     box-shadow: 4px 4px 20px #777;
     padding-top: 60px;
+    margin-bottom: 50px;
+    position: relative;
+   
 }
 
 .container.areas h2 {
@@ -222,6 +226,7 @@ html {
     box-shadow: 15px 15px 22px #d6d9d5,
                 -15px -15px 22px #f7f7f7;
     cursor: pointer;
+    position: relative;
 }
 
 .card h2 {
@@ -235,13 +240,108 @@ html {
 }
 
 .container.cards {
-    height: 30vh;
+    display: flex;
+    height: flex;
     width: 80%;
+    padding-bottom: 35px;
     justify-content: space-around;
+    flex-wrap:  wrap ;
+
+}
+
+.card.add{
+    border: 0;
 }
 
 .card.add:hover {
     font-size: 8vh;
-    transition: 0.3s;
+    transition: 0.2s;
     cursor: pointer;
+    border: 4px solid #41B276;
+}
+
+.card.remove{
+    border: 0;
+}
+
+.card.remove:hover {
+    font-size: 8vh;
+    transition: 0.2s;
+    cursor: pointer;
+    border: 4px solid #e44848;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+#Group1{
+    justify-content: center;
+    gap: 6%;
+    row-gap: 8ch;
+    
+}
+
+.modal {
+    z-index:3;
+    display:none;
+    padding-top:100px;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color:rgba(218, 85, 85, 0.4);
+    transition: 0.3s;
+    
+}
+
+.content {
+    border-radius: 22px;
+    margin:auto;
+    background-color:#fff;
+    position:relative;
+    padding:0;
+    outline:0;
+    width:600px;
+    transition: 0.5s;
+}
+.content .container{
+    display: flex;
+    border: 0;
+    justify-content: center;
+}
+
+.content .modalHeader{
+    display: flex;
+    border: 0;
+    justify-content: center;
+    color: #e44848;
+}
+
+.content .modalFooter{
+    display: flex;
+    height: 50px;
+    border-radius: 22px;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+}
+.modalFooter .btn-fechar{
+    height: 70%;
+    width: 25%;
+    border-radius: 15px;
+    border: 2px solid #e44848;
+    cursor: pointer;
+    background-color: #F9FCF8;
+    color: #e44848;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.modalFooter .btn-fechar:hover {
+    background-color: #e44848;
+    color: #F9FCF8;
+    transition: 0.3s;
 }

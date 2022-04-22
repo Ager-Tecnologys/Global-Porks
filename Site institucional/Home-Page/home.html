@@ -1,99 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home-Page</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="../../favicon.ico">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../../favicon.ico" />
+  </head>
+  <body>
     <div class="header">
-        <div class="container">
-            <div class="container logo">
-                <img src="imgs/Ager-recolor.png" />
-                <h1>AGER Technologies</h1>
-            </div>
-            <ul>
-                <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
-                <li>Contato</li>
-                <li><a href="../Produtos/Produtos.html">Produtos</a></li>
-                <li>Menu de Usuário</li>
-            </ul>
-            <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
+      <div class="container">
+        <div class="container logo">
+          <img src="imgs/Ager-recolor.png" />
+          <h1>AGER Technologies</h1>
         </div>
+        <ul>
+          <li>
+            <a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a>
+          </li>
+          <li>Contato</li>
+          <li><a href="../Produtos/Produtos.html">Produtos</a></li>
+          <li>Menu de Usuário</li>
+        </ul>
+        <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
+      </div>
     </div>
 
     <div class="banner">
-       <div class="container areas">
-            <div class="wrap"><h2 style="font-size: clamp(2rem, 4vh, 4rem);"><u>Menu de Áreas</u></h2></div>
+      <div class="container areas">
+        <div class="wrap">
+          <h2 style="font-size: clamp(2rem, 4vh, 4rem)">
+            <u>Menu de Áreas</u>
+          </h2>
+        </div>
 
-            <div class="container cards">
-                <div class="card">
-                    <h2>Área 1</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">23°C</h2>
-                    <h3 style="color: red;">🔻20°C   🔺26°C</h3>
-                </div>
+        <div id="Group1" class="container cards">
+            
+        </div>
 
-                <div class="card">
-                    <h2>Área 2</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
-                    <h3 style="color: red;">🔻18°C   🔺23°C</h3>
-                </div>
+
+        <div class="container cards">
+          <button onclick="adicionar()" class="card add">
+            <h2 style="font-size: 6vh; transition: 0.3s">+</h2>
+          </button>
+
+          <button onclick="remover()" class="card remove">
+            <div>
+              <h2 style="font-size: 6vh; transition: 0.3s">-</h2>
             </div>
-
-            <div class="container cards">
-                <div class="card">
-                    <h2>Área 3</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
-                    <h3 style="color: red;">🔻18°C   🔺23°C</h3>
-                    
-                </div>
-
-                <div class="card">
-                    <h2>Área 4</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">23°C</h2>
-                    <h3 style="color: red;">🔻20°C   🔺26°C</h3>
-                </div>
-            </div>
-
-            <div class="container cards">
-                <div class="card add">
-                    <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
-                </div>
-
-                <div class="card add">
-                    <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>
-                </div>
-            </div>
-
-       </div> 
+          </button>
+        </div>
+      </div>
     </div>
+
+
+    <div id="id_modal" class="modal">
+      <div id="id_content" class="content">
+         
+        <header class="modalHeader"> 
+          <h2>ALERTA!!!</h2>
+        </header>
+        <div class="container">
+          <p>Não é possível excluir mais áreas, pois não existe áreas criadas.</p>
+        </div>
+        
+        <footer class="modalFooter">
+          <button class="btn-fechar" onclick="fechar()">Fechar</button>
+        </footer>
+      </div>
+    </div>
+  </div>
 
     <div class="footer">
-        <div class="container">
-            <div class="container logo">
-                <h1>AGER Technologies</h1>
-            </div>
-  
-            <div class="container middle">
-                <button>Home</button>
-                <ul>
-                    <li>Informação</li>
-                    <li>Suporte</li>
-                    <li>Termos de uso</li>
-                </ul>
-            </div>
-  
-            <div class="container socials">
-                <img src="imgs/instagram.png" alt="" />
-                <img src="imgs/facebook.png" alt="" />
-                <img src="imgs/linkedin.png" alt="" />
-            </div>
+      <div class="container">
+        <div class="container logo">
+          <h1>AGER Technologies</h1>
         </div>
-    </div>
 
-</body>
+        <div class="container middle">
+          <button>Home</button>
+          <ul>
+            <li>Informação</li>
+            <li>Suporte</li>
+            <li>Termos de uso</li>
+          </ul>
+        </div>
+
+        <div class="container socials">
+          <img src="imgs/instagram.png" alt="" />
+          <img src="imgs/facebook.png" alt="" />
+          <img src="imgs/linkedin.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
+<script>
+  var count = 0;
+  
+  function adicionar() {
+    
+   
+      Group1.innerHTML += `
+        <div id="Card${count+1}" class="card">
+            <h2>Área ${count+1}</h2>
+            <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">
+                ${Math.floor(Math.random().toFixed(2) * 100)}°C</h2>
+            <h3 style="color: red;">🔻${Math.floor(Math.random().toFixed(2) * 100)}°C  
+                🔺${Math.floor(Math.random().toFixed(2) * 100)}°C</h3>
+        </div>
+        `;
+      count++
+  }
+
+  function fechar() {
+        id_modal.style.display="none"
+    }
+  function remover() {
+
+    if(count < 1){
+      id_modal.style.display="block"
+    }else{
+        let group = document.getElementById('Group1');
+        group.removeChild(group.lastElementChild); 
+
+    
+        count--
+    }
+    
+  }
+</script>
