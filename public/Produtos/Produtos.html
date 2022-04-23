@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../../favicon.ico">
+</head>
+
+<div class="header">
+    <div class="container">
+        <div class="container logo">
+            <img src="imgs/Ager-recolor.png" />
+            <h1>AGER Technologies</h1>
+        </div>
+        <ul>
+            <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
+            <li>Orçamento</li>
+            <li><a href="../Produtos/Produtos.html">Produtos</a></li>
+            <li><a href="../Login/Tela-login.html">Entrar</a></li>
+        </ul>
+        <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
+    </div>
+</div>
+<div class="banner">
+    <div class="containerTitle">
+        Conheça nossos produtos
+    </div>
+
+    <div class="containerCard">
+        <div class="Card"> 
+                <div class="Imagem1"><img src="./imgs/logo_porco.png" alt=""></div>
+                <div class="Title">
+                    <h2>Pigsty</h2>
+                </div>
+                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Quod reiciendis molestias</span>
+                    <button class="botao" onclick="abrir()">Exibir detalhes</button>
+        </div>
+        <div class="Card">
+                <div class="Imagem"></div>
+                <div class="Title">
+                    <h2>Em breve</h2>
+                </div>
+                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Quod reiciendis molestias</span>
+                    <button class="botao off">Exibir detalhes</button>
+        </div>
+        <div class="Card">
+                <div class="Imagem"></div>
+                <div class="Title">
+                    <h2>Em breve</h2>
+                </div>
+                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Quod reiciendis molestias</span>
+                    <button class="botao off">Exibir detalhes</button>
+        </div>
+    </div>
+
+    <div id="id_modal" class="modal">
+        <div id="id_content" class="content">
+           
+          <header class="modalHeader"> 
+            <h2>Pigsty</h2>
+          </header>
+          <div class="container">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta numquam alias, labore impedit cum, quo voluptate earum quis expedita animi ea fugiat! Sed impedit voluptatibus ea soluta debitis. Obcaecati, aliquam?</p>
+          </div>
+          
+          <footer class="modalFooter">
+            <button class="btn-fechar" onclick="fechar()">Fechar</button>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="container logo">
+            <h1>AGER Technologies</h1>
+        </div>
+
+        <div class="container middle">
+            <button>Entrar</button>
+            <ul>
+                <li>Informação</li>
+                <li>Suporte</li>
+                <li>Termos de uso</li>
+            </ul>
+        </div>
+
+        <div class="container socials">
+            <img src="imgs/instagram.png" alt="" />
+            <img src="imgs/facebook.png" alt="" />
+            <img src="imgs/linkedin.png" alt="" />
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
+
+<script>
+
+    function abrir() {
+        id_modal.style.display="block"
+    }
+
+    function fechar() {
+        id_modal.style.display="none"
+    }
+
+</script>
