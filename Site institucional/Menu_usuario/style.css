@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.header {
+    height: 12vh;
+    background-color: #A9E884;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 4px #05396B;
+}
+
+.header a {
+    text-decoration: none;
+    color: #05396B;
+}
+
+.footer {
+    height: 12vh;
+    background-color: #292930;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h1 {
+    color: #05396B;
+    font-weight: 500;
+    margin: 0;
+    margin-left: 4px;
+    text-shadow: 1px 1px 2px #777;
+    cursor: default;
+    font-size: 3.5vh;
+}
+
+.header img {
+    height: 70%;
+}
+
+.header .btnCadastro {
+    height: 50%;
+    width: 11%;
+    background-color: transparent;
+    border: 3px solid #05396B; 
+    border-radius: 10px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3vh;
+    text-shadow: 1px 1px 2px #777;
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .btnCadastro:hover {
+    background-color: #05396B;
+    color: #F9FCF8;
+    transition: 0.3s;
+}
+
+.header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-between;
+    font-size: clamp(0.8rem, 1vh, 2rem);
+    color: #05396B;
+    text-shadow: 1px 1px 1px #777;
+}
+
+.header li {
+    transition: 0.2s;
+    cursor: pointer;
+    border: solid 2px transparent;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.header li:hover {
+    text-shadow: 1px 1px 3px #477A62;
+    transition: 0.2s;
+    border-color: #05396B;
+    box-shadow: 2px 2px 13px -4px #477A62;
+}
+
+.footer {
+    float: bottom;
+}
+
+.footer h1 {
+    font-size: 3vh;
+}
+
+.footer button {
+    height: 40%;
+    width: 15%;
+    background-color: transparent;
+    border: 3px solid #F9FCF8;
+    border-radius: 10px;
+    color: #F9FCF8;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3vh;
+    text-shadow: 1px 1px 2px #777;
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.footer button:hover {
+    background-color: #F9FCF8;
+    color: #292930;
+}
+
+.footer {
+    color: #F9FCF8;
+}
+
+.footer .container.logo {
+    width: 25%;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    justify-content: space-between;
+    font-size: 1.6vh;
+    color: #F9FCF8;
+    text-shadow: 1px 1px 1px #777;
+}
+
+.footer li {
+    cursor: pointer;
+}
+
+.container.logo {
+    width: 50%;
+    justify-content: left;
+}
+
+.container.middle {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container.socials {
+    width: 25%;
+    justify-content: space-around;
+}
+
+.container.socials img{
+    height: 5vh;
+    cursor: pointer;
+}
+
+.banner {
+    height: 100vh;
+    background-image: linear-gradient(#A7E784, #41B276);
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.banner .container {
+    height: 60%;
+    width: 30%;
+    background-color: #F9FCF8;
+    border-radius: 20px;
+    box-shadow: 4px 4px 20px #777;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+    transition: 0.3s;
+}
+
+.banner .container h2 {
+    font-size: clamp(1rem, 3vh, 3rem);
+    color: #05396B;
+    text-shadow: 1px 1px 1px #777;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    display: none;
+}
+
+.banner button{
+    height: 20%;
+    width: 70%;
+    background-color: transparent;
+    border: 3px solid #05396B;
+    border-radius: 10px;
+    color: #05396B;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3vh;
+    text-shadow: 1px 1px 2px #777;
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.banner button:hover {
+    background-color: #05396B;
+    color: #F9FCF8;
+    transition: 0.3s;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    height: 7vh;
+    width: 80%;
+}
+
+.wrap select {
+    width: 100%;
+    height: 4vh;
+    border-radius: 4px;
+    border-width: 1px;
+    font-size: clamp(0.5rem, 1.5vh, 2rem);
+    box-shadow: 1px 1px 2px #777;
+}
+
+.wrap input {
+    width: 100%;
+    height: 3.5vh;
+    border-radius: 4px;
+    border-width: 1px;
+    font-size: clamp(0.5rem, 1.5vh, 2rem);
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s ease;
+}
+
+.wrap input:focus {
+    border-width: 2px;
+    border-color: #05396B;
+    transition: 0.3s ease;
+    background-color: #d6d6d6;
+}
+
+.wrap span {
+    color: #05396B;
+    text-shadow: 1px 1px 1px #777;
+    font-size: 1.7vh;
+}
+
+.wrap.btn {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrap.btn button {
+    height: 60%;
+    width: 40%;
+}
+
+.contBtn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cont {
+    display: none;
+    height: 80%;
+    width: 80%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cont.edit .wrap {
+    flex-direction: row;
+    justify-content: center;
+    justify-content: left;
+}
+
+.wrap.user {
+    border-bottom: #777 1px solid;
+}
+
+.wrap.user span {
+    width: 40%;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+}
+
+.wrap.user select {
+    width: 50%;
+}
+
+.wrap.user img {
+    height: 4vh;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.wrap.user .id {
+    width: 10%;
+}
+
+.titleId {
+    width: 10%;
+}
+
+.titleNome {
+    width: 35%;
+}
+
+.titleTipo {
+    width: 45%;
+}
+
+.cont.edit .wrap.btn {
+    justify-content: center;
+}
+

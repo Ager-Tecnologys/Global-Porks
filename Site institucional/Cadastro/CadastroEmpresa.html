@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Usuário</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../../favicon.ico">
+</head>
+<body>
+    
+    <div class="header">
+        <div class="container">
+            <div class="container logo">
+                <img src="imgs/Ager-recolor.png" />
+                <h1>AGER Technologies</h1>
+            </div>
+            <ul>
+                <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
+                <li>Orçamento</li>
+                <li><a href="../Produtos/Produtos.html">Produtos</a></li>
+                <li><a href="../Login/Tela-login.html">Entrar</a></li>
+            </ul>
+            <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html#idBanner">Cadastrar-se</a>
+        </div>
+    </div>
+
+    <div id="idBanner" class="banner">
+        <div class="container">
+            <h2 style="margin-block-end: 30px;">Cadastre sua Empresa</h2>
+            <div id="cad1" class="cont">
+                <div class="wrap single">
+                    <span>Razão Social:</span>
+                    <input type="text">
+                </div>    
+                <div class="wrap single">
+                    <span>Nome Fantasia:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap single">
+                    <span>CNPJ:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap single">
+                    <span>Senha:</span>
+                    <input type="password">
+                </div>
+                <div class="wrap single">
+                    <span>Confirmar Senha:</span>
+                    <input type="password">
+                </div>
+                <div class="wrap btn">
+                    <button onclick="change()">Próximo</button>
+                </div>
+            </div>
+
+            <div id="cad2" class="cont second">
+                <div class="wrap single">
+                  <span>Rua:</span>
+                  <input type="text">
+                </div>  
+                <div class="wrap single">
+                  <span>Bairro:</span>
+                  <input type="text">
+                </div>
+                <div class="wrap single">
+                    <span>Cidade:</span>
+                    <input type="text">
+                </div>    
+                <div class="wrap single">
+                    <span>Estado:</span>
+                    <select id="inp_estado">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="EX">Estrangeiro</option>
+                
+                
+                
+                    </select>
+                </div>
+                <div class="wrap single">
+                  <span>CEP:</span>
+                  <input type="text">
+                </div>
+                <div class="wrap single">
+                    <span>Telefone:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap single">
+                    <span>E-Mail:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap btn">
+                    <button onclick="voltar()">Retornar</button>
+                    <button>Cadastrar</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container img">
+            <img src="imgs/imgForm.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="container logo">
+                <h1>AGER Technologies</h1>
+            </div>
+  
+            <div class="container middle">
+                <button>Entrar</button>
+                <ul>
+                    <li>Informação</li>
+                    <li>Suporte</li>
+                    <li>Termos de uso</li>
+                </ul>
+            </div>
+  
+            <div class="container socials">
+                <img src="imgs/instagram.png" alt="" />
+                <img src="imgs/facebook.png" alt="" />
+                <img src="imgs/linkedin.png" alt="" />
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    function change() {
+        cad1.style.opacity = "0"
+        cad1.style.display = "none"
+        cad2.style.display = "flex"
+        setTimeout(()=>{cad2.style.opacity = "1"},10)
+    }
+
+    function voltar() {
+        cad2.style.opacity = "0"
+        cad2.style.display = "none"
+        cad1.style.display = "flex"
+        setTimeout(()=>{cad1.style.opacity = "1"},10)
+    }
+
+</script>
+
+

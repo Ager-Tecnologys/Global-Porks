@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro - Usuário</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../../favicon.ico" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="container logo">
+          <img src="imgs/Ager-recolor.png" />
+          <h1>AGER Technologies</h1>
+        </div>
+        <ul>
+          <li>
+            <a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a>
+          </li>
+          <li>Orçamento</li>
+          <li><a href="../Produtos/Produtos.html">Produtos</a></li>
+          <li><a href="../Login/Tela-login.html">Entrar</a></li>
+        </ul>
+        <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
+      </div>
+    </div>
+
+    <div class="banner">
+      <div class="container">
+        <h2 style="margin-block-end: 60px">Login</h2>
+        <div class="wrap">
+          <span>Usuário / E-Mail Corporativo:</span>
+          <input id="usuario_input" type="text" />
+        </div>
+        <div class="wrap">
+          <span>Senha:</span>
+          <input id="senha_input" type="password" />
+        </div>
+        <div class="wrap btn">
+          <button onclick="entrar()">Entrar</button>
+        </div>
+        <div class="wrap btn">
+          <button> Cadastrar-se</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="container logo">
+          <h1>AGER Technologies</h1>
+        </div>
+
+        <div class="container middle">
+          <button>Entrar</button>
+          <ul>
+            <li>Informação</li>
+            <li>Suporte</li>
+            <li>Termos de uso</li>
+          </ul>
+        </div>
+
+        <div class="container socials">
+          <img src="imgs/instagram.png" alt="" />
+          <img src="imgs/facebook.png" alt="" />
+          <img src="imgs/linkedin.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  function entrar() {
+    var login = usuario_input.value;
+    var senha = senha_input.value;
+
+    if (login == "ager@gmail.com" && senha == "ager123") {
+      alert("Login efetuado com sucesso!!");
+      setTimeout(function () {
+        window.location.href = "../Home-Page/home.html";
+      }, 2000);
+    } else {
+      alert("Login invalido!!");
+    }
+  }
+</script>

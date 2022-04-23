@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu de Usuário</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="../../favicon.ico">
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="container logo">
+          <img src="imgs/Ager-recolor.png" />
+          <h1>AGER Technologies</h1>
+        </div>
+        <ul>
+          <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
+          <li>Orçamento</li>
+          <li>Produtos</li>
+          <li><a href="../Login/Tela-login.html">Entrar</a></li>
+        </ul>
+        <a class="btnCadastro" href="../Cadastro/Cadastro.html">Cadastrar-se</a>
+      </div>
+    </div>
+
+    <div class="banner">
+        <div class="container" id="formbox">
+
+            <div class="contBtn" id="btns">
+                <button onclick="add()">Adicionar Usuário</button>
+                <button onclick="edit()">Editar Usuários</button>
+            </div>
+
+                <h2 id="idTitle1">Dados</h2>
+            <div class="cont" id="addUser">
+               
+                <div class="wrap">
+                    <span>Nome:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap">
+                    <span>Sobrenome:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap">
+                    <span>E-mail:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap">
+                    <span>CPF:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap">
+                    <span>Telefone:</span>
+                    <input type="text">
+                </div>
+                <div class="wrap">
+                    <span>Senha:</span>
+                    <input type="password">
+                </div>
+                <div class="wrap">
+                    <span>Confirmar Senha:</span>
+                    <input type="password">
+                </div>
+                <div class="wrap">
+                    <span>Tipo de Usuário:</span>
+                    <select id="inp_tipo">
+                        <option value="pad">Padrão</option>
+                        <option value="adm">Administrador</option>
+                    </select>
+                </div>
+                <div class="wrap btn">
+                    <button onclick="voltar()">Voltar</button>
+                    <button>Cadastrar</button>
+                </div>
+            </div>
+
+
+            <h2 id="idTitle2">Usuários</h2>
+            <div class="cont edit" id="editUser">
+                <div class="wrap">
+                    <span class="titleId">Id</span>
+                    <span class="titleNome">Nome</span>
+                    <span class="titleTipo">Tipo</span>
+                    <span>Editar</span>
+                </div>
+                <div class="wrap user">
+                    <span class="id">01</span>
+                    <span>Rafael Macedo</span>
+                    <select id="inp_tipo">
+                        <option value="pad">Padrão</option>
+                        <option value="adm">Administrador</option>
+                    </select>
+                    <img src="imgs/settings.png">
+                </div>
+                <div class="wrap user">
+                    <span class="id">02</span>
+                    <span>Arthur Peraçolli</span>
+                    <select id="inp_tipo">
+                        <option value="adm">Administrador</option>
+                        <option value="pad">Padrão</option>
+                    </select>
+                    <img src="imgs/settings.png">
+                </div>
+                <div class="wrap user">
+                    <span class="id">03</span>
+                    <span>Leonardo Tomé</span>
+                    <select id="inp_tipo">
+                        <option value="adm">Administrador</option>
+                        <option value="pad">Padrão</option>
+                    </select>
+                    <img src="imgs/settings.png">
+                </div>
+                <div class="wrap user">
+                    <span class="id">04</span>
+                    <span>Aldry Longo</span>
+                    <select id="inp_tipo">
+                        <option value="pad">Padrão</option>
+                        <option value="adm">Administrador</option>
+                    </select>
+                    <img src="imgs/settings.png">
+                </div>
+                <div class="wrap btn">
+                    <button onclick="voltar()">Voltar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+          <div class="container logo">
+            <h1>AGER Technologies</h1>
+          </div>
+  
+          <div class="container middle">
+            <button>Entrar</button>
+            <ul>
+              <li>Informação</li>
+              <li>Suporte</li>
+              <li>Termos de uso</li>
+            </ul>
+          </div>
+  
+          <div class="container socials">
+            <img src="imgs/instagram.png" alt="" />
+            <img src="imgs/facebook.png" alt="" />
+            <img src="imgs/linkedin.png" alt="" />
+  </body>
+</html>
+
+<script>
+
+    function add() {
+        btns.style.display = "none"
+        addUser.style.display = "flex"
+        idTitle1.style.display = "block"
+        formbox.style.height = "90%"
+    }
+
+    function voltar() {
+        btns.style.display = "flex"
+        addUser.style.display = "none"
+        idTitle1.style.display = "none"
+        editUser.style.display = "none"
+        idTitle2.style.display = "none"
+        formbox.style.height = "60%"
+        formbox.style.width = "30%"
+    }
+
+    function edit() {
+        btns.style.display = "none"
+        editUser.style.display = "flex"
+        idTitle2.style.display = "block"
+        formbox.style.height = "90%" 
+        formbox.style.width = "40%"
+    }
+
+</script>
