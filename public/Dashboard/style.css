@@ -334,7 +334,8 @@ a {
 }
 
 img {
-    height: 4vh;
+    margin-bottom: -7.5px;
+    height: 3vh;
     margin-left: 20px;
     cursor: pointer;
 }
