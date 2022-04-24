@@ -18,12 +18,12 @@ function entrar(email, senha) {
     return database.executar(instrucao);
 }
 
-function cadastrar(nomeFantasia, cnpj, RazaoSocial, telefone, email, senha, rua, bairro, cidade, estado, cep) {
+function cadastrar(nomeFantasia, cnpj, RazaoSocial, telefone, email, senha, rua, numero, bairro, cidade, estado, cep) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeFantasia, email, senha);
     
     var instrucao = `
-        INSERT INTO empresa (NomeFantasia, CNPJ, RazaoSocial, Telefone, Email, Senha, Rua, Bairro, Cidade, Estado, CEP) VALUES
-        ('${nomeFantasia}', '${cnpj}', '${RazaoSocial}', '${telefone}', '${email}', '${senha}', '${rua}', '${bairro}', '${cidade}', '${estado}', '${cep}');
+        INSERT INTO empresa (NomeFantasia, CNPJ, RazaoSocial, Telefone, Email, Senha, Rua, Numero, Bairro, Cidade, Estado, CEP) VALUES
+        ('${nomeFantasia}', '${cnpj}', '${RazaoSocial}', '${telefone}', '${email}', '${senha}', '${rua}', '${numero}', '${bairro}', '${cidade}', '${estado}', '${cep}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

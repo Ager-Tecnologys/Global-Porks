@@ -68,6 +68,7 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var rua = req.body.ruaServer;
+    var numero = req.body.numeroServer;
     var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
@@ -87,6 +88,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (rua == undefined) {
         res.status(400).send("Sua rua está undefined!");
+    } else if (numero == undefined) {
+        res.status(400).send("Seu número está undefined!");
     } else if (bairro == undefined) {
         res.status(400).send("Sua bairro está undefined!");
     } else if (cidade == undefined) {
@@ -98,7 +101,7 @@ function cadastrar(req, res) {
     }
     else {
         console.log('Chamando todos os Autobots')
-        empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, email, senha, rua, bairro, cidade, estado, cep)
+        empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, email, senha, rua, numero, bairro, cidade, estado, cep)
             .then(
                 function (resultado) {
                     res.json(resultado);

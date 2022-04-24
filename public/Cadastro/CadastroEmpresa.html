@@ -33,7 +33,7 @@
         <div id="id_content" class="content">
            
           <header class="modalHeader"> 
-            <h2>Erro!</h2>
+            <h2 id="titleErro">Erro!</h2>
           </header>
           <div class="container">
             <p id="erroDesc"></p>
@@ -64,7 +64,11 @@
                 </div>
                 <div class="wrap single">
                     <span>CNPJ:</span>
-                    <input type="text" id="cnpj_input" placeholder="Ex: 32.960.690/0001-17">
+                    <input type="text" id="cnpj_input" placeholder="Ex: 32960690000117">
+                </div>
+                <div class="wrap single">
+                    <span>E-Mail:</span>
+                    <input type="text" id="email_input" placeholder="Ex: seuemail@gmail.com">
                 </div>
                 <div class="wrap single">
                     <span>Senha:</span>
@@ -83,6 +87,10 @@
                 <div class="wrap single">
                     <span>Rua:</span>
                     <input type="text" id="rua_input" placeholder="Insira a sua rua.">
+                </div>
+                <div class="wrap single">
+                    <span>Número:</span>
+                    <input type="text" id="numero_input" placeholder="Insira o seu número.">
                 </div>
                 <div class="wrap single">
                     <span>Bairro:</span>
@@ -131,20 +139,12 @@
                 </div>
                 <div class="wrap single">
                     <span>Telefone:</span>
-                    <input type="text" id="telefone_input" placeholder="Ex: (93) 2018-7758">
-                </div>
-                <div class="wrap single">
-                    <span>E-Mail:</span>
-                    <input type="text" id="email_input" placeholder="Ex: seuemail@gmail.com">
+                    <input type="text" id="telefone_input" placeholder="Ex: 1120187758">
                 </div>
                 <div class="wrap btn">
                     <button onclick="voltar()">Retornar</button>
                     <button onclick="cadastrar()">Cadastrar</button>
                 </div>
-            </div>
-
-            <div id="div_aguardar" class="loading-div">
-                <img src="../loading.jpg" id="loading-gif">
             </div>
 
         </div>
@@ -178,6 +178,8 @@
         </div>
     </div>
 
+    <div id="div_aguardar"></div>
+
 </body>
 
 </html>
@@ -199,7 +201,6 @@
     }
 
     function cadastrar() {
-        aguardar();
         var razaoSocialVar = razao_social_input.value;
         var nomeFantasiaVar = nome_fantasia_input.value;
         var cnpjVar = cnpj_input.value;
@@ -207,6 +208,7 @@
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
         var ruaVar = rua_input.value;
+        var numeroVar = numero_input.value;
         var bairroVar = bairro_input.value;
         var cidadeVar = cidade_input.value;
         var estadoVar = estado_input.value;
@@ -221,6 +223,7 @@
             senhaVar == "" ||
             confirmacaoSenhaVar == "" ||
             ruaVar == "" ||
+            numeroVar == "" ||
             bairroVar == "" ||
             cidadeVar == "" ||
             estadoVar == "" ||
@@ -228,27 +231,27 @@
             erroDesc.innerHTML = "Preencha todos os campos para continuar."
             id_modal.style.display="block"
 
-            finalizarAguardar();
+
             return false;
         }else if (emailVar.indexOf("@") == -1) {
             erroDesc.innerHTML = "E-Mail Inválido!"
             id_modal.style.display="block"
-            finalizarAguardar();
+
             return false;
         }else if (senhaVar != confirmacaoSenhaVar) {
             erroDesc.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!"
             id_modal.style.display="block"
-            finalizarAguardar();
+
             return false;
-        }else if (cnpjVar.length != 18) {
+        }else if (cnpjVar.length != 14) {
             erroDesc.innerHTML = "CNPJ inválido!"
             id_modal.style.display="block"
-            finalizarAguardar();
+
             return false;
-        }else if (telefoneVar.length != 13) {
+        }else if (telefoneVar.length > 11 || telefoneVar.length < 10) {
             erroDesc.innerHTML = "Telefone Inválido!"
             id_modal.style.display="block"
-            finalizarAguardar();
+
             return false;
         }else {
         fetch("/empresas/cadastrar", {
@@ -264,6 +267,7 @@
                 emailServer: emailVar,
                 senhaServer: senhaVar,
                 ruaServer: ruaVar,
+                numeroServer: numeroVar,
                 bairroServer: bairroVar,
                 cidadeServer: cidadeVar,
                 estadoServer: estadoVar,
@@ -274,17 +278,18 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block"
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
-                window.location = "../Login/Tela-login.html";
+                titleErro.innerHTML = "Sucesso!"
+                erroDesc.innerHTML = "Cadastro realizado com sucesso!"
+                id_modal.style.display="block"
+                setTimeout(()=> {window.location = "../Login/Tela-login.html";},3000)
                 limparFormulario();
-                finalizarAguardar();
+                
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
+            
         });
         return false;
     }}
