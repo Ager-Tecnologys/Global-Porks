@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador Financeiro - AGER</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="header">
+            <div class="container">
+              <div class="container logo">
+                <img src="imgs/Ager-recolor.png" />
+                <h1>AGER Technologies</h1>
+              </div>
+              <ul>
+                <li><a href="../index.html#aboutUs">Sobre nós</a></li>
+                <li>Orçamento</li>
+                <li><a href="../Produtos/Produtos.html">Produtos</li>
+                <li><a href="../Login/Tela-login.html">Entrar</a></li>
+              </ul>
+              <a class="btnCadastro" href="../Cadastro/Cadastro.html">Cadastrar-se</a>
+            </div>
+        </div>
+
+        <div class="banner">
+
+            <div class="calculadora">
+
+                <h1 class="titulo">Simulador financeiro</h1>
+
+                <div class="formulario">
+                    <div class="div_input">
+                        <span class="span">Área total à ser monitorada (m²):</span><br>
+                        <input type="number" id="inp_area" class="input"><br>
+                    </div>
+
+                    <div class="div_input">
+                        <span class="span">Quantidade de porcos abatidos por ano:</span><br>
+                        <input type="number" id="inp_qtdPorco" class="input"><br>
+                    </div>
+
+                    <div class="div_input">
+                        <span class="span">Custo para que um porco atinja fase de abate:</span><br>
+                        <input type="number" id="inp_custoPorco" class="input"><br>
+                    </div>
+
+                    <div class="div_input">
+                        <span class="span">Valor do porco após abate:</span><br>
+                        <input type="number" id="inp_valorPorco" class="input"><br>
+                    </div>
+
+                    <div class="div_input">
+                        <span class="span">Quantidade de anos para simular:</span><br>
+                        <input type="number" id="inp_anos" class="input"><br>
+                    </div>
+                    <button onclick="calcular()" class="botao">Simular</button>
+                </div>
+
+                <div id="div_resultado" class="resultados">
+
+            </div>
+
+        </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="container">
+              <div class="container logo">
+                <h1>AGER Technologies</h1>
+              </div>
+      
+              <div class="container middle">
+                <button>Entrar</button>
+                <ul>
+                  <li>Informação</li>
+                  <li>Suporte</li>
+                  <li>Termos de uso</li>
+                </ul>
+              </div>
+      
+              <div class="container socials">
+                <img src="imgs/instagram.png" alt="" />
+                <img src="imgs/facebook.png" alt="" />
+                <img src="imgs/linkedin.png" alt="" />
+              </div>
+            </div>
+        </div>
+
+
+    </body>
+
+</html>
+
+<script>
+    function calcular() {
+
+        var area = Number(inp_area.value);
+        var qtdPorco = Number(inp_qtdPorco.value);
+        var custoPorco = Number(inp_custoPorco.value);
+        var valorPorco = Number(inp_valorPorco.value);
+        var anos = Number(inp_anos.value);
+        var meses = anos * 12;
+
+        var taxaInstalacao = area * 100;
+        var mensalidade = (area * 40) * meses;
+
+        var income = (valorPorco * qtdPorco) * anos;
+
+        var gastos = (qtdPorco * custoPorco) * anos;
+        var lucro = (income - gastos);
+
+        // 17% 100 - 17 = 83
+        var gastosBetter = (gastos * 0.83);
+        var lucroBetter = (income - gastosBetter);
+
+        var difLucro = lucroBetter - lucro;
+        var lucroPorcentagem = (difLucro * 100) / lucro;
+
+        mensalidade = mensalidade.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        taxaInstalacao = taxaInstalacao.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        })
+
+        custoPorco = custoPorco.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        gastos = gastos.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+
+        valorPorco = valorPorco.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        income = income.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        lucro = lucro.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        lucroBetter = lucroBetter.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        gastosBetter = gastosBetter.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        difLucro = difLucro.toLocaleString('pt-BR', {
+            currency: 'BRL',
+            style: 'currency'
+        });
+        lucroPorcentagem = lucroPorcentagem.toFixed(2);
+
+        div_resultado.innerHTML =
+            `
+            <div class='div_resu_inteiro'>
+
+                <p class='desc_resultado'>Com uma taxa de instalação de apenas ${taxaInstalacao} e uma e um valor de manutenção mensal total de ${mensalidade}, poderá obter os seguintes
+                resultados:</p>
+                    <br>
+                <div class='semNos'>
+                    <h3 class='valorVermelho'>Sem nosso serviço:</h3>
+                    Gastos em ${anos} ano(s): ${gastos}<br>
+                    Income em ${anos} ano(s): ${income}<br>
+                    Lucro em ${anos} ano(s): ${lucro}<br>
+                </div>
+
+                <div class='comNos'>
+                    <h3 class='valorVerde'>Com nosso serviço:</h3>
+                    Gastos em ${anos} ano(s): ${gastosBetter}<br>
+                    Income em ${anos} ano(s): ${income}<br>
+                    Lucro em ${anos} ano(s): ${lucroBetter}<br>
+                </div>
+                <br>
+                <br>
+                <div class='aumento'>
+                    Aumento de lucro em até:<br>
+                    <b class='aumentoDif'>${difLucro}!</b><br>
+                    ou<br>
+                    <b class='aumentoDif'>${lucroPorcentagem}%!</b>
+                </div>
+                <div class='small'>
+                    <i>
+                        (OBS: Estes dados foram calculados considerando que a todo momento os porcos estejam em temperaturas inapropriadas sem nosso monitoramento.)
+                    </i>
+                </div>
+                    
+            </div>
+
+        `
+        div_resultado.style.padding = '8px';
+    }
+</script>

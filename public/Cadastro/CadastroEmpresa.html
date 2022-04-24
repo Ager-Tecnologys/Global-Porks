@@ -20,7 +20,7 @@
                 <h1>AGER Technologies</h1>
             </div>
             <ul>
-                <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
+                <li><a href="../index.html#aboutUs">Sobre nós</a></li>
                 <li>Orçamento</li>
                 <li><a href="../Produtos/Produtos.html">Produtos</a></li>
                 <li><a href="../Login/Tela-login.html">Entrar</a></li>
@@ -28,6 +28,22 @@
             <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html#idBanner">Cadastrar-se</a>
         </div>
     </div>
+
+    <div id="id_modal" class="modal">
+        <div id="id_content" class="content">
+           
+          <header class="modalHeader"> 
+            <h2>Erro!</h2>
+          </header>
+          <div class="container">
+            <p id="erroDesc"></p>
+          </div>
+          
+          <footer class="modalFooter">
+            <button class="btn-fechar" onclick="fechar()">Fechar</button>
+          </footer>
+        </div>
+      </div>
 
     <div id="idBanner" class="banner">
         <div class="alerta_erro">
@@ -195,7 +211,7 @@
         var cidadeVar = cidade_input.value;
         var estadoVar = estado_input.value;
         var cepVar = cep_input.value;
-        var telefoneVar = email_input.value;
+        var telefoneVar = telefone_input.value;
 
         if (razaoSocialVar == "" ||
             nomeFantasiaVar == "" ||
@@ -209,36 +225,32 @@
             cidadeVar == "" ||
             estadoVar == "" ||
             cepVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+            erroDesc.innerHTML = "Preencha todos os campos para continuar."
+            id_modal.style.display="block"
 
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+        }else if (emailVar.indexOf("@") == -1) {
+            erroDesc.innerHTML = "E-Mail Inválido!"
+            id_modal.style.display="block"
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (senhaVar != confirmacaoSenhaVar) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
+        }else if (senhaVar != confirmacaoSenhaVar) {
+            erroDesc.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!"
+            id_modal.style.display="block"
             finalizarAguardar();
             return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
+        }else if (cnpjVar.length != 18) {
+            erroDesc.innerHTML = "CNPJ inválido!"
+            id_modal.style.display="block"
+            finalizarAguardar();
+            return false;
+        }else if (telefoneVar.length != 13) {
+            erroDesc.innerHTML = "Telefone Inválido!"
+            id_modal.style.display="block"
+            finalizarAguardar();
+            return false;
+        }else {
         fetch("/empresas/cadastrar", {
             method: "POST",
             headers: {
@@ -275,10 +287,10 @@
             finalizarAguardar();
         });
         return false;
-    }
+    }}
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
+    function fechar() {
+        id_modal.style.display="none"
     }
 
 </script>
