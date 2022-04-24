@@ -18,7 +18,7 @@
         </div>
         <ul>
           <li>
-            <a href="../index.html#aboutUs">Sobre nós</a>
+            <a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a>
           </li>
           <li>Contato</li>
           <li><a href="../Produtos/Produtos.html">Produtos</a></li>
@@ -34,25 +34,25 @@
       <div class="container areas">
         <div class="container grafico">
         <div class="index">
-            <div class="cube" style="text-align: center; border: 1px solid #3995eb; color: #3995eb;">
-                ▽
-                20°C
-            </div>
-            <div class="cube" style="text-align: center; border: 1px solid #00d9ff; color: #00d9ff;">
-                 ~21°C
-            </div>
-            <div class="cube" style="text-align: center; width: 100px; height: 50px;border: 1px solid #13e413; color: #13e413;">
-                22°C - 24°C
-            </div>
+          <div class="cube" style="text-align: center; border: 1px solid #3995eb; color: #3995eb;">
+            ▽
+            20°C
+          </div>
+          <div class="cube" style="text-align: center; border: 1px solid #00d9ff; color: #00d9ff;">
+              ~21°C
+          </div>
+          <div class="cube" style="text-align: center; width: 100px; height: 50px;border: 1px solid #13e413; color: #13e413;">
+              22°C - 24°C
+          </div>
 
-            <div class="cube" style="text-align: center; border: 1px solid #dbdb09; color: #dbdb09;">
-                ~25°C
-            </div>
+          <div class="cube" style="text-align: center; border: 1px solid #dbdb09; color: #dbdb09;">
+              ~25°C
+          </div>
 
-            <div class="cube" style="text-align: center; border: 1px solid #ff0000; color: #ff0000;">
-                △
-                26°C
-            </div>
+          <div class="cube" style="text-align: center; border: 1px solid #ff0000; color: #ff0000;">
+              △
+              26°C
+          </div>
         </div>
           <div class="graficos">
 
@@ -124,9 +124,9 @@
 
 <script>
 
-     const labels1 = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
-     const labels2 = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
-     const labels3 = ["Temperatura","Umidade"];
+     const labels1 = ["12:01", "12:02", "12:03", "12:04", "12:05", "12:06"];
+     const labels2 = ["12:10", "12:20", "12:30", "12:40", "12:50", "13:00"];
+     const labels3 = ["Umidade","Temperatura"];
      
      
      const data1 = {
@@ -156,12 +156,6 @@
           borderColor: "rgb(255, 99, 132)",
           data: [22, 24, 27, 23, 20, 18],
         },
-        {
-          label: "Umidade:",
-          backgroundColor: "#007FFF",
-          borderColor: "#007FFF",
-          data: [90, 89, 93, 87, 88, 82],
-        },
       ],
     };
 
@@ -172,8 +166,8 @@
           label: "Temperatura e Umidade Média",
           data: [81.66, 26.66],
           backgroundColor: [
-            "rgb(255, 99, 132)",
             "rgb(54, 162, 235)",
+            "rgb(255, 99, 132)",
           ],
           hoverOffset: 4,
         },
@@ -188,7 +182,7 @@
         plugins: {
             title: {
                 display: true,
-                text: 'Temperatura e Umidade - Tempo Real'
+                text: 'Temperatura e Umidade - Tempo Real - 1 min'
             }
         }
     }
@@ -201,7 +195,7 @@
         plugins: {
             title: {
                 display: true,
-                text: 'Temperatura e Umidade - Tempo Real'
+                text: 'Média de Temperatura - 10 min'
             }
         }
     }
@@ -228,3 +222,5 @@
     const myChart2 = new Chart(document.getElementById("Chart2"), config2);
     const myChart3 = new Chart(document.getElementById("Chart3"), config3);
 </script>
+
+
