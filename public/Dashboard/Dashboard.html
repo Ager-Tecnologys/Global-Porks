@@ -124,9 +124,9 @@
 
 <script>
 
-     const labels1 = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
-     const labels2 = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
-     const labels3 = ["Temperatura","Umidade"];
+     const labels1 = ["12:01", "12:02", "12:03", "12:04", "12:05", "12:06"];
+     const labels2 = ["12:10", "12:20", "12:30", "12:40", "12:50", "13:00"];
+     const labels3 = ["Umidade","Temperatura"];
      
      
      const data1 = {
@@ -156,12 +156,6 @@
           borderColor: "rgb(255, 99, 132)",
           data: [22, 24, 27, 23, 20, 18],
         },
-        {
-          label: "Umidade:",
-          backgroundColor: "#007FFF",
-          borderColor: "#007FFF",
-          data: [90, 89, 93, 87, 88, 82],
-        },
       ],
     };
 
@@ -172,8 +166,8 @@
           label: "Temperatura e Umidade Média",
           data: [81.66, 26.66],
           backgroundColor: [
-            "rgb(255, 99, 132)",
             "rgb(54, 162, 235)",
+            "rgb(255, 99, 132)",
           ],
           hoverOffset: 4,
         },
@@ -188,7 +182,7 @@
         plugins: {
             title: {
                 display: true,
-                text: 'Temperatura e Umidade - Tempo Real'
+                text: 'Temperatura e Umidade - Tempo Real - 1 min'
             }
         }
     }
@@ -201,7 +195,7 @@
         plugins: {
             title: {
                 display: true,
-                text: 'Temperatura e Umidade - Tempo Real'
+                text: 'Média de Temperatura - 10 min'
             }
         }
     }

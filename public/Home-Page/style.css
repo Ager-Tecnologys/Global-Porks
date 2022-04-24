@@ -223,6 +223,11 @@ a {
                 -15px -15px 22px #f7f7f7;
     cursor: pointer;
 }
+.card:hover {
+    border: 5px solid #05396B;
+    transition: 0.2s;
+    cursor: pointer;
+}
 
 .card h2 {
     margin-block-start: 0;
