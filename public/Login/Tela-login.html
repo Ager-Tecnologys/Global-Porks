@@ -28,6 +28,22 @@
       </div>
     </div>
 
+    <div id="id_modal" class="modal">
+      <div id="id_content" class="content">
+
+        <header class="modalHeader"> 
+          <h2>Erro!</h2>
+        </header>
+        <div class="container">
+          <p id="erroDesc"></p>
+        </div>
+
+        <footer class="modalFooter">
+          <button class="btn-fechar" onclick="fechar()">Fechar</button>
+        </footer>
+      </div>
+    </div>
+
     <div class="banner">
       <div class="container">
         <h2 style="margin-block-end: 60px">Login</h2>
@@ -45,7 +61,6 @@
         <div class="wrap btn">
           <button onclick="entrar()">Entrar - Empresa</button>
         </div>
-
       </div>
 
       </div>
@@ -147,27 +162,4 @@
         id_modal.style.display="none"
     }
 </script>
-<!-- <script>
-  function entrar() {
-    var login = usuario_input.value;
-    var senha = senha_input.value;
 
-    if (login == "" || senha == "") {
-      erroDesc.innerHTML = "Preencha todos os campos para continuar."
-      id_modal.style.display="block"
-    } else if (login.indexOf("@") == -1) {
-      erroDesc.innerHTML = "E-mail Inválido."
-      id_modal.style.display="block"
-    } else if (login != "ager@gmail.com" && senha != "123456789") {
-      erroDesc.innerHTML = "E-mail ou Senha inválidos"
-      id_modal.style.display="block"
-    }
-    else {
-      
-    }
-  }
-
-  function fechar() {
-        id_modal.style.display="none"
-    }
-</script> -->
