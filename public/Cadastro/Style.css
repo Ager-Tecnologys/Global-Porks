@@ -58,7 +58,7 @@ html {
     height: 50%;
     width: 11%;
     background-color: transparent;
-    border: 3px solid #05396B; 
+    border: 3px solid #05396B;
     border-radius: 10px;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -175,7 +175,7 @@ html {
     justify-content: space-around;
 }
 
-.container.socials img{
+.container.socials img {
     height: 5vh;
     cursor: pointer;
 }
@@ -242,7 +242,7 @@ html {
     width: 50%;
 }
 
-.wrap.btn button{
+.wrap.btn button {
     height: 50%;
     width: 100%;
     background-color: transparent;
@@ -278,7 +278,7 @@ html {
     border-radius: 0 40px 40px 0;
 }
 
-.container.img img{
+.container.img img {
     width: 80%;
 }
 
@@ -307,54 +307,71 @@ html {
     justify-content: space-around;
 }
 
+.cont.third {
+    display: none;
+    transition: 0.5s ease;
+    opacity: 0;
+}
+
+.cont.third button {
+    width: 40%;
+}
+
+.cont.third .wrap.btn {
+    width: 70%;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .loading-div {
     width: 50px;
     margin: auto;
     display: none;
-  }
-  
-  .loading-div img {
+}
+
+.loading-div img {
     height: 50px;
     width: 50px;
-  }
+}
 
-  .modal {
-    z-index:3;
-    display:none;
-    padding-top:100px;
-    position:fixed;
-    left:0;
-    top:0;
-    width:100%;
-    height:100%;
-    overflow:auto;
-    background-color:rgba(0,0,0,0.4);
+.modal {
+    z-index: 3;
+    display: none;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
     transition: 0.3s;
 }
 
 .content {
     border-radius: 22px;
-    margin:auto;
-    background-color:#fff;
-    position:relative;
-    padding:0;
-    outline:0;
-    width:600px;
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 600px;
     transition: 0.5s;
 }
-.content .container{
+
+.content .container {
     display: flex;
     border: 0;
     justify-content: center;
 }
 
-.content .modalHeader{
+.content .modalHeader {
     display: flex;
     border: 0;
     justify-content: center;
 }
 
-.content .modalFooter{
+.content .modalFooter {
     display: flex;
     height: 50px;
     border-radius: 22px;
@@ -363,7 +380,7 @@ html {
     align-items: center;
 }
 
-.modalFooter .btn-fechar{
+.modalFooter .btn-fechar {
     height: 70%;
     width: 25%;
     border-radius: 15px;

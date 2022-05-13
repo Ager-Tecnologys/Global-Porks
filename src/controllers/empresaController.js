@@ -100,7 +100,6 @@ function cadastrar(req, res) {
         res.status(400).send("Sua cep está undefined!");
     }
     else {
-        console.log('Chamando todos os Autobots')
         empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, email, senha, rua, numero, bairro, cidade, estado, cep)
             .then(
                 function (resultado) {
