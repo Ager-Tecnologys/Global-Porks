@@ -12,11 +12,11 @@ body {
 
 .header {
     height: 12vh;
-    background-color: #A9E884;
+    background-color: #1C1C1C;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 4px #05396B;
+    border-bottom: solid 4px #F0FFFF;
 }
 .agora{
     font-weight: 1000;
@@ -24,12 +24,12 @@ body {
 
 a {
     text-decoration: none;
-    color: #05396B;
+    color: #F0FFFF;
 }
 
 .footer {
     height: 12vh;
-    background-color: #292930;
+    background-color: #1C1C1C;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,7 +45,7 @@ a {
 }
 
 .header h1 {
-    color: #05396B;
+    color: #F0FFFF;
     font-weight: 500;
     margin: 0;
     margin-left: 4px;
