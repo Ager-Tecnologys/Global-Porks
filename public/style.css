@@ -8,7 +8,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #ff8b0f;
+    background-image: linear-gradient(#F9FCF8,#E9967A );
+
 }
 
 .header {
@@ -190,18 +191,20 @@ a {
 
 .banner {
     height: 300vh;
-    background-image: linear-gradient(#A9E884, #33AB74, #477A62);
+    background-image: linear-gradient(#F9FCF8,#E9967A );
     padding-top: 100px;
 }
 
 .banner img {
-    height: 35vh;
+    height: 55vh;
+    
+
 }
 
 .banner .container p {
     /*: 4vh;*/
     font-size: clamp(1rem , 3vw, 3rem);
-    color: #05396B;
+    color: #1C1C1C;
     margin-left: 40px;
     margin-top: 6vh;
     text-shadow: 1px 1px 2px #777;
@@ -212,13 +215,14 @@ a {
 }
 
 .container.land {
+    position: relative;
     justify-content: center;
     height: 60vh;
     width: 60%;
     border-radius: 50px;
-    background: #A9E884;
-    box-shadow:  13px 13px 33px #8ec36f,
-                -13px -13px 33px #c4ff99;
+    /* background: #F9FCF8;
+    box-shadow:  13px 13px 33px #E9967A,
+                -13px -13px 33px #FF7F50; */
 }
 
 .container.products {
@@ -270,8 +274,8 @@ a {
     height: 30vh;
     width: 30vh;
     border-radius: 100%;
-    box-shadow:  16px 16px 32px #46a96d,
-                -16px -16px 32px #52c781;
+    box-shadow:  16px 16px 32px 	#FFA07A,
+                -16px -16px 32px #FF7F50;
 }
 
 .wrap {
