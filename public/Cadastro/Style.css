@@ -102,7 +102,7 @@ html {
 .header li:hover {
     text-shadow: 1px 1px 3px #477A62;
     transition: 0.2s;
-    border-color: #05396B;
+    border-color: #FF6347;
     box-shadow: 2px 2px 13px -4px #477A62;
 }
 
@@ -182,7 +182,7 @@ html {
 
 .banner {
     height: 110vh;
-    background-image: linear-gradient(#A7E784, #41B276);
+    background-image: linear-gradient(#F9FCF8,#E9967A );
     padding-top: 100px;
     display: flex;
     justify-content: center;
