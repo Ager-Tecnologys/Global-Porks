@@ -21,12 +21,12 @@ html {
 
 .header a {
     text-decoration: none;
-    color: #05396B;
+    color: #1C1C1C;
 }
 
 .footer {
     height: 12vh;
-    background-color: #292930;
+    background-color: #1C1C1C;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +41,7 @@ html {
 }
 
 .header h1 {
-    color: #05396B;
+    color: #1C1C1C;
     font-weight: 500;
     margin: 0;
     margin-left: 4px;
