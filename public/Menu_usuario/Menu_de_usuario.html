@@ -21,10 +21,25 @@
           <li><a href="../Produtos/Produtos.html">Produtos</li>
           <li><a href="../Login/Tela-login.html">Entrar</a></li>
         </ul>
-        <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
+        <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
       </div>
     </div>
 
+    <div id="id_modal" class="modal">
+        <div id="id_content" class="content">
+          <header class="modalHeader">
+            <h2 id="titleErro">Erro!</h2>
+          </header>
+          <div class="container">
+            <p id="erroDesc"></p>
+          </div>
+  
+          <footer class="modalFooter">
+            <button class="btn-fechar" onclick="fechar()">Fechar</button>
+          </footer>
+        </div>
+      </div>
+      
     <div class="banner">
         <div class="container" id="formbox">
 
@@ -38,31 +53,31 @@
                
                 <div class="wrap">
                     <span>Nome:</span>
-                    <input type="text">
+                    <input type="text" id="input_nome">
                 </div>
                 <div class="wrap">
                     <span>Sobrenome:</span>
-                    <input type="text">
+                    <input type="text" id="input_sobrenome">
                 </div>
                 <div class="wrap">
                     <span>E-mail:</span>
-                    <input type="text">
+                    <input type="text" id="input_email">
                 </div>
                 <div class="wrap">
                     <span>CPF:</span>
-                    <input type="text">
+                    <input type="text" id="input_cpf">
                 </div>
                 <div class="wrap">
                     <span>Telefone:</span>
-                    <input type="text">
+                    <input type="text" id="input_telefone">
                 </div>
                 <div class="wrap">
                     <span>Senha:</span>
-                    <input type="password">
+                    <input type="password" id="input_senha">
                 </div>
                 <div class="wrap">
                     <span>Confirmar Senha:</span>
-                    <input type="password">
+                    <input type="password" id="input_confirmarSenha">
                 </div>
                 <div class="wrap">
                     <span>Tipo de Usuário:</span>
@@ -73,7 +88,7 @@
                 </div>
                 <div class="wrap btn">
                     <button onclick="voltar()">Voltar</button>
-                    <button>Cadastrar</button>
+                    <button onclick="cadastrar()">Cadastrar</button>
                 </div>
             </div>
 
@@ -179,5 +194,91 @@
         formbox.style.height = "90%" 
         formbox.style.width = "40%"
     }
+
+    function cadastrar() {
+        var nomeVar = input_nome.value
+        var sobrenomeVar = input_sobrenome.value
+        var emailVar = input_email.value
+        var cpfVar = input_cpf.value
+        var telefoneVar = input_telefone.value
+        var senhaVar = input_senha.value
+        var confirmarSenhaVar = input_confirmarSenha.value
+        var selectVar = inp_tipo.value
+
+    if (
+      nomeVar == "" ||
+      sobrenomeVar == "" ||
+      emailVar == "" ||
+      cpfVar == "" ||
+      telefoneVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      selectVar == "" 
+    ) {
+
+      erroDesc.innerHTML = "Preencha todos os campos para continuar.";
+      id_modal.style.display = "block";
+
+      return false;
+    } else if (emailVar.indexOf("@") == -1) {
+      erroDesc.innerHTML = "E-Mail Inválido!";
+      id_modal.style.display = "block";
+
+      return false;
+    } else if (senhaVar != confirmacaoSenhaVar) {
+      erroDesc.innerHTML =
+        "As senhas inseridas devem ser iguais para prosseguir!";
+      id_modal.style.display = "block";
+
+      return false;
+    } else if (cpfVar.length != 11) {
+      erroDesc.innerHTML = "CPF inválido!";
+      id_modal.style.display = "block";
+
+      return false;
+    } else if (telefoneVar.length > 11 || telefoneVar.length < 10) {
+      erroDesc.innerHTML = "Telefone Inválido!";
+      id_modal.style.display = "block";
+
+      return false;
+    } else {
+      fetch("/empresas/cadastrarUsuario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+           nomeServer: nomeVar,
+           sobrenomeServer: sobrenomeVar,
+           emailServer: emailVar,
+           cpfServer: cpfVar,
+           telefoneServer: telefoneVar,
+           senhaServer: senhaVar,
+           confirmacaoSenhaServer:  confirmarSenhaVar,
+           selectServer: selectVar,
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+            titleErro.innerHTML = "Sucesso!";
+            erroDesc.innerHTML = "Cadastro realizado com sucesso!";
+            id_modal.style.display = "block";
+            limparFormulario();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+      return false;
+    }
+  }
+
+  function fechar() {
+    id_modal.style.display = "none";
+  }
 
 </script>

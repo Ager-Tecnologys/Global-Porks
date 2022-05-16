@@ -347,3 +347,66 @@ html {
     justify-content: center;
 }
 
+.modal {
+    z-index: 3;
+    display: none;
+    padding-top: 100px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: 0.3s;
+}
+
+.content {
+    border-radius: 22px;
+    margin: auto;
+    background-color: #fff;
+    position: relative;
+    padding: 0;
+    outline: 0;
+    width: 600px;
+    transition: 0.5s;
+}
+
+.content .container {
+    display: flex;
+    border: 0;
+    justify-content: center;
+}
+
+.content .modalHeader {
+    display: flex;
+    border: 0;
+    justify-content: center;
+}
+
+.content .modalFooter {
+    display: flex;
+    height: 50px;
+    border-radius: 22px;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalFooter .btn-fechar {
+    height: 70%;
+    width: 25%;
+    border-radius: 15px;
+    border: 2px solid #05396B;
+    cursor: pointer;
+    background-color: #F9FCF8;
+    color: #292930;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.modalFooter .btn-fechar:hover {
+    background-color: #05396B;
+    color: #F9FCF8;
+    transition: 0.3s;
+}
