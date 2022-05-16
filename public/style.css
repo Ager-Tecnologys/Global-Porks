@@ -94,7 +94,7 @@ a {
     width: 30%;
     justify-content: space-between;
     font-size: clamp(0.8rem, 1vh, 2rem);
-    color: #05396B;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
     margin-right: 40px;
 }
