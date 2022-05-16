@@ -12,21 +12,21 @@ html {
 
 a {
     text-decoration: none;
-    color: #05396B;
+    color: #1C1C1C;
 }
 
 .header {
     height: 12vh;
-    background-color: #A9E884;
+    background-color: #FFA07A;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 4px #05396B;
+    border-bottom: solid 4px #1C1C1C;
 }
 
 .footer {
     height: 12vh;
-    background-color: #292930;
+    background-color: #1C1C1C;
     display: flex;
     justify-content: center;
     align-items: center;

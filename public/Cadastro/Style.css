@@ -201,7 +201,7 @@ html {
 
 .banner .container h2 {
     font-size: clamp(1rem, 3vh, 3rem);
-    color: #05396B;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
 }
 
@@ -224,13 +224,13 @@ html {
 
 .wrap input:focus {
     border-width: 2px;
-    border-color: #05396B;
+    border-color: #1C1C1C;
     transition: 0.3s ease;
     background-color: #d6d6d6;
 }
 
 .wrap span {
-    color: #05396B;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
     font-size: clamp(0.8rem, 1vh, 2rem);
 }
@@ -246,9 +246,9 @@ html {
     height: 50%;
     width: 100%;
     background-color: transparent;
-    border: 3px solid #05396B;
+    border: 3px solid #1C1C1C;
     border-radius: 10px;
-    color: #05396B;
+    color: #1C1C1C;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     font-size: 2.3vh;
@@ -259,7 +259,7 @@ html {
 }
 
 .wrap.btn button:hover {
-    background-color: #05396B;
+    background-color: #FF6347;
     color: #F9FCF8;
     transition: 0.3s;
 }
