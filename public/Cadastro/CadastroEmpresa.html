@@ -396,18 +396,26 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    nomeFantasiaServer: nomeFantasiaVar,
-                    cnpjServer: cnpjVar,
+                    // 1º tela
                     razaoSocialServer: razaoSocialVar,
+                    nomeFantasiaServer: nomeFantasiaVar,
                     telefoneServer: telefoneVar,
-                    emailServer: emailVar,
-                    senhaServer: senhaVar,
+                    cnpjServer: cnpjVar,        
+                    cepServer: cepVar,
+                    // 2º tela
                     ruaServer: ruaVar,
                     numeroServer: numeroVar,
                     bairroServer: bairroVar,
                     cidadeServer: cidadeVar,
                     estadoServer: estadoVar,
-                    cepServer: cepVar
+                    // 3º tela
+                    nomeUsuarioServer: nomeUsuarioVar,
+                    sobrenomeUsuarioServer: sobrenomeUsuarioVar,
+                    emailUsuarioServer: emailUsuarioVar,
+                    cpfUsuarioServer: cpfUsuarioVar,
+                    telUsuarioServer: telUsuarioVar,
+                    senhaServer: senhaVar,
+                    tipoUsuarioServer: tipoUsuarioVar
                 })
             }).then(function (resposta) {
 
