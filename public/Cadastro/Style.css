@@ -12,11 +12,11 @@ html {
 
 .header {
     height: 12vh;
-    background-color: #A9E884;
+    background-color: #FFA07A;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 4px #05396B;
+    border-bottom: solid 4px #1C1C1C;
 }
 
 .header a {
