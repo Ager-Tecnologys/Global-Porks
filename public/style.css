@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 4px #1C1C1C
+    border-bottom: solid 4px #1C1C1C;
 }
 .agora{
     font-weight: 1000;
