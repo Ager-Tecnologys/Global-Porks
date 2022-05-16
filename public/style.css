@@ -8,13 +8,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(#F9FCF8,#E9967A );
-
+    background-image:#F9FCF8
+    
 }
 
 .header {
+    
     height: 12vh;
-    background-color: transparent;
+    background-color: #FFA07A;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,6 +105,7 @@ a {
     border: solid 2px transparent;
     border-radius: 5px;
     padding: 8px;
+    font-size: 20px;
 }
 
 .header li:hover {
@@ -198,6 +200,7 @@ a {
 .banner img {
     height: 55vh;
     
+    border-radius: 15px;
 
 }
 
@@ -234,9 +237,9 @@ a {
     height: 45%;
     width: 25%;
     background-color: transparent;
-    border: 3px solid #F9FCF8;
+    border: 3px solid #FF6347;
     border-radius: 10px;
-    color: #F9FCF8;
+    color: #1C1C1C;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     font-size: 2.3vh;
@@ -250,7 +253,7 @@ a {
 }
 
 .container.products a:hover{
-    background-color: #F9FCF8;
+    background-color: #FF6347;
     color: #292930;
 }
 
@@ -259,7 +262,7 @@ a {
     height: 20vh;
     justify-content: center;
     font-size: clamp(1rem , 1.5vw, 3rem);
-    color: #F9FCF8;
+    color: #1C1C1C;
     text-shadow: 1px 1px 2px #777;
 }
 
@@ -267,15 +270,15 @@ a {
     height: 70vh;
     justify-content: space-around;
     align-items: center;
-    color: #F9FCF8;
+    color: #1C1C1C;
 }
 
 .container.mvv img{
     height: 30vh;
     width: 30vh;
     border-radius: 100%;
-    box-shadow:  16px 16px 32px 	#FFA07A,
-                -16px -16px 32px #FF7F50;
+    box-shadow:  10px 10px 22px 	#FFA07A,
+                -10px -10px 22px #FF7F50;
 }
 
 .wrap {
