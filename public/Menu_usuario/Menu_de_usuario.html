@@ -39,7 +39,7 @@
           </footer>
         </div>
       </div>
-      
+
     <div class="banner">
         <div class="container" id="formbox">
 
@@ -78,13 +78,6 @@
                 <div class="wrap">
                     <span>Confirmar Senha:</span>
                     <input type="password" id="input_confirmarSenha">
-                </div>
-                <div class="wrap">
-                    <span>Tipo de Usuário:</span>
-                    <select id="inp_tipo">
-                        <option value="pad">Padrão</option>
-                        <option value="adm">Administrador</option>
-                    </select>
                 </div>
                 <div class="wrap btn">
                     <button onclick="voltar()">Voltar</button>
@@ -203,7 +196,6 @@
         var telefoneVar = input_telefone.value
         var senhaVar = input_senha.value
         var confirmarSenhaVar = input_confirmarSenha.value
-        var selectVar = inp_tipo.value
 
     if (
       nomeVar == "" ||
@@ -254,8 +246,6 @@
            cpfServer: cpfVar,
            telefoneServer: telefoneVar,
            senhaServer: senhaVar,
-           confirmacaoSenhaServer:  confirmarSenhaVar,
-           selectServer: selectVar,
         }),
       })
         .then(function (resposta) {
