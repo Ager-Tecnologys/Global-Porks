@@ -58,7 +58,7 @@ html {
     height: 50%;
     width: 11%;
     background-color: transparent;
-    border: 3px solid #05396B;
+    border: 3px solid #1C1C1C;
     border-radius: 10px;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -73,7 +73,7 @@ html {
 }
 
 .header .btnCadastro:hover {
-    background-color: #05396B;
+    background-color: #FF6347;
     color: #F9FCF8;
     transition: 0.3s;
 }
