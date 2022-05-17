@@ -114,8 +114,7 @@ html {
 }
 
 .banner .container{
-
-    width: 60%;
+    width: 50%;
     height: 450px;
     margin-top: 5%;
     margin-left: 40%;
@@ -125,6 +124,60 @@ html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.banner h1{
+    color: #1C1C1C;
+    font-weight: 500;
+    margin-left: 4px;
+    text-shadow: 1px 1px 2px #777;
+    cursor: default;
+    font-size: 6.5vh;
+}
+
+.banner h3{
+    font-size: clamp(1rem, 3vh, 3rem);
+    color: #1C1C1C;
+    text-shadow: 1px 1px 1px #777;
+}
+
+.banner input{
+    width: 100%;
+    height: 3.5vh;
+    border-radius: 4px;
+    border-width: 1px;
+    font-size: clamp(0.5rem, 1.5vh, 2rem);
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s ease;
+}
+
+.banner .btnEnviar{
+    height: 10%;
+    width: 40%;
+    margin-top: 8%;
+    margin-left: 30%;
+    background-color: transparent;
+    border: 3px solid #1C1C1C;
+    border-radius: 10px;
+    color: #1C1C1C;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3vh;
+    text-shadow: 1px 1px 2px #777;
+    box-shadow: 1px 1px 2px #777;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.banner .btnEnviar:hover{
+    background-color: #FF6347;
+    color: #F9FCF8;
+    transition: 0.3s;
+}
+
+.container input{
+    width: 99%;
+    height: 10%;
 }
 
 .footer {
