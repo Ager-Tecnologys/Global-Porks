@@ -379,14 +379,14 @@
             id_modal.style.display = "block"
 
             return false;
-            // } else if (cnpjVar.length != 14) {
-            //     erroDesc.innerHTML = "CNPJ inválido!"
-            //     id_modal.style.display = "block"
+            } else if (cpfUsuarioVar.length != 11) {
+                erroDesc.innerHTML = "CNPJ inválido!"
+                id_modal.style.display = "block"
 
-            //     return false;
-            // } else if (telefoneVar.length > 11 || telefoneVar.length < 10) {
-            // erroDesc.innerHTML = "Telefone Inválido!"
-            // id_modal.style.display = "block"
+                return false;
+            } else if (telefoneVar.length != 8) {
+            erroDesc.innerHTML = "Telefone Inválido!"
+            id_modal.style.display = "block"
 
             return false;
         } else {
