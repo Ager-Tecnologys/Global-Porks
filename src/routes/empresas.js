@@ -20,6 +20,10 @@ router.post("/cadastrarUsuario", function (req, res) {
     empresaController.cadastrarUsuario(req, res);
 })
 
+router.post("/solicitarArea", function (req, res) {
+    empresaController.solicitarArea(req, res);
+})
+
 router.post("/autenticar", function (req, res) {
     empresaController.entrar(req, res);
 });

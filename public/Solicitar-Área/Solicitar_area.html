@@ -31,26 +31,26 @@
             <h2 style="margin-block-end: 60px;">Solicitar Área</h2>
             <div class="wrap">
                 <span>Área total (m²):</span>
-                <input type="text">
+                <input type="text" id="input_areaTotal">
             </div>
             <div class="wrap">
                 <span>Quantidade de Porcos:</span>
-                <input type="text">
+                <input type="text" id="input_qtdPorcos">
             </div>
             <div class="wrap">
                 <span>Fase de criação:</span>
-                <select id="">
-                    <option value="">Recém Nascido</option>
-                    <option value="">Leitão (mamando)</option>
-                    <option value="">Leitão (desmamado)</option>
-                    <option value="">Leitão (crescimento)</option>
-                    <option value="">Terminal</option>
-                    <option value="">Fêmea (gestante)</option>
-                    <option value="">Fêmea (lactação)</option>
+                <select id="id_select">
+                    <option value="recemNascido">Recém Nascido</option>
+                    <option value="leitaoMamando">Leitão (mamando)</option>
+                    <option value="leitaoDesmamado">Leitão (desmamado)</option>
+                    <option value="leitaoCrescido">Leitão (crescimento)</option>
+                    <option value="terminal">Terminal</option>
+                    <option value="femeaGestante">Fêmea (gestante)</option>
+                    <option value="femeaLactacao">Fêmea (lactação)</option>
                 </select>
             </div>
             <div class="wrap btn">
-                <button>Solicitar nova área</button>
+                <button onclick="solicitar()">Solicitar nova área</button>
             </div>
 
             <div class="wrap desc">
@@ -61,6 +61,12 @@
             </div>
         </div>
     </div>
+
+    <!-- <form action="https://formsubmit.co/your@email.com" method="POST">
+        <input type="text" name="name" placeholder="insira seu nome" required>
+        <input type="email" name="email" placeholder="insira seu e-mail" required>
+        <button type="submit">Enviar</button>
+   </form> -->
 
     <div class="footer">
         <div class="container">
@@ -87,3 +93,56 @@
 
 </body>
 </html>
+<script>
+    function solicitar() {
+       var areaTotalVar = input_areaTotal.value
+       var qtdPorcosVar = input_qtdPorcos.value
+       var selectVar = id_select.value
+
+        if (areaTotalVar == "" ||
+            qtdPorcosVar == "" ||
+            selectVar == ""
+            ) {
+            erroDesc.innerHTML = "Preencha todos os campos para continuar."
+            id_modal.style.display = "block"
+
+
+            return false;
+        } else {
+            fetch("/empresas/solicitarArea", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    areaTotalServer: areaTotalVar,
+                    qtdPorcosServer: qtdPorcosVar,
+                    selectServer: selectVar
+                })
+            }).then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    titleErro.innerHTML = "Sucesso!"
+                    erroDesc.innerHTML = "Cadastro realizado com sucesso!"
+                    id_modal.style.display = "block"
+                    setTimeout(() => { window.location = "../Login/Tela-login.html"; }, 3000)
+                    limparFormulario();
+
+                } else {
+                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+            return false;
+        }
+    }
+
+    function fechar() {
+        id_modal.style.display = "none"
+    }
+
+</script>

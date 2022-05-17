@@ -30,7 +30,7 @@ function cadastrar(nomeFantasia, cnpj, RazaoSocial, telefone, email, senha, rua,
 }
 
 function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha) {
-    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeFantasia, email, senha);
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, cpf, email, telefone, senha);
     
     var instrucao = `
         INSERT INTO empresa (nome, sobrenome, cpf, email, telefone, senha) VALUES
@@ -40,9 +40,22 @@ function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha) {
     return database.executar(instrucao);
 }
 
+function solicitarArea(areaTotal, qtdPorcos, select) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", areaTotal, qtdPorcos, select);
+    
+    var instrucao = `
+        INSERT INTO area (areaTotal, qtdPorcos, select) VALUES
+        ('${areaTotal}', '${qtdPorcos}', '${select}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     cadastrarUsuario,
+    solicitarArea,
     listar,
 };

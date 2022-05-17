@@ -158,10 +158,42 @@ function cadastrarUsuario(req, res) {
     }
 }
 
+function solicitarArea(req, res) {
+    var areaTotal = req.body.areaTotalServer;
+    var qtdPorcos = req.body.qtdPorcosServer;
+    var select = req.body.selectServer;
+
+    if (areaTotal == undefined) {
+        res.status(400).send("Sua área total está undefined!");
+    } else if (qtdPorcos == undefined) {
+        res.status(400).send("Sua quantidade de porcos está undefined!");
+    } else if (select == undefined) {
+        res.status(400).send("Sua fase de criação está undefined!");
+    }
+    else {
+        empresaModel.solicitarArea(areaTotal, qtdPorcos, select)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao solicitar nova área! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     entrar,
     cadastrar,
     cadastrarUsuario,
+    solicitarArea,
     listar,
     testar
 }
