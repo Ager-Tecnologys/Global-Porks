@@ -12,21 +12,21 @@ html {
 
 .header {
     height: 12vh;
-    background-color: #A9E884;
+    background-color: #FFA07A;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: solid 4px #05396B;
+    border-bottom: solid 4px #1C1C1C;
 }
 
 .header a {
     text-decoration: none;
-    color: #05396B;
+    color: #1C1C1C;
 }
 
 .footer {
     height: 12vh;
-    background-color: #292930;
+    background-color: #1C1C1C;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +41,7 @@ html {
 }
 
 .header h1 {
-    color: #05396B;
+    color: #1C1C1C;
     font-weight: 500;
     margin: 0;
     margin-left: 4px;
@@ -58,7 +58,7 @@ html {
     height: 50%;
     width: 11%;
     background-color: transparent;
-    border: 3px solid #05396B; 
+    border: 3px solid #1C1C1C; 
     border-radius: 10px;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
@@ -73,7 +73,7 @@ html {
 }
 
 .header .btnCadastro:hover {
-    background-color: #05396B;
+    background-color: #FF6347;
     color: #F9FCF8;
     transition: 0.3s;
 }
@@ -87,7 +87,7 @@ html {
     width: 30%;
     justify-content: space-between;
     font-size: clamp(0.8rem, 1vh, 2rem);
-    color: #05396B;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
 }
 
@@ -102,7 +102,7 @@ html {
 .header li:hover {
     text-shadow: 1px 1px 3px #477A62;
     transition: 0.2s;
-    border-color: #05396B;
+    border-color: #FF6347;
     box-shadow: 2px 2px 13px -4px #477A62;
 }
 
@@ -182,7 +182,7 @@ html {
 
 .banner {
     height: 100vh;
-    background-image: linear-gradient(#A7E784, #41B276);
+    background-image: linear-gradient(#F9FCF8,#E9967A );
     padding-top: 100px;
     display: flex;
     justify-content: center;
@@ -214,9 +214,9 @@ html {
     height: 20%;
     width: 70%;
     background-color: transparent;
-    border: 3px solid #05396B;
+    border: 3px solid #1C1C1C;
     border-radius: 10px;
-    color: #05396B;
+    color: #1C1C1C;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
     font-size: 2.3vh;
@@ -227,7 +227,7 @@ html {
 }
 
 .banner button:hover {
-    background-color: #05396B;
+    background-color: #FF6347;
     color: #F9FCF8;
     transition: 0.3s;
 }
@@ -260,13 +260,13 @@ html {
 
 .wrap input:focus {
     border-width: 2px;
-    border-color: #05396B;
+    border-color: #1C1C1C;
     transition: 0.3s ease;
     background-color: #d6d6d6;
 }
 
 .wrap span {
-    color: #05396B;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
     font-size: 1.7vh;
 }
@@ -397,7 +397,7 @@ html {
     height: 70%;
     width: 25%;
     border-radius: 15px;
-    border: 2px solid #05396B;
+    border: 2px solid #1C1C1C;
     cursor: pointer;
     background-color: #F9FCF8;
     color: #292930;
@@ -406,7 +406,7 @@ html {
 }
 
 .modalFooter .btn-fechar:hover {
-    background-color: #05396B;
+    background-color: #FF6347;
     color: #F9FCF8;
     transition: 0.3s;
 }
