@@ -27,10 +27,10 @@
     </div>
 
     <div class="banner">
-       <div class="container areas">
+       <div id="id_areas" class="container areas">
             <div class="wrap"><h2 style="font-size: clamp(2rem, 4vh, 4rem);"><u>Menu de Áreas</u></h2></div>
 
-            <div class="container cards">
+            <!-- <div id="id_areas1" class="container cards">
                 <div class="card">
                     <h2>Área 2</h2>
                     <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="container cards">
+            <div id="id_areas2" class="container cards">
                 <a href="../Dashboard/Dashboard.html" class="card">
                     <h2>Área 1</h2>
                     <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">23°C</h2>
@@ -58,6 +58,9 @@
                 </div>
             </div>
 
+            <div id="id_areas3" class="container cards">
+            </div>
+
             <div class="container cards">
                 <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
                     <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
@@ -66,7 +69,7 @@
                 <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
                     <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>
                 </a>
-            </div>
+            </div>  -->
 
        </div> 
     </div>
@@ -96,3 +99,40 @@
 
 </body>
 </html>
+
+<script>
+
+var areas = [1, 2, 3, 4];
+var contadorPares = 0;
+var idParAtual = "";
+
+for (i = 1; i <= (areas.length); i++) {
+
+    if (i % 2 != 0) {
+        contadorPares++
+        idParAtual = "area" + contadorPares 
+        id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
+}
+
+// if ((areas.indexOf(areas[i - 1]) + 1) == areas.length) {
+//     document.getElementById(idParAtual).innerHTML += `
+//     <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
+//         <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
+//     </a>
+//     `
+// } else {
+    document.getElementById(idParAtual).innerHTML += `
+        <div class="card">
+            <h2>Área ${areas[i - 1]}</h2>
+            <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
+            <h3 style="color: red;">🔻18°C   🔺23°C</h3>
+        </div>
+    ` 
+// }
+
+
+
+
+}
+
+</script>
