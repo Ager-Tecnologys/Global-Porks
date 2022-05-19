@@ -193,7 +193,7 @@
                 </div>
                 <div class="wrap btn">
                     <button onclick="voltar2()">Voltar</button>
-                    <button>Cadastrar</button>
+                    <button onclick="cadastrar()">Cadastrar</button>
                 </div>
             </div>
 
@@ -277,10 +277,10 @@
         } else if (cnpjVar.length != 14) {
             erroDesc.innerHTML = "CNPJ inválido!"
             id_modal.style.display = "block"
-        } else if (cepVar.length == 8) {
+        } else if (cepVar.length != 8) {
             erroDesc.innerHTML = "CEP inválido!"
             id_modal.style.display = "block"
-        } else if (telefoneVar.length == 8) {
+        } else if (telefoneVar.length > 11 || telefoneVar.length < 10) {
             erroDesc.innerHTML = "Telefone Inválido!"
             id_modal.style.display = "block"
             return false;
@@ -349,8 +349,8 @@
         nomeUsuarioVar = nome_usuario_input.value;
         sobrenomeUsuarioVar = sobrenome_usuario_input.value;
         emailUsuarioVar = email_usuario_input.value;
-        cpfUsuarioVar = Number(cpf_usuario_input.value);
-        telUsuarioVar = Number(tel_usuario_input.value);
+        cpfUsuarioVar = cpf_usuario_input.value;
+        telUsuarioVar = tel_usuario_input.value;
         senhaVar = senha_input.value;
         confirmacaoSenhaVar = confirmacao_senha_input.value;
         tipoUsuarioVar = inp_tipo.value;
@@ -380,12 +380,12 @@
 
             return false;
             } else if (cpfUsuarioVar.length != 11) {
-                erroDesc.innerHTML = "CNPJ inválido!"
+                erroDesc.innerHTML = "CPF inválido!"
                 id_modal.style.display = "block"
 
                 return false;
-            } else if (telefoneVar.length != 8) {
-            erroDesc.innerHTML = "Telefone Inválido!"
+            } else if (telUsuarioVar.length > 11 || telUsuarioVar.length < 10) {
+            erroDesc.innerHTML = "Telefone do usuário Inválido!"
             id_modal.style.display = "block"
 
             return false;
@@ -408,14 +408,6 @@
                     bairroServer: bairroVar,
                     cidadeServer: cidadeVar,
                     estadoServer: estadoVar,
-                    // 3º tela
-                    nomeUsuarioServer: nomeUsuarioVar,
-                    sobrenomeUsuarioServer: sobrenomeUsuarioVar,
-                    emailUsuarioServer: emailUsuarioVar,
-                    cpfUsuarioServer: cpfUsuarioVar,
-                    telUsuarioServer: telUsuarioVar,
-                    senhaServer: senhaVar,
-                    tipoUsuarioServer: tipoUsuarioVar
                 })
             }).then(function (resposta) {
 
@@ -442,5 +434,13 @@
     function fechar() {
         id_modal.style.display = "none"
     }
+
+    // nomeUsuarioServer: nomeUsuarioVar,
+    //                 sobrenomeUsuarioServer: sobrenomeUsuarioVar,
+    //                 emailUsuarioServer: emailUsuarioVar,
+    //                 cpfUsuarioServer: cpfUsuarioVar,
+    //                 telUsuarioServer: telUsuarioVar,
+    //                 senhaServer: senhaVar,
+    //                 tipoUsuarioServer: tipoUsuarioVar
 
 </script>

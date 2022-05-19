@@ -14,6 +14,7 @@ router.get("/listar", function (req, res) {
 //Recebendo os dados do html e direcionando para a função cadastrar de empresaController.js
 router.post("/cadastrar", function (req, res) {
     empresaController.cadastrar(req, res);
+    console.log("Chegou Rota")
 })
 
 router.post("/cadastrarUsuario", function (req, res) {

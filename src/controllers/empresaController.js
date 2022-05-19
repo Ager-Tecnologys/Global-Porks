@@ -61,18 +61,18 @@ function entrar(req, res) {
 }
 
 function cadastrar(req, res) {
-    var nomeFantasia = req.body.nomeFantasiaServer;
-    var cnpj = req.body.cnpjServer;
     var razaoSocial = req.body.razaoSocialServer
+    var nomeFantasia = req.body.nomeFantasiaServer;
     var telefone = req.body.telefoneServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+    var cnpj = req.body.cnpjServer;
+    var cep = req.body.cepServer;
     var rua = req.body.ruaServer;
     var numero = req.body.numeroServer;
     var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
-    var cep = req.body.cepServer;
+
+    console.log(req,res)
 
     if (nomeFantasia == undefined) {
         res.status(400).send("Seu nome fantasia está undefined!");
@@ -82,10 +82,6 @@ function cadastrar(req, res) {
         res.status(400).send("Sua razao social está undefined!");
     } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
     } else if (rua == undefined) {
         res.status(400).send("Sua rua está undefined!");
     } else if (numero == undefined) {
@@ -100,7 +96,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua cep está undefined!");
     }
     else {
-        empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, email, senha, rua, numero, bairro, cidade, estado, cep)
+        console.log("Chegou no Controller")
+        empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, rua, numero, bairro, cidade, estado, cep)
             .then(
                 function (resultado) {
                     res.json(resultado);
