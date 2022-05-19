@@ -13,9 +13,7 @@ Bairro varchar (45),
 Cidade varchar (45),
 Estado char (2),
 CEP char (8),
-Senha varchar (125),
-Telefone varchar (11),
-Email varchar (70)
+Telefone varchar (11)
 );
 
 create table usuario (
@@ -31,8 +29,8 @@ fkEmpresa int,
 foreign key (fkEmpresa) references Empresa (idEmpresa)
 );
 
-create table Area (
-idArea int,
+create table areas (
+idArea int auto_increment,
 fkEmpresa int,
 foreign key (fkEmpresa) references Empresa (idEmpresa),
 primary key (idArea, fkEmpresa),
@@ -44,23 +42,33 @@ Temperatura_Baixa int,
 Temperatura_Alta int
 );
 
+create table vinculo (
+fkUsuario int,
+fkArea int,
+areaFkEmpresa int,
+primary key (fkUsuario, fkArea, areaFkEmpresa),
+foreign key (fkUsuario) references usuario(idUsuario),
+foreign key (fkArea) references areas(idArea),
+foreign key (areaFkEmpresa) references areas(fkEmpresa));
+
 create table Sensor (
-idSensor int,
+idSensor int auto_increment,
 fkArea int,
 fkEmpresa int,
-foreign key (fkArea) references Area (idArea),
+foreign key (fkArea) references Areas (idArea),
 foreign key (fkEmpresa) references Empresa (idEmpresa),
 primary key (idSensor, fkArea, fkEmpresa)
 );
 
 create table Dados (
-idDado int,
+idDado int auto_increment,
 Temperatura int,
- dtHora datetime,
- fkSensor int,
- fkArea int,
- fkEmpresa int,
- foreign key (fkSensor) references Sensor (idSensor),
- foreign key (fkArea) references Area (idArea),
- foreign key (fkEmpresa) references Empresa (idEmpresa)
- );
+dtHora datetime default current_timestamp,
+fkSensor int,
+fkArea int,
+fkEmpresa int,
+foreign key (fkSensor) references Sensor (idSensor),
+foreign key (fkArea) references Areas (idArea),
+foreign key (fkEmpresa) references Empresa (idEmpresa),
+primary key (idDado, fkSensor, fkArea, fkEmpresa)
+);

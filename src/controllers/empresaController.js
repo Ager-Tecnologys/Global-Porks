@@ -71,7 +71,13 @@ function cadastrar(req, res) {
     var bairro = req.body.bairroServer;
     var cidade = req.body.cidadeServer;
     var estado = req.body.estadoServer;
-
+    var nomeUsuario = req.body.nomeUsuarioServer;
+    var sobrenomeUsuario = req.body.sobrenomeUsuarioServer;
+    var emailUsuario = req.body.emailUsuarioServer;
+    var cpf = req.body.cpfUsuarioServer;
+    var telUsuario = req.body.telUsuarioServer;
+    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoUsuarioServer;
     console.log(req,res)
 
     if (nomeFantasia == undefined) {
@@ -94,13 +100,29 @@ function cadastrar(req, res) {
         res.status(400).send("Sua estado está undefined!");
     } else if (cep == undefined) {
         res.status(400).send("Sua cep está undefined!");
+    } else if (nomeUsuario == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    } else if (sobrenomeUsuario == undefined) {
+        res.status(400).send("Seu sobrenome está undefined!");
+    } else if (emailUsuario == undefined) {
+        res.status(400).send("Seu emailUsuario está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!");
+    } else if (telUsuario == undefined) {
+        res.status(400).send("Seu telefoneUsuario está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (tipo == undefined) {
+        res.status(400).send("Seu tipo está undefined!");
     }
     else {
         console.log("Chegou no Controller")
         empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, rua, numero, bairro, cidade, estado, cep)
             .then(
                 function (resultado) {
+                    var fkEmpresa = resultado.insertId;
                     res.json(resultado);
+                    return empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa)
                 }
             ).catch(
                 function (erro) {

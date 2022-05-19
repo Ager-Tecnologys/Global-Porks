@@ -408,24 +408,31 @@
                     bairroServer: bairroVar,
                     cidadeServer: cidadeVar,
                     estadoServer: estadoVar,
+                    // 3° tela
+                    nomeUsuarioServer: nomeUsuarioVar,
+                    sobrenomeUsuarioServer: sobrenomeUsuarioVar,
+                    emailUsuarioServer: emailUsuarioVar,
+                    cpfUsuarioServer: cpfUsuarioVar,
+                    telUsuarioServer: telUsuarioVar,
+                    senhaServer: senhaVar,
+                    tipoUsuarioServer: tipoUsuarioVar
                 })
             }).then(function (resposta) {
-
+                
                 console.log("resposta: ", resposta);
-
+                
                 if (resposta.ok) {
                     titleErro.innerHTML = "Sucesso!"
                     erroDesc.innerHTML = "Cadastro realizado com sucesso!"
                     id_modal.style.display = "block"
                     setTimeout(() => { window.location = "../Login/Tela-login.html"; }, 3000)
                     limparFormulario();
-
                 } else {
                     throw ("Houve um erro ao tentar realizar o cadastro!");
                 }
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-
+                
             });
             return false;
         }
@@ -443,4 +450,5 @@
     //                 senhaServer: senhaVar,
     //                 tipoUsuarioServer: tipoUsuarioVar
 
+    // Rodar após resposta do cadastroUsuario
 </script>
