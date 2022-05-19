@@ -74,18 +74,6 @@
                     <span>CEP:</span>
                     <input type="text" id="cep_input" placeholder="Ex: 13630-050">
                 </div>
-                <!-- <div class="wrap single">
-                    <span>E-Mail:</span>
-                    <input type="text" id="email_input" placeholder="Ex: seuemail@gmail.com">
-                </div>
-                <div class="wrap single">
-                    <span>Senha:</span>
-                    <input type="password" id="senha_input" placeholder="*********">
-                </div> -->
-                <!-- <div class="wrap single">
-                    <span>Confirmar Senha:</span>
-                    <input type="password" id="confirmacao_senha_input" placeholder="*********">
-                </div>  -->
                 <div class="wrap btn">
                     <button onclick="change()">Próximo</button>
                 </div>
@@ -141,14 +129,6 @@
                         <option value="EX">Estrangeiro</option>
                     </select>
                 </div>
-                <!-- <div class="wrap single">
-                    <span>CEP:</span>
-                    <input type="text" id="cep_input" placeholder="Ex: 13630-050">
-                </div> -->
-                <!-- <div class="wrap single">
-                    <span>Telefone:</span>
-                    <input type="text" id="telefone_input" placeholder="Ex: 1120187758">
-                </div> -->
                 <div class="wrap btn">
                     <button onclick="voltar()">Retornar</button>
                     <button onclick="change2()">Próximo</button>
@@ -177,11 +157,6 @@
                     <input type="text" id="tel_usuario_input">
                 </div>
                 <div class="wrap">
-                  <span>Tipo de Usuário:</span>
-                  <select id="inp_tipo">
-                      <!-- <option value="pad">Padrão</option> -->
-                      <option value="adm">Administrador</option>
-                  </select>
                 </div>
                 <div class="wrap">
                     <span>Senha:</span>
@@ -254,7 +229,7 @@
     var emailUsuarioVar = 0;
     var cpfUsuarioVar = 0;
     var telUsuarioVar = 0;
-    var tipoUsuarioVar = 0;
+    var tipoUsuarioVar = "ADM";
     var senhaVar = 0;
     var confirmacaoSenhaVar = 0;
 
@@ -333,18 +308,6 @@
 
 
     function cadastrar() {
-        // 1º tela
-        razaoSocialVar = razao_social_input.value;
-        nomeFantasiaVar = nome_fantasia_input.value;
-        cnpjVar = cnpj_input.value;
-        telefoneVar = telefone_input.value;
-        cepVar = cep_input.value;
-        // 2º tela
-        ruaVar = rua_input.value;
-        numeroVar = numero_input.value;
-        bairroVar = bairro_input.value;
-        cidadeVar = cidade_input.value;
-        estadoVar = estado_input.value;
         // 3º tela
         nomeUsuarioVar = nome_usuario_input.value;
         sobrenomeUsuarioVar = sobrenome_usuario_input.value;
@@ -353,7 +316,6 @@
         telUsuarioVar = tel_usuario_input.value;
         senhaVar = senha_input.value;
         confirmacaoSenhaVar = confirmacao_senha_input.value;
-        tipoUsuarioVar = inp_tipo.value;
 
         if (nomeUsuarioVar == "" ||
             sobrenomeUsuarioVar == "" ||
@@ -426,9 +388,11 @@
                     erroDesc.innerHTML = "Cadastro realizado com sucesso!"
                     id_modal.style.display = "block"
                     setTimeout(() => { window.location = "../Login/Tela-login.html"; }, 3000)
-                    limparFormulario();
+                    return limparFormulario();
                 } else {
-                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                    titleErro.innerHTML = "Erro!"
+                    erroDesc.innerHTML = `Não foi possível realizar seu cadastro<br> ${resposta}`
+                    id_modal.style.display = "block"
                 }
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
