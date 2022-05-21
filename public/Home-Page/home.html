@@ -7,6 +7,7 @@
     <title>Home-Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../../favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     
@@ -26,52 +27,77 @@
         </div>
     </div>
 
-    <div class="banner">
-       <div id="id_areas" class="container areas">
+    <div id="id_banner" class="banner">
+       <div id="id_areas" class="container areas" > 
             <div class="wrap"><h2 style="font-size: clamp(2rem, 4vh, 4rem);"><u>Menu de Áreas</u></h2></div>
-
-            <!-- <div id="id_areas1" class="container cards">
-                <div class="card">
-                    <h2>Área 2</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
-                    <h3 style="color: red;">🔻18°C   🔺23°C</h3>
-                </div>
-
-                <div class="card">
-                    <h2>Área 3</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
-                    <h3 style="color: red;">🔻18°C   🔺23°C</h3>
-                </div>
-            </div>
-
-            <div id="id_areas2" class="container cards">
-                <a href="../Dashboard/Dashboard.html" class="card">
-                    <h2>Área 1</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">23°C</h2>
-                    <h3 style="color: red;">🔻20°C   🔺26°C</h3>
-                </a>
-
-                <div class="card">
-                    <h2>Área 4</h2>
-                    <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: green;">23°C</h2>
-                    <h3 style="color: red;">🔻20°C   🔺26°C</h3>
-                </div>
-            </div>
-
-            <div id="id_areas3" class="container cards">
-            </div>
-
-            <div class="container cards">
-                <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
-                    <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
-                </a>
-
-                <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
-                    <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>
-                </a>
-            </div>  -->
-
        </div> 
+    
+
+        <div id="dash" class="conteudo dashboard" style="display: none;">
+            <div class="conteudo grafico">
+            <div class="index">
+            <div class="cube" style="text-align: center; border: 2px solid #3995eb; color: #3995eb;">
+                ▽
+                20°C
+            </div>
+            <div class="cube" style="text-align: center; border: 2px solid #00d9ff; color: #00d9ff;">
+                ~21°C
+            </div>
+            <div class="cube" style="text-align: center; width: 100px; height: 50px;border: 2px solid #13e413; color: #13e413;">
+                22°C - 24°C
+            </div>
+
+            <div class="cube" style="text-align: center; border: 2px solid #dbdb09; color: #dbdb09;">
+                ~25°C
+            </div>
+
+            <div class="cube" style="text-align: center; border: 2px solid #ff0000; color: #ff0000;">
+                △
+                26°C
+            </div>
+            </div>
+            <div class="graficos">
+
+                <div style="position: relative; height: 35vh; width: 35vw">
+                    <canvas id="Chart1"></canvas>
+                </div>
+
+                <div style="position: relative;  height: 35vh; width: 35vw">
+                    <canvas id="Chart2"></canvas>
+                </div>
+
+                <div style="position: relative; height: 10vh; width: 20vw">
+                    <canvas id="Chart3"></canvas>
+                </div>
+                <button  class="btnRelatorio">Gerar Relatorio</button>
+            </div>
+            </div>
+            <div class="conteudo info">
+            <div class="title"><h2>Info</h2></div>
+                <div class="body">
+                    <span>Fase de crescimento:</span><br>
+                    <input type="text" readonly value="Leitões Desmamados"> <img src="imgs/settings.png">
+                    <br><br>
+                    <span>Quantidade de porcos:</span><br>
+                    <input type="text" readonly value="70"> <img src="imgs/settings.png">
+                </div>
+                <div class="body2">
+                <div class="cube" style=" border: 2px solid #05396B; color: #05396B;">
+                    <h2 style=" color: #05396B;">Área</h2>
+                        <h3>50 Metros²</h3>
+                </div>
+                <div class="cube" style=" width: 200px; height: 110px; border: 2px solid #ff0000; color: #ff0000;">
+                    <h2 style=" color: #ff0000;">Densidade</h2>
+                        <h3>0,71 Metros²/Porco</h3>
+                    </div>
+                <div class="cube" style=" border: 2px solid #dbdb09; color: #dbdb09;">
+                    <h2 style=" color: #dbdb09;">Risco á saúde</h2>
+                        <h3>Moderada</h3>
+                </div>
+               </div>
+            <button class="btnRelatorio close" onclick="closeDash()">Voltar</button>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
@@ -102,9 +128,10 @@
 
 <script>
 
-var areas = [1, 4, 2];
+var areas = [1, 4, 2, 3, 5, 7];
 var contadorPares = 0;
 var idParAtual = "";
+var tamanhoCont = 40;
 
 for (i = 1; i <= (areas.length); i++) {
 
@@ -112,16 +139,18 @@ for (i = 1; i <= (areas.length); i++) {
         contadorPares++
         idParAtual = "area" + contadorPares 
         id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
-}
-
+        tamanhoCont += 35
+    }
 
     document.getElementById(idParAtual).innerHTML += `
-        <div class="card">
-            <h2>Área ${areas[i - 1]}</h2>
+        <div class="card" value="${areas[i - 1]}" onclick="openDash(${areas[i - 1]})">
+            <h2 id="title${areas[i - 1]}">Área ${areas[i - 1]}</h2>
             <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
             <h3 style="color: red;">🔻18°C   🔺23°C</h3>
         </div>
     ` 
+
+    // console.log(areas[i - 1])
 
     if ((areas.indexOf(areas[i - 1]) + 1) == areas.length && areas.length % 2 == 0) {
         id_areas.innerHTML += 
@@ -138,4 +167,130 @@ for (i = 1; i <= (areas.length); i++) {
 
 }
 
+id_areas.style.height = tamanhoCont + "vh"
+
+id_banner.style.height = (tamanhoCont + 20) + "vh"
+
+function openDash(area) {
+    dash.style.display = "flex"
+    id_areas.style.display = "none"
+    id_banner.style.height = 90 + "vh"
+}
+
+function closeDash() {
+    dash.style.display = "none"
+    id_areas.style.display = "flex"
+    id_banner.style.height = (tamanhoCont + 20) + "vh"
+}
+
+</script>
+
+<!-- ChartJS -->
+
+<script>
+
+    const labels1 = ["12:01", "12:02", "12:03", "12:04", "12:05", "12:06"];
+    const labels2 = ["Jan - 2022", "Fev - 2022", "Mar - 2022", "Abr - 2022", "Mai - 2022", "Jun - 2022"];
+    const labels3 = ["Alta","Ideal","Baixa"];
+    
+    
+    const data1 = {
+     labels: labels1,
+     datasets: [
+       {
+         label: "Temperatura:",
+         backgroundColor: "lightGreen",
+         borderColor: "lightGreen",
+         data: [23, 23, 24, 23, 22, 23],
+       },
+       {
+         label: "Temperatura Máxima:",
+         backgroundColor: "red",
+         borderColor: "red",
+         data: [26, 26, 26, 26, 26, 26],
+       },
+       {
+         label: "Temperatura Mínima:",
+         backgroundColor: "blue",
+         borderColor: "blue",
+         data: [20, 20, 20, 20, 20, 20],
+       },
+     ],
+   };
+   
+   const data2 = {
+     labels: labels2,
+     datasets: [
+       {
+         label: "Temperatura:",
+         backgroundColor: "rgb(255, 99, 132)",
+         borderColor: "rgb(255, 99, 132)",
+         data: [22, 24, 27, 23, 20, 18],
+       },
+     ],
+   };
+
+   const data3 = {
+     labels: labels3,
+     datasets: [
+       {
+         label: "Temperatura e Umidade Média",
+         data: [15, 80, 5],
+         backgroundColor: [
+             "red",
+             "lightGreen",
+            "blue",
+         ],
+         hoverOffset: 4,
+       },
+     ],
+   };
+   
+
+   const config1 = {
+     type: "line",
+     data: data1,
+     options:{
+       plugins: {
+           title: {
+               display: true,
+               text: 'Temperatura e Umidade - Tempo Real - 1 min'
+           }
+       }
+   }
+   };
+
+     const config2 = {
+     type: "bar",
+     data: data2,
+     options:{
+       plugins: {
+           title: {
+               display: true,
+               text: 'Média de Temperatura - Mês'
+           }
+       }
+   }
+   };
+
+     const config3 = {
+     type: "doughnut",
+     data: data3,
+     options:{
+       plugins: {
+           title: {
+               display: true,
+               text: 'Tempo em temperatura apropriada'
+           }
+       }
+   }
+   };
+
+
+
+</script>
+<script>
+   const myChart1 = new Chart(document.getElementById("Chart1"), config1);
+   const myChart2 = new Chart(document.getElementById("Chart2"), config2);
+   const myChart3 = new Chart(document.getElementById("Chart3"), config3);
 </script>
