@@ -12,12 +12,8 @@ function buscarUltimasMedidas(idArea, limite_linhas) {
         order by idDado desc 
         limit ${limite_linhas};`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select temperatura,
-                        dtHora,
-                        DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico
-                    from dados
-                    where fkArea = ${idArea}
-                    order by idDado desc limit ${limite_linhas}`;
+        instrucaoSql = `select areaTotal, fase_porcos, qtd_porcos, Temperatura_Min as tempMin, Temperatura_Max as tempMax, Temperatura_Baixa as tempBaixa, Temperatura_Alta as tempAlta, temperatura, dtHora, DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico from dados join areas
+        on idArea = fkArea where fkArea = ${idArea} order by idDado desc limit ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -40,12 +36,8 @@ function buscarMedidasEmTempoReal(idArea) {
         limit 1;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select temperatura,
-        dtHora,
-        DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico
-        from dados
-        where fkArea = ${idArea}
-        order by idDado desc limit 1`;
+        instrucaoSql = `select areaTotal, fase_porcos, qtd_porcos, Temperatura_Min as tempMin, Temperatura_Max as tempMax, Temperatura_Baixa as tempBaixa, Temperatura_Alta as tempAlta, temperatura, dtHora, DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico from dados join areas
+        on idArea = fkArea where fkArea = ${idArea} order by idDado desc limit 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
