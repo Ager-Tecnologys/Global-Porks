@@ -120,11 +120,15 @@ function cadastrar(req, res) {
         empresaModel.cadastrar(nomeFantasia, cnpj, razaoSocial, telefone, rua, numero, bairro, cidade, estado, cep)
             .then(
                 function (resultado) {
-                    var fkEmpresa = resultado.insertId;
-                    res.json(resultado);
-                    return empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa)
-                }
-            ).catch(
+                    console.error("Resultado:" + resultado)
+                    empresaModel.selecionarFkEmpresa().then (
+                        function (resultado){
+                        console.log("Chegou na função de cadastrar master")
+                        console.error(resultado)
+                        var fkEmpresa = resultado[0].idEmpresa  
+                        return empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa)}
+                    )})                     
+            .catch(
                 function (erro) {
                     console.log(erro);
                     console.log(
@@ -144,6 +148,8 @@ function cadastrarUsuario(req, res) {
     var cpf = req.body.cpfServer;
     var telefone = req.body.telefoneServer;
     var senha = req.body.senhaServer;
+    var tipo = req.body.tipoServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
 
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -157,9 +163,13 @@ function cadastrarUsuario(req, res) {
         res.status(400).send("Seu telefone está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+    } else if (tipo == undefined) {
+        res.status(400).send("Seu tipo está undefined!");
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("Sua fkEmpresa está undefined!");
     }
     else {
-        empresaModel.cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha)
+        empresaModel.cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha, tipo, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
