@@ -121,13 +121,16 @@ function cadastrar(req, res) {
             .then(
                 function (resultado) {
                     console.error("Resultado:" + resultado)
-                    empresaModel.selecionarFkEmpresa().then (
-                        function (resultado){
-                        console.log("Chegou na função de cadastrar master")
-                        console.error(resultado)
-                        var fkEmpresa = resultado[0].idEmpresa  
-                        return empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa)}
-                    )})                     
+                    empresaModel.selecionarFkEmpresa()
+                        .then (
+                            function (resultado){
+                            console.log("Chegou na função de cadastrar master")
+                            console.error(resultado)
+                            var fkEmpresa = resultado[0].idEmpresa  
+                            empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa).then(resposta=>{
+                                res.json(resposta);
+                            })}
+                        )})                     
             .catch(
                 function (erro) {
                     console.log(erro);
