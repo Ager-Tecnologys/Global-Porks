@@ -5,12 +5,12 @@ function buscarUltimasMedidas(idArea, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select temperatura, 
+        instrucaoSql = `select top ${limite_linhas} temperatura, 
         CONVERT(varchar, dtHora, 108) as momento_grafico, 
         fkArea 
         from dados where fkArea = ${idArea} 
         order by idDado desc 
-        limit ${limite_linhas};`;
+        ;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select areaTotal, fase_porcos, qtd_porcos, Temperatura_Min as tempMin, Temperatura_Max as tempMax, Temperatura_Baixa as tempBaixa, Temperatura_Alta as tempAlta, temperatura, dtHora, DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico from dados join areas
         on idArea = fkArea where fkArea = ${idArea} order by idDado desc limit ${limite_linhas};`;
@@ -28,12 +28,11 @@ function buscarMedidasEmTempoReal(idArea) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select temperatura, 
+        instrucaoSql = `select top 1 temperatura, 
         CONVERT(varchar, dtHora, 108) as momento_grafico, 
         fkArea 
         from dados where fkArea = ${idArea} 
-        order by idDado desc 
-        limit 1;`;
+        order by idDado desc ;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select areaTotal, fase_porcos, qtd_porcos, Temperatura_Min as tempMin, Temperatura_Max as tempMax, Temperatura_Baixa as tempBaixa, Temperatura_Alta as tempAlta, temperatura, dtHora, DATE_FORMAT(dtHora,'%H:%i:%s') as momento_grafico from dados join areas
