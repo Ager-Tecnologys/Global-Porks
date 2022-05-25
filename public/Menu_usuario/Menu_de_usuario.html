@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="../../favicon.ico">
   </head>
-  <body>
+  <body onload="validarSessao()">
     <div class="header">
       <div class="container">
         <div class="container logo">
@@ -72,6 +72,13 @@
                     <input type="text" id="input_telefone">
                 </div>
                 <div class="wrap">
+                  <span>Tipo do usuário</span>
+                <select id="inp_tipo">
+                  <option value="ADM">Padrão</option>
+                  <option value="padrao">Administrador</option>
+                </select>
+              </div>
+                <div class="wrap">
                     <span>Senha:</span>
                     <input type="password" id="input_senha">
                 </div>
@@ -116,8 +123,8 @@
                     <span class="id">03</span>
                     <span>Leonardo Tomé</span>
                     <select id="inp_tipo">
-                        <option value="adm">Administrador</option>
-                        <option value="pad">Padrão</option>
+                        <option value="ADM">Administrador</option>
+                        <option value="padrao">Padrão</option>
                     </select>
                     <img src="imgs/settings.png">
                 </div>
@@ -196,6 +203,8 @@
         var telefoneVar = input_telefone.value
         var senhaVar = input_senha.value
         var confirmarSenhaVar = input_confirmarSenha.value
+        var tipoVar = inp_tipo.value
+        var fkEmpresaVar = sessionStorage.FK_EMPRESA
 
     if (
       nomeVar == "" ||
@@ -205,7 +214,8 @@
       telefoneVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      selectVar == "" 
+      tipoVar == "" ||
+      fkEmpresaVar == ""
     ) {
 
       erroDesc.innerHTML = "Preencha todos os campos para continuar.";
@@ -246,6 +256,8 @@
            cpfServer: cpfVar,
            telefoneServer: telefoneVar,
            senhaServer: senhaVar,
+           tipoServer: tipoVar,
+           fkEmpresaServer : fkEmpresaVar,
         }),
       })
         .then(function (resposta) {

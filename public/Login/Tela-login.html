@@ -1,165 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro - Usuário</title>
-    <script src="../js/funcoes.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="../../favicon.ico" />
-  </head>
-  <body>
-    <div class="header">
-      <div class="container">
-        <div class="container logo">
-          <img src="imgs/Ager-recolor.png" />
-          <h1>AGER Technologies</h1>
-        </div>
-        <ul>
-          <li>
-            <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-          </li>
-          <li><a href="../Simulador_Financeiro/Simulador.html">Orçamento</a></li>
-          <li><a href="../Produtos/Produtos.html">Produtos</a></li>
-          <li><a href="../Login/Tela-login.html">Entrar</a></li>
-        </ul>
-        <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Usuário</title>
+  <script src="../js/funcoes.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../favicon.ico" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="container logo">
+        <img src="imgs/Ager-recolor.png" />
+        <h1>AGER Technologies</h1>
       </div>
+      <ul>
+        <li>
+        <li><a href="../index.html#aboutUs">Sobre nós</a></li>
+        </li>
+        <li><a href="../Simulador_Financeiro/Simulador.html">Orçamento</a></li>
+        <li><a href="../Produtos/Produtos.html">Produtos</a></li>
+        <li><a href="../Login/Tela-login.html">Entrar</a></li>
+      </ul>
+      <a class="btnCadastro" href="../Cadastro/CadastroEmpresa.html">Cadastrar-se</a>
     </div>
+  </div>
 
-    <div id="id_modal" class="modal">
-      <div id="id_content" class="content">
+  <div id="id_modal" class="modal">
+    <div id="id_content" class="content">
 
-        <header class="modalHeader"> 
-          <h2>Erro!</h2>
-        </header>
-        <div class="container">
-          <p id="erroDesc"></p>
-        </div>
-
-        <footer class="modalFooter">
-          <button class="btn-fechar" onclick="fechar()">Fechar</button>
-        </footer>
-      </div>
-    </div>
-
-    <div class="banner">
+      <header class="modalHeader">
+        <h2>Erro!</h2>
+      </header>
       <div class="container">
-        <h2 style="margin-block-end: 60px">Login</h2>
-        <div class="wrap">
-          <span>Usuário / E-Mail Corporativo:</span>
-          <input id="email_input" type="text" />
-        </div>
-        <div class="wrap">
-          <span>Senha:</span>
-          <input id="senha_input" type="password" />
-        </div>
-        <!-- <div class="wrap btn">
+        <p id="erroDesc"></p>
+      </div>
+
+      <footer class="modalFooter">
+        <button class="btn-fechar" onclick="fechar()">Fechar</button>
+      </footer>
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="container">
+      <h2 style="margin-block-end: 60px">Login</h2>
+      <div class="wrap">
+        <span>Usuário / E-Mail Corporativo:</span>
+        <input id="email_input" type="text" />
+      </div>
+      <div class="wrap">
+        <span>Senha:</span>
+        <input id="senha_input" type="password" />
+      </div>
+      <!-- <div class="wrap btn">
           <button> Entrar - Usuário</button>
         </div> -->
-        <div class="wrap btn">
-          <button onclick="entrar()">Entrar</button>
-        </div>
-      </div>
-
+      <div class="wrap btn">
+        <button onclick="entrar()">Entrar</button>
       </div>
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <div class="container logo">
-          <h1>AGER Technologies</h1>
-        </div>
+  </div>
+  </div>
 
-        <div class="container middle">
-          <button>Entrar</button>
-          <ul>
-            <li>Informação</li>
-            <a href="/Suporte/Suporte.html"><li>Suporte</li></a>
-            <li>Termos de uso</li>
-          </ul>
-        </div>
+  <div class="footer">
+    <div class="container">
+      <div class="container logo">
+        <h1>AGER Technologies</h1>
+      </div>
 
-        <div class="container socials">
-          <img src="imgs/instagram.png" alt="" />
-          <img src="imgs/facebook.png" alt="" />
-          <img src="imgs/linkedin.png" alt="" />
-        </div>
+      <div class="container middle">
+        <button>Entrar</button>
+        <ul>
+          <li>Informação</li>
+          <a href="/Suporte/Suporte.html">
+            <li>Suporte</li>
+          </a>
+          <li>Termos de uso</li>
+        </ul>
+      </div>
+
+      <div class="container socials">
+        <img src="imgs/instagram.png" alt="" />
+        <img src="imgs/facebook.png" alt="" />
+        <img src="imgs/linkedin.png" alt="" />
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
 <script>
-    function entrar() {
+  function entrar() {
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
 
-        if (emailVar == "" || senhaVar == "") {
-            erroDesc.innerHTML = "Preencha todos os campos para continuar."
-            id_modal.style.display="block"
+    if (emailVar == "" || senhaVar == "") {
+      erroDesc.innerHTML = "Preencha todos os campos para continuar."
+      id_modal.style.display = "block"
 
-            return false;
-        }else if (emailVar.indexOf("@") == -1) {
-           erroDesc.innerHTML = "E-mail Inválido."
-           id_modal.style.display="block";
+      return false;
+    } else if (emailVar.indexOf("@") == -1) {
+      erroDesc.innerHTML = "E-mail Inválido."
+      id_modal.style.display = "block";
 
-            return false;
-        }
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/empresas/autenticar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "../Home-Page/home.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                erroDesc.innerHTML = "E-mail ou Senha inválidos"
-                id_modal.style.display="block"
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
-            }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-        return false;
+      return false;
     }
 
-    function fechar() {
-        id_modal.style.display="none"
-    }
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/empresas/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+          resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+
+          sessionStorage.EMAIL_USUARIO = json.Email;
+          sessionStorage.NOME_USUARIO = json.Nome;
+          sessionStorage.FK_EMPRESA = json.fkEmpresa;
+          sessionStorage.TIPO = json.TipoUsuario;
+
+          // if (sessionStorage.TIPO == "ADM") {
+            setTimeout(function () {
+              window.location = "../Home-Page/home.html";
+            }, 1000); // apenas para exibir o loading
+          // } else if (sessionStorage.TIPO == 'padrao') {
+          //   setTimeout(function () {
+          //     window.location = "../Home-Page/home.html";
+          //   }, 1000); // apenas para exibir o loading                      
+        //   }
+        });
+
+      } else {  
+
+        erroDesc.innerHTML = "E-mail ou Senha inválidos"
+        id_modal.style.display = "block"
+
+        resposta.text().then(texto => {
+          console.error(texto);
+          finalizarAguardar(texto);
+        });
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+    })
+
+    return false;
+  }
+
+  function fechar() {
+    id_modal.style.display = "none"
+  }
 </script>
-

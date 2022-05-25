@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,11 @@
     <title>Home-Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../../favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 </head>
+
 <body>
-    
+
     <div class="header">
         <div class="container">
             <div class="container logo">
@@ -19,7 +21,7 @@
             </div>
             <ul>
                 <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-                <a href="../Suporte/Suporte.html"> <li>Suporte</li> </a>
+                <li>Contato</li>
                 <li><a href="../Produtos/Produtos.html">Produtos</a></li>
                 <li><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</a></li>
             </ul>
@@ -28,74 +30,79 @@
     </div>
 
     <div id="id_banner" class="banner">
-       <div id="id_areas" class="container areas" > 
-            <div class="wrap"><h2 style="font-size: clamp(2rem, 4vh, 4rem);"><u>Menu de Áreas</u></h2></div>
-       </div> 
-    
+        <div id="id_areas" class="container areas">
+            <div class="wrap">
+                <h2 style="font-size: clamp(2rem, 4vh, 4rem);"><u>Menu de Áreas</u></h2>
+            </div>
+        </div>
+
 
         <div id="dash" class="conteudo dashboard" style="display: none;">
             <div class="conteudo grafico">
-            <div class="index">
-            <div class="cube" id="cubeFrioCrit" style="text-align: center; border: 2px solid #3995eb; color: #3995eb;">
-                ▽
-                20°C
-            </div>
-            <div class="cube" id="cubeFrio" style="text-align: center; border: 2px solid #00d9ff; color: #00d9ff;">
-                ~21°C
-            </div>
-            <div class="cube" id="cubeIdeal" style="text-align: center; width: 100px; height: 50px;border: 2px solid #13e413; color: #13e413;">
-                22°C - 24°C
-            </div>
+                <div class="index">
+                    <div class="cube" id="critInf" style="text-align: center; border: 2px solid #3995eb; color: #3995eb;">
+                        ▽
+                        20°C
+                    </div>
+                    <div class="cube" id="inf" style="text-align: center; border: 2px solid #00d9ff; color: #00d9ff;">
+                        ~21°C
+                    </div>
+                    <div class="cube" id="ideal"
+                        style="text-align: center; width: 100px; height: 50px;border: 2px solid #13e413; color: #13e413;">
+                        22°C - 24°C
+                    </div>
 
-            <div class="cube" id="cubeQuente" style="text-align: center; border: 2px solid #dbdb09; color: #dbdb09;">
-                ~25°C
-            </div>
+                    <div class="cube" id="sup" style="text-align: center; border: 2px solid #dbdb09; color: #dbdb09;">
+                        ~25°C
+                    </div>
 
-            <div class="cube" id="cubeQuenteCrit" style="text-align: center; border: 2px solid #ff0000; color: #ff0000;">
-                △
-                26°C
-            </div>
-            </div>
-            <div class="graficos">
-
-                <div style="position: relative; height: 35vh; width: 35vw">
-                    <canvas id="Chart1"></canvas>
+                    <div class="cube" id="critSup" style="text-align: center; border: 2px solid #ff0000; color: #ff0000;">
+                        △
+                        26°C
+                    </div>
                 </div>
+                <div class="graficos">
 
-                <div style="position: relative;  height: 35vh; width: 35vw">
-                    <canvas id="Chart2"></canvas>
-                </div>
+                    <div style="position: relative; height: 35vh; width: 35vw">
+                        <canvas id="Chart1"></canvas>
+                    </div>
 
-                <div style="position: relative; height: 10vh; width: 20vw">
-                    <canvas id="Chart3"></canvas>
+                    <div style="position: relative;  height: 35vh; width: 35vw; margin-top: 5vh;">
+                        <canvas id="Chart2"></canvas>
+                    </div>
+
+                    <div style="position: relative; height: 35vh; width: 20vw; margin-top: 5vh;">
+                        <canvas style="height: 35vh" id="Chart3"></canvas>
+                    </div>
+                    <button class="btnRelatorio">Gerar Relatorio</button>
                 </div>
-                <button  class="btnRelatorio">Gerar Relatorio</button>
-            </div>
             </div>
             <div class="conteudo info">
-            <div class="title"><h2 id="areaDash">Info</h2></div>
+                <div class="title">
+                    <h2 id="areaDash">Info</h2>
+                </div>
                 <div class="body">
                     <span>Fase de crescimento:</span><br>
-                    <input type="text" readonly value="Leitões Desmamados"> <img src="imgs/settings.png">
+                    <input type="text" id="fasePorcos" readonly value="Leitões Desmamados"> <img src="imgs/settings.png">
                     <br><br>
                     <span>Quantidade de porcos:</span><br>
-                    <input type="text" readonly value="70"> <img src="imgs/settings.png">
+                    <input type="text" id="qtdPorcos" readonly value="70"> <img src="imgs/settings.png">
                 </div>
                 <div class="body2">
-                <div class="cube" id="cubeArea" style=" border: 2px solid #05396B; color: #05396B;">
-                    <h2 style="color: inherit;">Área</h2>
-                        <h3>50 Metros²</h3>
-                </div>
-                <div class="cube" id="cubeDensidade" style=" width: 200px; height: 110px; border: 2px solid #ff0000; color: #ff0000;">
-                    <h2 style="color: inherit;">Densidade</h2>
-                        <h3>0,71 Metros²/Porco</h3>
+                    <div id="cubeArea" class="cube" style=" border: 2px solid #05396B; color: #05396B;">
+                        <h2 style=" color: inherit;">Área</h2>
+                        <h3 id="areaTotal" style=" color: inherit;">50 Metros²</h3>
                     </div>
-                <div class="cube" id="cubeRisco" style=" border: 2px solid #dbdb09; color: #dbdb09;">
-                    <h2 style="color: inherit;">Risco á saúde</h2>
-                        <h3>Moderada</h3>
+                    <div id="cubeDens" class="cube" style=" width: 200px; height: 110px; border: 2px solid #ff0000; color: #ff0000;">
+                        <h2 style=" color: inherit;">Densidade</h2>
+                        <h3 id="densidadePorcos" style=" color: inherit;">0,71 Metros²/Porco</h3>
+                    </div>
+                    <div id="cubeRisco" class="cube" style=" border: 2px solid #dbdb09; color: #dbdb09;">
+                        <h2 style=" color: inherit;">Risco á saúde</h2>
+                        <h3 id="riscoSaude" style=" color: inherit;">Moderada</h3>
+                    </div>
                 </div>
-               </div>
-            <button class="btnRelatorio close" onclick="closeDash()">Voltar</button>
+                <button class="btnRelatorio close" onclick="closeDash()">Voltar</button>
             </div>
         </div>
     </div>
@@ -105,16 +112,18 @@
             <div class="container logo">
                 <h1>AGER Technologies</h1>
             </div>
-  
+
             <div class="container middle">
                 <button>Home</button>
                 <ul>
                     <li>Informação</li>
-                   <a href="/Suporte/Suporte.html"> <li>Suporte</li> </a>
+                    <a href="/Suporte/Suporte.html">
+                        <li>Suporte</li>
+                    </a>
                     <li>Termos de uso</li>
                 </ul>
             </div>
-  
+
             <div class="container socials">
                 <img src="imgs/instagram.png" alt="" />
                 <img src="imgs/facebook.png" alt="" />
@@ -124,56 +133,77 @@
     </div>
 
 </body>
+
 </html>
 
 <script>
 
-var areas = [1, 4, 2];
-var contadorPares = 0;
-var idParAtual = "";
-var tamanhoCont = 40;
+    var areas = [1, 4, 2, 3, 5, 7];
+    var contadorPares = 0;
+    var idParAtual = "";
+    var tamanhoCont = 40;
+    var densRuim = false;
+    var tempRuim = false;
 
-for (i = 1; i <= (areas.length); i++) {
+    for (i = 1; i <= (areas.length); i++) {
 
-    if (i % 2 != 0) {
-        contadorPares++
-        idParAtual = "area" + contadorPares 
-        id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
-        tamanhoCont += 35
-    }
+        if (i % 2 != 0) {
+            contadorPares++
+            idParAtual = "area" + contadorPares
+            id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
+            tamanhoCont += 35
+        }
 
-    document.getElementById(idParAtual).innerHTML += `
+        document.getElementById(idParAtual).innerHTML += `
         <div class="card" value="${areas[i - 1]}" onclick="openDash(${areas[i - 1]}), obterDadosGrafico(${areas[i - 1]})">
             <h2 id="title${areas[i - 1]}">Área ${areas[i - 1]}</h2>
-            <h2 style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
+            <h2 id="tempArea${areas[i - 1]}" style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
             <h3 style="color: red;">🔻18°C   🔺23°C</h3>
         </div>
-    ` 
+    `
 
-    if ((areas.indexOf(areas[i - 1]) + 1) == areas.length && areas.length % 2 == 0) {
-        id_areas.innerHTML += 
-        `<a href="../Solicitar-Área/Solicitar_area.html" class="card add">
+        // console.log(areas[i - 1])
+        // If do tipo do usuario
+
+        if (sessionStorage.TIPO == "ADM") {
+            if ((areas.indexOf(areas[i - 1]) + 1) == areas.length && areas.length % 2 == 0) {
+                id_areas.innerHTML +=
+                    `<a href="../Solicitar-Área/Solicitar_area.html" class="card add">
            <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
        </a>`
-    } else if ((areas.indexOf(areas[i - 1]) + 1) == areas.length) {
-        document.getElementById(idParAtual).innerHTML += `
+            } else if ((areas.indexOf(areas[i - 1]) + 1) == areas.length) {
+                document.getElementById(idParAtual).innerHTML += `
         <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
             <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
         </a>
         `
+            }
+        }
+
     }
 
-}
+    id_areas.style.height = tamanhoCont + "vh"
 
-id_areas.style.height = tamanhoCont + "vh"
+    id_banner.style.height = (tamanhoCont + 20) + "vh"
 
-id_banner.style.height = (tamanhoCont + 20) + "vh"
+    function openDash(area) {
+        dash.style.display = "flex"
+        id_areas.style.display = "none"
+        id_banner.style.height = 90 + "vh"
+    }
 
-let proximaAtualizacao;
+    function closeDash() {
+        dash.style.display = "none"
+        id_areas.style.display = "flex"
+        id_banner.style.height = (tamanhoCont + 20) + "vh"
+    }
+
+    let proximaAtualizacao;
 
 window.onload = obterDadosGrafico(1);
 
 function obterDadosGrafico(idArea) {
+    console.log(idArea)
 
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
@@ -191,99 +221,121 @@ function obterDadosGrafico(idArea) {
             console.error('Nenhum dado encontrado ou erro na API');
         }
     })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 }
 
 function plotarGrafico(resposta, idArea) {
     console.log('iniciando plotagem do gráfico...');
+    console.log(resposta);
+    console.log(idArea);
+    
+    var densidade =  resposta[0].areaTotal / resposta[0].qtd_porcos
 
+    critInf.innerHTML = `▽
+                        ${resposta[0].tempMin}°C`
+    inf.innerHTML = `~${(resposta[0].tempMin) + 2}°C`
+    ideal.innerHTML = `${(resposta[0].tempMin) + 3}°C - ${(resposta[0].tempMax - 3)}°C`
+    sup.innerHTML = `~${(resposta[0].tempMax - 2)}°C`
+    critSup.innerHTML = `△
+                        ${resposta[0].tempMax}°C`
+    fasePorcos.value = `${resposta[0].fase_porcos}`
+    qtdPorcos.value = `${resposta[0].qtd_porcos}`
+    areaTotal.innerHTML = `${resposta[0].areaTotal} Metros²`
+    densidadePorcos.innerHTML = `${densidade} Metros²/Porco`
+
+    if (densidade <= 0.8) {
+        cubeDens.style.borderColor = "red"
+        cubeDens.style.color = "red"
+        densRuim = true
+    } else if (densidade <= 1.1) {
+        cubeDens.style.borderColor = "yellow"
+        cubeDens.style.color = "yellow"
+        densRuim = true
+    } else {
+        cubeDens.style.borderColor = "lightgreen"
+        cubeDens.style.color = "lightgreen"
+    }
+    
     var dados1 = {
         labels: [],
         datasets: [
         {
             label: "Temperatura:",
-            backgroundColor: "lightGreen",
+            backgroundColor: "transparent",
             borderColor: "lightGreen",
             data: [],
         },
         {
             label: "Temperatura Máxima:",
-            backgroundColor: "red",
+            backgroundColor: "transparent",
             borderColor: "red",
             data: [],
         },
         {
             label: "Temperatura Mínima:",
-            backgroundColor: "blue",
+            backgroundColor: "transparent",
             borderColor: "blue",
             data: [],
         },
         ]
     };
 
+
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         dados1.labels.push(registro.momento_grafico);
         dados1.datasets[0].data.push(registro.temperatura);
-        // dados1.datasets[1].data.push(registro.tempMax);
-        // dados1.datasets[2].data.push(registro.tempMin);
-        dados1.datasets[1].data.push(26);
-        dados1.datasets[2].data.push(19);
+        dados1.datasets[1].data.push(registro.tempMax);
+        dados1.datasets[2].data.push(registro.tempMin);
     }
 
     console.log(JSON.stringify(dados1));
 
     var ctx = Chart1.getContext('2d');
-    window.grafico_linha = Chart.line(ctx, {
+    window.grafico_linha = Chart.Line(ctx, {
         data: dados1,
         options: {
-            // responsive: true,
-            // animation: { duration: 500 },
-            // hoverMode: 'index',
-            // stacked: false,
-            // title: {
-            //     display: false,
-            //     text: 'Dados capturados'
-            // },
+            responsive: true,
+            animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: false,
+                text: 'Dados capturados'
+            },
             scales: {
                 yAxes: [{
-                    // type: 'linear',
-                    // display: true,
-                    // position: 'left',
-                    // id: 'y-temperatura',
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-temperatura',
                     ticks: {
                         beginAtZero: true,
-                        max: 100,
-                        min: 0
+                        max: dados1.datasets[1].data[1],
+                        min: dados1.datasets[2].data[1]
                     }
-                }, {
-                    // type: 'linear',
-                    // display: true,
-                    // position: 'left',
-                    // id: 'y-tempMax',
-                    ticks: {
-                        beginAtZero: true,
-                        max: 100,
-                        min: 0
-                    }
-                }, {
-                    // type: 'linear',
-                    // display: true,
-                    // position: 'left',
-                    // id: 'y-tempMin',
-                    ticks: {
-                        beginAtZero: true,
-                        max: 100,
-                        min: 0
-                    }
-                }],
+            }
+            ],
             }
         }
     });
 
     setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
+}
+
+function resetCores() {
+    critInf.style.backgroundColor = "transparent"
+    critInf.style.color = "#3995eb"
+    inf.style.backgroundColor = "transparent"
+    inf.style.color = "#00d9ff"
+    ideal.style.backgroundColor = "transparent"
+    ideal.style.color = "#13e413"
+    sup.style.backgroundColor = "transparent"
+    sup.style.color = "#dbdb09"
+    critSup.style.backgroundColor = "transparent"
+    critSup.style.color = "#ff0000"
 }
 
 function atualizarGrafico(idArea, dados1) {
@@ -310,6 +362,52 @@ fetch(`/medidas/tempo-real/${idArea}`, { cache: 'no-store' }).then(function (res
 
             window.grafico_linha.update();
 
+            console.log(novoRegistro)
+
+            if (novoRegistro[0].temperatura == null || novoRegistro[0].tempMin == null || novoRegistro[0].tempMax == null) {
+
+            } else {
+            if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin) {
+                resetCores()
+                critInf.style.backgroundColor = "#3995eb"
+                critInf.style.color = "white"
+                tempRuim = true
+            } else if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin + 2) {
+                resetCores()
+                inf.style.backgroundColor = "#00d9ff"
+                inf.style.color = "white"
+                tempRuim = true
+            } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax - 2) {
+                resetCores()
+                ideal.style.backgroundColor = "#13e413"
+                ideal.style.color = "white"
+                tempRuim = false
+            } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax) {
+                resetCores()
+                sup.style.backgroundColor = "#dbdb09"
+                sup.style.color = "white"
+                tempRuim = true
+            } else {
+                resetCores()
+                critSup.style.backgroundColor = "#ff0000"
+                critSup.style.color = "white"
+                tempRuim = true
+            }}
+
+            if (tempRuim == true && densRuim == true) {
+                riscoSaude.innerHTML = "Alto"
+                cubeRisco.style.borderColor = "red"
+                cubeRisco.style.color = "red"
+            } else if (tempRuim == true || densRuim == true) {
+                riscoSaude.innerHTML = "Moderado"
+                cubeRisco.style.borderColor = "#dbdb09"
+                cubeRisco.style.color = "#dbdb09"
+            } else {
+                riscoSaude.innerHTML = "Baixo"
+                cubeRisco.style.borderColor = "lightgreen"
+                cubeRisco.style.color = "lightgreen"
+            }
+
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
         });
@@ -322,7 +420,6 @@ fetch(`/medidas/tempo-real/${idArea}`, { cache: 'no-store' }).then(function (res
     .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     });
-
 }
 
 function openDash(area) {

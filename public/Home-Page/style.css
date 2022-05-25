@@ -277,7 +277,7 @@ a {
     height: 12%;
     display: flex;
     justify-content: center;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
 }
 
 .conteudo.info .body{
@@ -302,7 +302,8 @@ a {
     background: #FFFFFF;
     border-radius: 5px;
     justify-content: center;
-    flex-wrap: wrap 
+    flex-wrap: wrap;
+    margin-top: 5vh;
 }
 
 .conteudo.info .body2 .cube h2{
