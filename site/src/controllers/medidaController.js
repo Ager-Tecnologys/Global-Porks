@@ -1,5 +1,17 @@
 var medidaModel = require("../models/medidaModel");
 
+function buscarAreas(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    medidaModel.buscarAreas(idUsuario).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as áreas:", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidas(req, res) {
 
     const limite_linhas = 7;
@@ -42,6 +54,7 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
+    buscarAreas,
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal
 

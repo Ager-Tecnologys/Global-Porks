@@ -138,58 +138,322 @@
 
 <script>
 
-    var areas = [1, 4, 2, 3, 5, 7];
+    var areas = [];
     var contadorPares = 0;
     var idParAtual = "";
     var tamanhoCont = 40;
     var densRuim = false;
     var tempRuim = false;
+    var inDash = false;
+    var idUsuario = sessionStorage.ID_USUARIO
 
-    for (i = 1; i <= (areas.length); i++) {
+    
+    function buscarAreas(idUsuario) {
+        fetch(`/medidas/areas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log({resposta});
+                    for (var i = 0; i < resposta.length; i++) {
+                        areas.push(resposta[i].idArea)
+                        console.log(`Areas:${areas}`)
+                    }
+                    mostrarAreas()
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados de áreas: ${error.message}`);
+        });
+    }
+    
+    buscarAreas(idUsuario);
 
-        if (i % 2 != 0) {
-            contadorPares++
-            idParAtual = "area" + contadorPares
-            id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
-            tamanhoCont += 35
-        }
+    function mostrarAreas(tempMax, tempMin) {
+        for (i = 1; i <= (areas.length); i++) {
 
-        document.getElementById(idParAtual).innerHTML += `
-        <div class="card" value="${areas[i - 1]}" onclick="openDash(${areas[i - 1]}), obterDadosGrafico(${areas[i - 1]})">
-            <h2 id="title${areas[i - 1]}">Área ${areas[i - 1]}</h2>
-            <h2 id="tempArea${areas[i - 1]}" style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
-            <h3 style="color: red;">🔻18°C   🔺23°C</h3>
-        </div>
-    `
+            if (i % 2 != 0) {
+                contadorPares++
+                idParAtual = "area" + contadorPares
+                id_areas.innerHTML += `<div id='${idParAtual}' class="container cards"></div>`
+                tamanhoCont += 35
+            }
 
-        // console.log(areas[i - 1])
-        // If do tipo do usuario
-
-        if (sessionStorage.TIPO == "ADM") {
-            if ((areas.indexOf(areas[i - 1]) + 1) == areas.length && areas.length % 2 == 0) {
-                id_areas.innerHTML +=
-                    `<a href="../Solicitar-Área/Solicitar_area.html" class="card add">
-           <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
-       </a>`
-            } else if ((areas.indexOf(areas[i - 1]) + 1) == areas.length) {
-                document.getElementById(idParAtual).innerHTML += `
-        <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
-            <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
-        </a>
+            document.getElementById(idParAtual).innerHTML += `
+            <div class="card" value="${areas[i - 1]}" onclick="openDash(${areas[i - 1]}), obterDadosGrafico(${areas[i - 1]})">
+                <h2 id="title${areas[i - 1]}">Área ${areas[i - 1]}</h2>
+                <h2 id="tempArea${areas[i - 1]}" style="font-size: clamp(1rem, 4vh, 3rem); color: red;">24°C</h2>
+                <h3 style="color: red;">🔻18°C   🔺23°C</h3>
+            </div>
         `
+
+            if (sessionStorage.TIPO == "ADM") {
+                if ((areas.indexOf(areas[i - 1]) + 1) == areas.length && areas.length % 2 == 0) {
+                    id_areas.innerHTML +=
+                        `<a href="../Solicitar-Área/Solicitar_area.html" class="card add">
+            <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
+        </a>`
+                } else if ((areas.indexOf(areas[i - 1]) + 1) == areas.length) {
+                    document.getElementById(idParAtual).innerHTML += `
+            <a href="../Solicitar-Área/Solicitar_area.html" class="card add">
+                <h2 style="font-size: 6vh; transition: 0.3s;">+</h2>         
+            </a>
+            `
+                }
             }
         }
-
+            id_areas.style.height = tamanhoCont + "vh"
+        
+            id_banner.style.height = (tamanhoCont + 20) + "vh"
     }
 
-    id_areas.style.height = tamanhoCont + "vh"
-
-    id_banner.style.height = (tamanhoCont + 20) + "vh"
 
     function openDash(area) {
         dash.style.display = "flex"
         id_areas.style.display = "none"
         id_banner.style.height = 90 + "vh"
+        inDash = true;
+    }
+
+    function closeDash() {
+        dash.style.display = "none"
+        id_areas.style.display = "flex"
+        id_banner.style.height = (tamanhoCont + 20) + "vh"
+        inDash = false;
+    }
+
+    let proximaAtualizacao;
+
+    for (var i = 0; i < areas.length; i++) {
+        window.onload = obterDadosGrafico(areas[i]);
+    }
+
+    function obterDadosGrafico(idArea) {
+        console.log(idArea)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idArea}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idArea);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGrafico(resposta, idArea) {
+        console.log('iniciando plotagem do gráfico...');
+        console.log(resposta);
+        console.log(idArea);
+        
+        var densidade =  resposta[0].areaTotal / resposta[0].qtd_porcos
+
+        critInf.innerHTML = `▽
+                            ${resposta[0].tempMin}°C`
+        inf.innerHTML = `~${(resposta[0].tempMin) + 2}°C`
+        ideal.innerHTML = `${(resposta[0].tempMin) + 3}°C - ${(resposta[0].tempMax - 3)}°C`
+        sup.innerHTML = `~${(resposta[0].tempMax - 2)}°C`
+        critSup.innerHTML = `△
+                            ${resposta[0].tempMax}°C`
+        fasePorcos.value = `${resposta[0].fase_porcos}`
+        qtdPorcos.value = `${resposta[0].qtd_porcos}`
+        areaTotal.innerHTML = `${resposta[0].areaTotal} Metros²`
+        densidadePorcos.innerHTML = `${densidade} Metros²/Porco`
+
+        if (densidade <= 0.8) {
+            cubeDens.style.borderColor = "red"
+            cubeDens.style.color = "red"
+            densRuim = true
+        } else if (densidade <= 1.1) {
+            cubeDens.style.borderColor = "yellow"
+            cubeDens.style.color = "yellow"
+            densRuim = true
+        } else {
+            cubeDens.style.borderColor = "lightgreen"
+            cubeDens.style.color = "lightgreen"
+        }
+        
+        var dados1 = {
+            labels: [],
+            datasets: [
+            {
+                label: "Temperatura:",
+                backgroundColor: "transparent",
+                borderColor: "lightGreen",
+                data: [],
+            },
+            {
+                label: "Temperatura Máxima:",
+                backgroundColor: "transparent",
+                borderColor: "red",
+                data: [],
+            },
+            {
+                label: "Temperatura Mínima:",
+                backgroundColor: "transparent",
+                borderColor: "blue",
+                data: [],
+            },
+            ]
+        };
+
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados1.labels.push(registro.momento_grafico);
+            dados1.datasets[0].data.push(registro.temperatura);
+            dados1.datasets[1].data.push(registro.tempMax);
+            dados1.datasets[2].data.push(registro.tempMin);
+        }
+
+        console.log(JSON.stringify(dados1));
+
+        var ctx = Chart1.getContext('2d');
+        window.grafico_linha = Chart.Line(ctx, {
+            data: dados1,
+            options: {
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                title: {
+                    display: false,
+                    text: 'Dados capturados'
+                },
+                scales: {
+                    yAxes: [{
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        id: 'y-temperatura',
+                        ticks: {
+                            beginAtZero: true,
+                            max: dados1.datasets[1].data[1],
+                            min: dados1.datasets[2].data[1]
+                        }
+                }
+                ],
+                }
+            }
+        });
+
+        setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
+    }
+
+    function resetCores() {
+        critInf.style.backgroundColor = "transparent"
+        critInf.style.color = "#3995eb"
+        inf.style.backgroundColor = "transparent"
+        inf.style.color = "#00d9ff"
+        ideal.style.backgroundColor = "transparent"
+        ideal.style.color = "#13e413"
+        sup.style.backgroundColor = "transparent"
+        sup.style.color = "#dbdb09"
+        critSup.style.backgroundColor = "transparent"
+        critSup.style.color = "#ff0000"
+    }
+
+    function atualizarGrafico(idArea, dados1) {
+
+    fetch(`/medidas/tempo-real/${idArea}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico: ${dados1}`);
+
+                // tirando e colocando valores no gráfico
+                dados1.labels.shift(); // apagar o primeiro
+                dados1.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+                
+                dados1.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                dados1.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                dados1.datasets[1].data.shift();  // apagar o primeiro de umidade
+                dados1.datasets[1].data.push(novoRegistro[0].tempMax); // incluir uma nova medida de umidade
+
+                dados1.datasets[2].data.shift();  // apagar o primeiro de umidade
+                dados1.datasets[2].data.push(novoRegistro[0].tempMin); // incluir uma nova medida de umidade
+
+                window.grafico_linha.update();
+
+                console.log(novoRegistro)
+
+                if (novoRegistro[0].temperatura == null || novoRegistro[0].tempMin == null || novoRegistro[0].tempMax == null) {
+
+                } else {
+                if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin) {
+                    resetCores()
+                    critInf.style.backgroundColor = "#3995eb"
+                    critInf.style.color = "white"
+                    tempRuim = true
+                } else if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin + 2) {
+                    resetCores()
+                    inf.style.backgroundColor = "#00d9ff"
+                    inf.style.color = "white"
+                    tempRuim = true
+                } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax - 2) {
+                    resetCores()
+                    ideal.style.backgroundColor = "#13e413"
+                    ideal.style.color = "white"
+                    tempRuim = false
+                } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax) {
+                    resetCores()
+                    sup.style.backgroundColor = "#dbdb09"
+                    sup.style.color = "white"
+                    tempRuim = true
+                } else {
+                    resetCores()
+                    critSup.style.backgroundColor = "#ff0000"
+                    critSup.style.color = "white"
+                    tempRuim = true
+                }}
+
+                if (tempRuim == true && densRuim == true) {
+                    riscoSaude.innerHTML = "Alto"
+                    cubeRisco.style.borderColor = "red"
+                    cubeRisco.style.color = "red"
+                } else if (tempRuim == true || densRuim == true) {
+                    riscoSaude.innerHTML = "Moderado"
+                    cubeRisco.style.borderColor = "#dbdb09"
+                    cubeRisco.style.color = "#dbdb09"
+                } else {
+                    riscoSaude.innerHTML = "Baixo"
+                    cubeRisco.style.borderColor = "lightgreen"
+                    cubeRisco.style.color = "lightgreen"
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function openDash(area) {
+        dash.style.display = "flex"
+        id_areas.style.display = "none"
+        id_banner.style.height = "90vh"
+        areaDash.innerHTML = `Área ${area}`
     }
 
     function closeDash() {
@@ -197,243 +461,6 @@
         id_areas.style.display = "flex"
         id_banner.style.height = (tamanhoCont + 20) + "vh"
     }
-
-    let proximaAtualizacao;
-
-window.onload = obterDadosGrafico(1);
-
-function obterDadosGrafico(idArea) {
-    console.log(idArea)
-
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
-
-    fetch(`/medidas/ultimas/${idArea}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
-
-                plotarGrafico(resposta, idArea);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-function plotarGrafico(resposta, idArea) {
-    console.log('iniciando plotagem do gráfico...');
-    console.log(resposta);
-    console.log(idArea);
-    
-    var densidade =  resposta[0].areaTotal / resposta[0].qtd_porcos
-
-    critInf.innerHTML = `▽
-                        ${resposta[0].tempMin}°C`
-    inf.innerHTML = `~${(resposta[0].tempMin) + 2}°C`
-    ideal.innerHTML = `${(resposta[0].tempMin) + 3}°C - ${(resposta[0].tempMax - 3)}°C`
-    sup.innerHTML = `~${(resposta[0].tempMax - 2)}°C`
-    critSup.innerHTML = `△
-                        ${resposta[0].tempMax}°C`
-    fasePorcos.value = `${resposta[0].fase_porcos}`
-    qtdPorcos.value = `${resposta[0].qtd_porcos}`
-    areaTotal.innerHTML = `${resposta[0].areaTotal} Metros²`
-    densidadePorcos.innerHTML = `${densidade} Metros²/Porco`
-
-    if (densidade <= 0.8) {
-        cubeDens.style.borderColor = "red"
-        cubeDens.style.color = "red"
-        densRuim = true
-    } else if (densidade <= 1.1) {
-        cubeDens.style.borderColor = "yellow"
-        cubeDens.style.color = "yellow"
-        densRuim = true
-    } else {
-        cubeDens.style.borderColor = "lightgreen"
-        cubeDens.style.color = "lightgreen"
-    }
-    
-    var dados1 = {
-        labels: [],
-        datasets: [
-        {
-            label: "Temperatura:",
-            backgroundColor: "transparent",
-            borderColor: "lightGreen",
-            data: [],
-        },
-        {
-            label: "Temperatura Máxima:",
-            backgroundColor: "transparent",
-            borderColor: "red",
-            data: [],
-        },
-        {
-            label: "Temperatura Mínima:",
-            backgroundColor: "transparent",
-            borderColor: "blue",
-            data: [],
-        },
-        ]
-    };
-
-
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        dados1.labels.push(registro.momento_grafico);
-        dados1.datasets[0].data.push(registro.temperatura);
-        dados1.datasets[1].data.push(registro.tempMax);
-        dados1.datasets[2].data.push(registro.tempMin);
-    }
-
-    console.log(JSON.stringify(dados1));
-
-    var ctx = Chart1.getContext('2d');
-    window.grafico_linha = Chart.Line(ctx, {
-        data: dados1,
-        options: {
-            responsive: true,
-            animation: { duration: 500 },
-            hoverMode: 'index',
-            stacked: false,
-            title: {
-                display: false,
-                text: 'Dados capturados'
-            },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-temperatura',
-                    ticks: {
-                        beginAtZero: true,
-                        max: dados1.datasets[1].data[1],
-                        min: dados1.datasets[2].data[1]
-                    }
-            }
-            ],
-            }
-        }
-    });
-
-    setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
-}
-
-function resetCores() {
-    critInf.style.backgroundColor = "transparent"
-    critInf.style.color = "#3995eb"
-    inf.style.backgroundColor = "transparent"
-    inf.style.color = "#00d9ff"
-    ideal.style.backgroundColor = "transparent"
-    ideal.style.color = "#13e413"
-    sup.style.backgroundColor = "transparent"
-    sup.style.color = "#dbdb09"
-    critSup.style.backgroundColor = "transparent"
-    critSup.style.color = "#ff0000"
-}
-
-function atualizarGrafico(idArea, dados1) {
-
-fetch(`/medidas/tempo-real/${idArea}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (novoRegistro) {
-
-            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-            console.log(`Dados atuais do gráfico: ${dados1}`);
-
-            // tirando e colocando valores no gráfico
-            dados1.labels.shift(); // apagar o primeiro
-            dados1.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-            
-            dados1.datasets[0].data.shift();  // apagar o primeiro de temperatura
-            dados1.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-            dados1.datasets[1].data.shift();  // apagar o primeiro de umidade
-            dados1.datasets[1].data.push(novoRegistro[0].tempMax); // incluir uma nova medida de umidade
-
-            dados1.datasets[2].data.shift();  // apagar o primeiro de umidade
-            dados1.datasets[2].data.push(novoRegistro[0].tempMin); // incluir uma nova medida de umidade
-
-            window.grafico_linha.update();
-
-            console.log(novoRegistro)
-
-            if (novoRegistro[0].temperatura == null || novoRegistro[0].tempMin == null || novoRegistro[0].tempMax == null) {
-
-            } else {
-            if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin) {
-                resetCores()
-                critInf.style.backgroundColor = "#3995eb"
-                critInf.style.color = "white"
-                tempRuim = true
-            } else if (novoRegistro[0].temperatura <= novoRegistro[0].tempMin + 2) {
-                resetCores()
-                inf.style.backgroundColor = "#00d9ff"
-                inf.style.color = "white"
-                tempRuim = true
-            } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax - 2) {
-                resetCores()
-                ideal.style.backgroundColor = "#13e413"
-                ideal.style.color = "white"
-                tempRuim = false
-            } else if (novoRegistro[0].temperatura < novoRegistro[0].tempMax) {
-                resetCores()
-                sup.style.backgroundColor = "#dbdb09"
-                sup.style.color = "white"
-                tempRuim = true
-            } else {
-                resetCores()
-                critSup.style.backgroundColor = "#ff0000"
-                critSup.style.color = "white"
-                tempRuim = true
-            }}
-
-            if (tempRuim == true && densRuim == true) {
-                riscoSaude.innerHTML = "Alto"
-                cubeRisco.style.borderColor = "red"
-                cubeRisco.style.color = "red"
-            } else if (tempRuim == true || densRuim == true) {
-                riscoSaude.innerHTML = "Moderado"
-                cubeRisco.style.borderColor = "#dbdb09"
-                cubeRisco.style.color = "#dbdb09"
-            } else {
-                riscoSaude.innerHTML = "Baixo"
-                cubeRisco.style.borderColor = "lightgreen"
-                cubeRisco.style.color = "lightgreen"
-            }
-
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
-    }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-function openDash(area) {
-    dash.style.display = "flex"
-    id_areas.style.display = "none"
-    id_banner.style.height = "90vh"
-    areaDash.innerHTML = `Área ${area}`
-}
-
-function closeDash() {
-    dash.style.display = "none"
-    id_areas.style.display = "flex"
-    id_banner.style.height = (tamanhoCont + 20) + "vh"
-}
 
 </script>
 

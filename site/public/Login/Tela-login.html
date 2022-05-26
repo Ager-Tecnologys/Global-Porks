@@ -137,18 +137,13 @@
 
           sessionStorage.EMAIL_USUARIO = json.Email;
           sessionStorage.NOME_USUARIO = json.Nome;
+          sessionStorage.ID_USUARIO = json.idUsuario;
           sessionStorage.FK_EMPRESA = json.fkEmpresa;
           sessionStorage.TIPO = json.TipoUsuario;
 
-          // if (sessionStorage.TIPO == "ADM") {
             setTimeout(function () {
               window.location = "../Home-Page/home.html";
-            }, 1000); // apenas para exibir o loading
-          // } else if (sessionStorage.TIPO == 'padrao') {
-          //   setTimeout(function () {
-          //     window.location = "../Home-Page/home.html";
-          //   }, 1000); // apenas para exibir o loading                      
-        //   }
+            }, 1000); 
         });
 
       } else {  
