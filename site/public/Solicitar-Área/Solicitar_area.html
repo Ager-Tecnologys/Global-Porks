@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="../../favicon.ico">
 </head>
-<body  onload="validarSessao()">
-    
+
+<body>
+
     <div class="header">
         <div class="container">
             <div class="container logo">
@@ -31,11 +33,11 @@
             <h2 style="margin-block-end: 60px;">Solicitar Área</h2>
             <div class="wrap">
                 <span>Área total (m²):</span>
-                <input type="text" id="input_areaTotal">
+                <input type="number" id="input_areaTotal">
             </div>
             <div class="wrap">
                 <span>Quantidade de Porcos:</span>
-                <input type="text" id="input_qtdPorcos">
+                <input type="number" id="input_qtdPorcos">
             </div>
             <div class="wrap">
                 <span>Fase de criação:</span>
@@ -55,7 +57,8 @@
 
             <div class="wrap desc">
                 <span>
-                    * Ao clicar em Solicitar nova área, analisaremos os dados inseridos e entraremos em contato para definição de valores
+                    * Ao clicar em Solicitar nova área, analisaremos os dados inseridos e entraremos em contato para
+                    definição de valores
                     e para marcar data e horário de instalação dos novos sensores.
                 </span>
             </div>
@@ -73,16 +76,18 @@
             <div class="container logo">
                 <h1>AGER Technologies</h1>
             </div>
-  
+
             <div class="container middle">
                 <button>Home</button>
                 <ul>
                     <li>Informação</li>
-                    <a href="/Suporte/Suporte.html"><li>Suporte</li></a>
+                    <a href="/Suporte/Suporte.html">
+                        <li>Suporte</li>
+                    </a>
                     <li>Termos de uso</li>
                 </ul>
             </div>
-  
+
             <div class="container socials">
                 <img src="imgs/instagram.png" alt="" />
                 <img src="imgs/facebook.png" alt="" />
@@ -92,23 +97,26 @@
     </div>
 
 </body>
+
 </html>
 <script>
     function solicitar() {
-       var areaTotalVar = input_areaTotal.value
-       var qtdPorcosVar = input_qtdPorcos.value
-       var selectVar = id_select.value
+        var areaTotalVar = Number (input_areaTotal.value)
+        var qtdPorcosVar = Number (input_qtdPorcos.value)
+        var selectVar = id_select.value
+        var fkEmpresaVar = sessionStorage.FK_EMPRESA
 
         if (areaTotalVar == "" ||
             qtdPorcosVar == "" ||
             selectVar == ""
-            ) {
+        ) {
             erroDesc.innerHTML = "Preencha todos os campos para continuar."
             id_modal.style.display = "block"
 
 
             return false;
         } else {
+            console.log("Entrando no Fetch")
             fetch("/empresas/solicitarArea", {
                 method: "POST",
                 headers: {
@@ -117,8 +125,10 @@
                 body: JSON.stringify({
                     areaTotalServer: areaTotalVar,
                     qtdPorcosServer: qtdPorcosVar,
-                    selectServer: selectVar
+                    select_tipo_areaServer: selectVar,
+                    fkEmpresaServer: fkEmpresaVar
                 })
+                
             }).then(function (resposta) {
 
                 console.log("resposta: ", resposta);
@@ -137,7 +147,7 @@
                 console.log(`#ERRO: ${resposta}`);
 
             });
-            return false;
+
         }
     }
 

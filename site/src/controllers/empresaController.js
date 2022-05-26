@@ -78,7 +78,7 @@ function cadastrar(req, res) {
     var telUsuario = req.body.telUsuarioServer;
     var senha = req.body.senhaServer;
     var tipo = req.body.tipoUsuarioServer;
-    console.log(req,res)
+    console.log(req, res)
 
     if (nomeFantasia == undefined) {
         res.status(400).send("Seu nome fantasia está undefined!");
@@ -122,15 +122,17 @@ function cadastrar(req, res) {
                 function (resultado) {
                     console.error("Resultado:" + resultado)
                     empresaModel.selecionarFkEmpresa()
-                        .then (
-                            function (resultado){
-                            console.log("Chegou na função de cadastrar master")
-                            console.error(resultado)
-                            var fkEmpresa = resultado[0].idEmpresa  
-                            empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa).then(resposta=>{
-                                res.json(resposta);
-                            })}
-                        )})                     
+                        .then(
+                            function (resultado) {
+                                console.log("Chegou na função de cadastrar master")
+                                console.error(resultado)
+                                var fkEmpresa = resultado[0].idEmpresa
+                                empresaModel.cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa).then(resposta => {
+                                    res.json(resposta);
+                                })
+                            }
+                        )
+                })
             .catch(
                 function (erro) {
                     console.log(erro);
@@ -185,7 +187,7 @@ function cadastrarUsuario(req, res) {
                         erro.sqlMessage
                     );
                     res.status(500).json(erro.sqlMessage);
-                    
+
                 }
             );
     }
@@ -194,17 +196,19 @@ function cadastrarUsuario(req, res) {
 function solicitarArea(req, res) {
     var areaTotal = req.body.areaTotalServer;
     var qtdPorcos = req.body.qtdPorcosServer;
-    var select = req.body.selectServer;
-
+    var select_tipo_area = req.body.select_tipo_areaServer;
+    var fkEmpresa = req.body.fkEmpresaServer;
+    console.log("Entrando na Controller")
     if (areaTotal == undefined) {
         res.status(400).send("Sua área total está undefined!");
     } else if (qtdPorcos == undefined) {
         res.status(400).send("Sua quantidade de porcos está undefined!");
-    } else if (select == undefined) {
+    } else if (select_tipo_area == undefined) {
         res.status(400).send("Sua fase de criação está undefined!");
-    }
-    else {
-        empresaModel.solicitarArea(areaTotal, qtdPorcos, select)
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("Sua fase de criação está undefined!");
+    } else {
+        empresaModel.solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);

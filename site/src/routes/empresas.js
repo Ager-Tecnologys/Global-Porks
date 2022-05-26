@@ -22,7 +22,9 @@ router.post("/cadastrarUsuario", function (req, res) {
 })
 
 router.post("/solicitarArea", function (req, res) {
+    console.log("Entrando na rota !")
     empresaController.solicitarArea(req, res);
+    console.log("Saindo da rota !")
 })
 
 router.post("/autenticar", function (req, res) {

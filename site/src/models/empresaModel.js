@@ -20,7 +20,7 @@ function entrar(email, senha) {
 
 function cadastrar(nomeFantasia, cnpj, RazaoSocial, telefone, rua, numero, bairro, cidade, estado, cep) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeFantasia);
-    
+
     var instrucao1 = `
         INSERT INTO Empresa (NomeFantasia, CNPJ, RazaoSocial, Telefone, Rua, Numero, Bairro, Cidade, Estado, CEP) VALUES
         ('${nomeFantasia}', '${cnpj}', '${RazaoSocial}', '${telefone}', '${rua}', '${numero}', '${bairro}', '${cidade}', '${estado}', '${cep}');
@@ -33,14 +33,14 @@ function selecionarFkEmpresa() {
     console.log("Chegou na SelecionarFkEmpresa")
 
     var instrucao = `SELECT TOP 1 idEmpresa FROM Empresa ORDER BY idEmpresa DESC;`
-   
+
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha, tipo, fkEmpresa) {
     console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, cpf, email, telefone, senha, tipo, fkEmpresa);
-    
+
     var instrucao = `
         INSERT INTO usuario (Nome, Sobrenome, CPF, Email, Telefone, Senha, TipoUsuario, fkEmpresa) VALUES
         ('${nome}', '${sobrenome}', '${cpf}', '${email}', '${telefone}', '${senha}', '${tipo}', '${fkEmpresa}');
@@ -49,9 +49,9 @@ function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha, tipo, fk
     return database.executar(instrucao);
 }
 
-function cadastrarUsuarioMaster( nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa) {
-    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",  nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa);
-    
+function cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeUsuario, sobrenomeUsuario, emailUsuario, cpf, telUsuario, senha, tipo, fkEmpresa);
+
     var instrucao = `
         INSERT INTO usuario (Nome, Sobrenome, CPF, Email, Telefone, Senha, TipoUsuario, fkEmpresa) VALUES
         ('${nomeUsuario}', '${sobrenomeUsuario}', '${cpf}', '${emailUsuario}', '${telUsuario}', '${senha}', '${tipo}', ${fkEmpresa});
@@ -60,12 +60,12 @@ function cadastrarUsuarioMaster( nomeUsuario, sobrenomeUsuario, emailUsuario, cp
     return database.executar(instrucao);
 
 }
-function solicitarArea(areaTotal, qtdPorcos, select) {
-    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", areaTotal, qtdPorcos, select);
-    
+function solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", areaTotal, qtdPorcos, select_tipo_area, fkEmpresa);
+
     var instrucao = `
-        INSERT INTO area (areaTotal, qtdPorcos, select) VALUES
-        ('${areaTotal}', '${qtdPorcos}', '${select}');
+        INSERT INTO areas (areaTotal, Qtd_Porcos, Fase_Porcos, fkEmpresa) VALUES
+        ('${areaTotal}', '${qtdPorcos}', '${select_tipo_area}', '${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
