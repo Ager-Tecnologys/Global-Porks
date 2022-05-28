@@ -101,10 +101,14 @@
 </html>
 <script>
     function solicitar() {
-        var areaTotalVar = Number (input_areaTotal.value)
-        var qtdPorcosVar = Number (input_qtdPorcos.value)
+        var areaTotalVar = Number(input_areaTotal.value)
+        var qtdPorcosVar = Number(input_qtdPorcos.value)
         var selectVar = id_select.value
         var fkEmpresaVar = sessionStorage.FK_EMPRESA
+        var temperarura_minima = 0
+        var temperarura_maxima = 0
+        var temperetura_critica_minima = 0
+        var temperetura_critica_maxima = 0
 
         if (areaTotalVar == "" ||
             qtdPorcosVar == "" ||
@@ -113,10 +117,46 @@
             erroDesc.innerHTML = "Preencha todos os campos para continuar."
             id_modal.style.display = "block"
 
-
             return false;
         } else {
-            console.log("Entrando no Fetch")
+            if (selectVar == "recemNascido") {
+                var temperarura_minima = 33
+                var temperarura_maxima = 35
+                var temperetura_critica_minima = 30
+                var temperetura_critica_maxima = 36
+
+            } else if (selectVar == "leitaoMamando") {
+                var temperarura_minima = 28
+                var temperarura_maxima = 32
+                var temperetura_critica_minima = 22
+                var temperetura_critica_maxima = 35
+
+            } else if (selectVar == "leitaoDesmamado") {
+                var temperarura_minima = 21
+                var temperarura_maxima = 27
+                var temperetura_critica_minima = 18
+                var temperetura_critica_maxima = 26
+            } else if (selectVar == "leitaoCrescido") {
+                var temperarura_minima = 17
+                var temperarura_maxima = 21
+                var temperetura_critica_minima = 16
+                var temperetura_critica_maxima = 25
+            } else if (selectVar == "terminal") {
+                var temperarura_minima = 11
+                var temperarura_maxima = 22
+                var temperetura_critica_minima = 13
+                var temperetura_critica_maxima = 25
+            } else if (selectVar == "femeaGestante") {
+                var temperarura_minima = 15
+                var temperarura_maxima = 20
+                var temperetura_critica_minima = 11
+                var temperetura_critica_maxima = 23
+            } else if (selectVar == "femeaLactacao") {
+                var temperarura_minima = 11
+                var temperarura_maxima = 17
+                var temperetura_critica_minima = 8
+                var temperetura_critica_maxima = 22
+            }
             fetch("/empresas/solicitarArea", {
                 method: "POST",
                 headers: {
@@ -126,9 +166,10 @@
                     areaTotalServer: areaTotalVar,
                     qtdPorcosServer: qtdPorcosVar,
                     select_tipo_areaServer: selectVar,
-                    fkEmpresaServer: fkEmpresaVar
+                    fkEmpresaServer: fkEmpresaVar,
+                    fkFaseCriacaoServer: fkFaseCriacaoVar
                 })
-                
+
             }).then(function (resposta) {
 
                 console.log("resposta: ", resposta);
@@ -149,6 +190,7 @@
             });
 
         }
+
     }
 
     function fechar() {

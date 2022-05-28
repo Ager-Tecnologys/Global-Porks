@@ -198,6 +198,8 @@ function solicitarArea(req, res) {
     var qtdPorcos = req.body.qtdPorcosServer;
     var select_tipo_area = req.body.select_tipo_areaServer;
     var fkEmpresa = req.body.fkEmpresaServer;
+    var fkFaseCriacao = req.body.fkFaseCriacaoServer;
+
     console.log("Entrando na Controller")
     if (areaTotal == undefined) {
         res.status(400).send("Sua área total está undefined!");
@@ -207,7 +209,9 @@ function solicitarArea(req, res) {
         res.status(400).send("Sua fase de criação está undefined!");
     } else if (fkEmpresa == undefined) {
         res.status(400).send("Sua fase de criação está undefined!");
-    } else {
+    } else if (fkFaseCriacao == undefined) {
+        res.status(400).send("Sua fase de criação está undefined!");
+    }  else {
         empresaModel.solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa)
             .then(
                 function (resultado) {
