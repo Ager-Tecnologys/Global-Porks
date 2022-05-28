@@ -60,12 +60,13 @@ function cadastrarUsuarioMaster(nomeUsuario, sobrenomeUsuario, emailUsuario, cpf
     return database.executar(instrucao);
 
 }
-function solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa) {
-    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", areaTotal, qtdPorcos, select_tipo_area, fkEmpresa);
+function solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa, temperatura_minima,temperatura_maxima, temperatura_critica_minima, temperatura_critica_maxima) {
+    console.log("Entrando na Model.")
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", areaTotal, qtdPorcos, select_tipo_area, fkEmpresa, temperatura_minima,temperatura_maxima, temperatura_critica_minima, temperatura_critica_maxima);
 
     var instrucao = `
-        INSERT INTO areas (areaTotal, Qtd_Porcos, Fase_Porcos, fkEmpresa) VALUES
-        ('${areaTotal}', '${qtdPorcos}', '${select_tipo_area}', '${fkEmpresa}');
+        INSERT INTO areas (areaTotal, Qtd_Porcos, Fase_Porcos, fkEmpresa, Temperatura_Min, Temperatura_Max, Temperatura_Baixa, Temperatura_Alta) VALUES
+        ('${areaTotal}', '${qtdPorcos}', '${select_tipo_area}', '${fkEmpresa}', '${temperatura_critica_minima}', '${temperatura_critica_maxima}', '${temperatura_minima}', '${temperatura_maxima}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

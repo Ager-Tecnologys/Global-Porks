@@ -156,7 +156,7 @@
                 var temperarura_maxima = 17
                 var temperetura_critica_minima = 8
                 var temperetura_critica_maxima = 22
-            }
+            }      
             fetch("/empresas/solicitarArea", {
                 method: "POST",
                 headers: {
@@ -169,8 +169,8 @@
                     fkEmpresaServer: fkEmpresaVar,
                     temperarura_minimaServer: temperarura_minima,
                     temperarura_maximaServer: temperarura_maxima,
-                    temperetura_critica_minimaServer: temperetura_critica_minima,
-                    temperetura_critica_maximaServer: temperetura_critica_maxima
+                    temperatura_critica_minimaServer: temperetura_critica_minima,
+                    temperatura_critica_maximaServer: temperetura_critica_maxima
                 })
 
             }).then(function (resposta) {
@@ -185,7 +185,7 @@
                     limparFormulario();
 
                 } else {
-                    throw ("Houve um erro ao tentar realizar o cadastro!");
+                    throw ("Houve um erro ao solicitar nova área!");
                 }
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);

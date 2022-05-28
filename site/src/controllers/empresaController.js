@@ -221,12 +221,13 @@ function solicitarArea(req, res) {
   var qtdPorcos = req.body.qtdPorcosServer;
   var select_tipo_area = req.body.select_tipo_areaServer;
   var fkEmpresa = req.body.fkEmpresaServer;
-  var temperatura_minima = req.body.temperatura_minimaServer;
-  var temperatura_maxima = req.body.temperatura_maximaServer;
+
+  var temperatura_minima = req.body.temperarura_minimaServer;
+  var temperatura_maxima = req.body.temperarura_maximaServer;
   var temperatura_critica_minima = req.body.temperatura_critica_minimaServer;
   var temperatura_critica_maxima = req.body.temperatura_critica_maximaServer;
 
-  console.log("Entrando na Controller");
+  console.log("Entrando na Controller!");
   if (areaTotal == undefined) {
     res.status(400).send("Sua área total está undefined!");
   } else if (qtdPorcos == undefined) {
@@ -234,7 +235,7 @@ function solicitarArea(req, res) {
   } else if (select_tipo_area == undefined) {
     res.status(400).send("Sua fase de criação está undefined!");
   } else if (fkEmpresa == undefined) {
-    res.status(400).send("Sua fase de criação está undefined!");
+    res.status(400).send("Sua fkEmpresa está undefined!");
   } else if (temperatura_minima == undefined) {
     res.status(400).send("Sua temperatura mínima está undefined!");
   } else if (temperatura_maxima == undefined) {
@@ -245,7 +246,16 @@ function solicitarArea(req, res) {
     res.status(400).send("Sua temperatura crítica máxima está undefined!");
   } else {
     empresaModel
-      .solicitarArea(areaTotal, qtdPorcos, select_tipo_area, fkEmpresa)
+      .solicitarArea(
+        areaTotal,
+        qtdPorcos,
+        select_tipo_area,
+        fkEmpresa,
+        temperatura_minima,
+        temperatura_maxima,
+        temperatura_critica_minima,
+        temperatura_critica_maxima
+      )
       .then(function (resultado) {
         res.json(resultado);
       })
