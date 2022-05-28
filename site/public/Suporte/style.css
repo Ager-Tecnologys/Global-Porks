@@ -46,7 +46,7 @@ html {
     margin: 0;
     margin-left: 4px;
     text-shadow: 1px 1px 2px #777;
-    cursor: default;
+    cursor: pointer;
     font-size: 3.5vh;
 }
 
