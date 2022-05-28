@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Template Header - Footer AGER</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="../../favicon.ico" />
   </head>
   <body>
     <div class="header">
@@ -16,7 +16,9 @@
           <h1>AGER Technologies</h1>
         </div>
         <ul>
-          <li><a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a></li>
+          <li>
+            <a href="../Landing-Page/Landing-Page.html#aboutUs">Sobre nós</a>
+          </li>
           <li>Orçamento</li>
           <li>Produtos</li>
           <li><a href="../Login/Tela-login.html">Entrar</a></li>
@@ -25,53 +27,70 @@
       </div>
     </div>
     <div id="id_modal" class="modal">
-        <div id="id_content" class="content">
-
-            <header class="modalHeader">
-                <h2 id="titleSucesso">Sucesso!</h2>
-            </header>
-            <div class="container">
-                <p id="sucessoDesc">E-mail enviado com sucesso!</p>
-            </div>
-
-            <footer class="modalFooter">
-                <button class="btn-fechar" onclick="fechar()">Fechar</button>
-            </footer>
+      <div id="id_content" class="content">
+        <header class="modalHeader">
+          <h2 id="titleSucesso">Sucesso!</h2>
+        </header>
+        <div class="container">
+          <p id="sucessoDesc">E-mail enviado com sucesso!</p>
         </div>
+
+        <footer class="modalFooter">
+          <button class="btn-fechar" onclick="fechar()">Fechar</button>
+        </footer>
+      </div>
     </div>
 
     <div class="banner">
-        <div class="container">
-            <form action="https://formsubmit.co/aldry.longo@sptech.school" method="POST">
-                <h1>Suporte</h1>
-                <h3>Nome: </h3><input type="text" name="name" placeholder="Insira seu nome" required>
-                <h3>E-mail: </h3><input type="email" name="email" placeholder="Insira seu e-mail" required>
-                <button type="submit" class="btnEnviar">Enviar</button>
-           </form>
-        </div>
+      <div class="container">
+        <h1>Suporte</h1>
+        <iframe
+          src="https://ager-technologies.tomticket.com/formulario?id=EP57526&account=3681664P28052022034748"
+          scrolling="no"
+          style="width: 80%; height: 70%; border-width: 0px; overflow: hidden"
+        ></iframe>
+      </div>
     </div>
 
     <div class="footer">
-        <div class="container">
-          <div class="container logo">
-            <h1>AGER Technologies</h1>
-          </div>
-  
-          <div class="container middle">
-            <button>Entrar</button>
-            <ul>
-              <li>Informação</li>
-              <a href="/Suporte/Suporte.html"><li>Suporte</li></a>
-              <li>Termos de uso</li>
-            </ul>
-          </div>
-  
-          <div class="container socials">
-            <img src="imgs/instagram.png" alt="" />
-            <img src="imgs/facebook.png" alt="" />
-            <img src="imgs/linkedin.png" alt="" />
-          </div>
+      <div class="container">
+        <div class="container logo">
+          <h1>AGER Technologies</h1>
+        </div>
+
+        <div class="container middle">
+          <button>Entrar</button>
+          <ul>
+            <li>Informação</li>
+            <a href="/Suporte/Suporte.html"><li>Suporte</li></a>
+            <li>Termos de uso</li>
+          </ul>
+        </div>
+
+        <div class="container socials">
+          <img src="imgs/instagram.png" alt="" />
+          <img src="imgs/facebook.png" alt="" />
+          <img src="imgs/linkedin.png" alt="" />
         </div>
       </div>
+    </div>
   </body>
 </html>
+<script type="text/javascript">
+  //<![CDATA[
+  var ttChatLoaderS = document.createElement("script");
+  document.tomticketChatLoaderScriptVersion = 2;
+  ttChatLoaderS.src =
+    "https://ager-technologies.tomticket.com/scripts-chat/chat.min.js" +
+    "?id=EP57526" +
+    "&account=3681664P28052022034748" +
+    "&autoOpen=0" +
+    "&hideWhenOffline=0" +
+    "&d=ager-technologies" +
+    "&ts=" +
+    new Date().getTime() +
+    "&ref=" +
+    encodeURIComponent(document.URL);
+  document.body.appendChild(ttChatLoaderS);
+  //]]>
+</script>
