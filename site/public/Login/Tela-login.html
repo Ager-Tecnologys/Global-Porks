@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro - Usuário</title>
+  <title>Login - Usuário</title>
   <script src="../js/funcoes.js"></script>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="../../favicon.ico" />
@@ -34,13 +34,13 @@
     <div id="id_content" class="content">
 
       <header class="modalHeader">
-        <h2>Erro!</h2>
+        <h2 id="titleModal">Erro!</h2>
       </header>
-      <div class="container">
-        <p id="erroDesc"></p>
+      <div style="margin: auto;" class="container">
+        <p id="erroDesc" style="text-align: center;"></p>
       </div>
 
-      <footer class="modalFooter">
+      <footer id="modalBottom" class="modalFooter">
         <button class="btn-fechar" onclick="fechar()">Fechar</button>
       </footer>
     </div>
@@ -57,9 +57,6 @@
         <span>Senha:</span>
         <input id="senha_input" type="password" />
       </div>
-      <!-- <div class="wrap btn">
-          <button> Entrar - Usuário</button>
-        </div> -->
       <div class="wrap btn">
         <button onclick="entrar()">Entrar</button>
       </div>
@@ -135,15 +132,20 @@
           console.log(json);
           console.log(JSON.stringify(json));
 
+          titleModal.innerHTML = "Sucesso!"
+          erroDesc.innerHTML = "Login realizado com sucesso!"
+          modalBottom.innerHTML = `<img style="height: 45px; width: 60px;" src = "imgs/loading-gif.gif">`
+          id_modal.style.display = "block"
+
           sessionStorage.EMAIL_USUARIO = json.Email;
           sessionStorage.NOME_USUARIO = json.Nome;
           sessionStorage.ID_USUARIO = json.idUsuario;
           sessionStorage.FK_EMPRESA = json.fkEmpresa;
           sessionStorage.TIPO = json.TipoUsuario;
 
-            setTimeout(function () {
-              window.location = "../Home-Page/home.html";
-            }, 1000); 
+          setTimeout(function () {
+            window.location = "../Home-Page/home.html";
+          }, 2000); 
         });
 
       } else {  

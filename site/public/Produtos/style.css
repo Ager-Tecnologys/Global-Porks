@@ -91,19 +91,20 @@ body {
     display: flex;
     flex-direction: row;
     width: 30%;
-    justify-content: space-between;
-    font-size: clamp(0.8rem, 1vh, 2rem);
-    color: #05396B;
+    justify-content: flex-end;
+    font-size: 1.5vh;
+    font-weight: medium;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
-    margin-right: 40px;
 }
 
 .header li {
-    transition: 0.5s;
+    transition: 0.2s;
     cursor: pointer;
     border: solid 2px transparent;
     border-radius: 5px;
     padding: 8px;
+    margin-right: 20px;
 }
 
 .header li:hover {

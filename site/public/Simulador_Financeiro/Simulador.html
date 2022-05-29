@@ -33,7 +33,7 @@
 
                 <h1 class="titulo">Simulador financeiro</h1>
 
-                <div class="formulario">
+                <div id="id_formulario" class="formulario">
                     <div class="div_input">
                         <span class="span">Área total à ser monitorada (m²):</span><br>
                         <input type="number" id="inp_area" class="input"><br>
@@ -57,7 +57,7 @@
                     <div class="div_input">
                         <span class="span">Quantidade de anos para simular:</span><br>
                         <input type="number" id="inp_anos" class="input"><br>
-                    </div>
+                    </div> 
                     <button onclick="calcular()" class="botao">Simular</button>
                 </div>
 
@@ -115,7 +115,6 @@
         var gastos = (qtdPorco * custoPorco) * anos;
         var lucro = (income - gastos);
 
-        // 17% 100 - 17 = 83
         var gastosBetter = (gastos * 0.83);
         var lucroBetter = (income - gastosBetter);
 
@@ -166,11 +165,13 @@
         });
         lucroPorcentagem = lucroPorcentagem.toFixed(2);
 
+        id_formulario.style.display = "none"
+
         div_resultado.innerHTML =
             `
             <div class='div_resu_inteiro'>
 
-                <p class='desc_resultado'>Com uma taxa de instalação de apenas ${taxaInstalacao} e uma e um valor de manutenção mensal total de ${mensalidade}, poderá obter os seguintes
+                <p class='desc_resultado'>Com uma taxa de instalação de apenas ${taxaInstalacao} e um valor de manutenção mensal total de ${mensalidade}, poderá obter os seguintes
                 resultados:</p>
                     <br>
                 <div class='semNos'>

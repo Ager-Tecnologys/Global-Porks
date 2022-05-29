@@ -18,10 +18,8 @@
         <h1>AGER Technologies</h1>
       </div>
       <ul>
-        <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-        <li><a href="../Simulador_Financeiro/Simulador.html">Orçamento</li>
-        <li><a href="../Produtos/Produtos.html">Produtos</li>
-        <li><a href="../Login/Tela-login.html">Entrar</a></li>
+        <li><a href="../Suporte/Suporte.html">Suporte</a></li>
+        <li id="btn_menuUser"><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</li>
       </ul>
       <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
     </div>
@@ -77,8 +75,8 @@
           <span>Tipo do usuário</span>
 
           <select id="select_tipo">
-            <option value="ADM">Padrão</option>
-            <option value="padrao">Administrador</option>
+            <option value="padrao">Padrão</option>
+            <option value="ADM">Administrador</option>
           </select>
         </div>
         <div class="wrap">
@@ -177,6 +175,17 @@
 </html>
 
 <script>
+
+  function validar() {
+    if (sessionStorage.ID_USUARIO == "" || sessionStorage.length == 0) {
+    console.log(sessionStorage)
+    window.location = `../index.html`
+    } else if (sessionStorage.TIPO == "padrao") {
+    btn_menuUser.style.display = "none"
+    }
+  }
+    
+  window.onload = validar()
 
   function add() {
     btns.style.display = "none"

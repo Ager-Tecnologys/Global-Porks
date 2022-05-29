@@ -19,10 +19,8 @@
                 <h1>AGER Technologies</h1>
             </div>
             <ul>
-                <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-                <li>Contato</li>
-                <li><a href="../Produtos/Produtos.html">Produtos</li>
-                <li><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</li>
+                <li><a href="../Suporte/Suporte.html">Suporte</a></li>
+                <li id="btn_menuUser"><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</li>
             </ul>
             <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
         </div>
@@ -65,12 +63,6 @@
         </div>
     </div>
 
-    <!-- <form action="https://formsubmit.co/your@email.com" method="POST">
-        <input type="text" name="name" placeholder="insira seu nome" required>
-        <input type="email" name="email" placeholder="insira seu e-mail" required>
-        <button type="submit">Enviar</button>
-   </form> -->
-
     <div class="footer">
         <div class="container">
             <div class="container logo">
@@ -100,6 +92,18 @@
 
 </html>
 <script>
+
+    function validar() {
+        if (sessionStorage.ID_USUARIO == "" || sessionStorage.length == 0) {
+        console.log(sessionStorage)
+        window.location = `../index.html`
+        } else if (sessionStorage.TIPO == "padrao") {
+        btn_menuUser.style.display = "none"
+        }
+    }
+    
+    window.onload = validar()
+
     function solicitar() {
         var areaTotalVar = Number(input_areaTotal.value)
         var qtdPorcosVar = Number(input_qtdPorcos.value)

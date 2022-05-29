@@ -103,9 +103,10 @@ html {
     display: flex;
     flex-direction: row;
     width: 30%;
-    justify-content: space-between;
-    font-size: clamp(0.8rem, 1vh, 2rem);
-    color: #05396B;
+    justify-content: flex-end;
+    font-size: 1.5vh;
+    font-weight: medium;
+    color: #1C1C1C;
     text-shadow: 1px 1px 1px #777;
 }
 
@@ -115,6 +116,7 @@ html {
     border: solid 2px transparent;
     border-radius: 5px;
     padding: 8px;
+    margin-left: 20px;
 }
 
 .header li:hover {
@@ -216,10 +218,14 @@ html {
     color: #1C1C1C;
     border-radius: 20px;
     box-shadow: 4px 4px 20px #777;
+    overflow: hidden;
 }
 
 .titulo {
     font-weight: 600;
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
 }
 
 .div_input {
@@ -274,6 +280,7 @@ html {
     font-size: 16px;
     font-weight: 500;
     box-shadow: inset 0 0 5px #777;
+    margin-top: 10vh;
 }
 
 .valorVermelho {

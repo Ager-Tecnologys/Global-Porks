@@ -36,11 +36,11 @@
         <header class="modalHeader">
           <h2 id="titleErro">Erro!</h2>
         </header>
-        <div class="container">
+        <div style="margin: auto;" class="container">
           <p id="erroDesc"></p>
         </div>
 
-        <footer class="modalFooter">
+        <footer id="modalBottom" class="modalFooter">
           <button class="btn-fechar" onclick="fechar()">Fechar</button>
         </footer>
       </div>
@@ -423,6 +423,7 @@
           if (resposta.ok) {
             titleErro.innerHTML = "Sucesso!";
             erroDesc.innerHTML = "Cadastro realizado com sucesso!";
+            modalBottom.innerHTML = `<img style="height: 45px; width: 60px;" src = "imgs/loading-gif.gif">`
             id_modal.style.display = "block";
             setTimeout(() => {
               window.location = "../Login/Tela-login.html";

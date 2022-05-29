@@ -20,12 +20,10 @@
                 <h1>AGER Technologies</h1>
             </div>
             <ul>
-                <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-                <li>Contato</li>
-                <li><a href="../Produtos/Produtos.html">Produtos</a></li>
-                <li><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</a></li>
+                <li><a href="../Suporte/Suporte.html">Suporte</a></li>
+                <li id="btn_menuUser"><a href="../Menu_usuario/Menu_de_usuario.html">Menu de Usuário</a></li>
             </ul>
-            <a class="btnCadastro" href="../Login/Tela-login.html">Sair</a>
+            <a onclick="sair()" class="btnCadastro" href="../Login/Tela-login.html">Sair</a>
         </div>
     </div>
 
@@ -141,6 +139,17 @@
 
 <script>
 
+    function validar() {
+        if (sessionStorage.ID_USUARIO == "" || sessionStorage.length == 0) {
+        console.log(sessionStorage)
+        window.location = `../index.html`
+        } else if (sessionStorage.TIPO == "padrao") {
+        btn_menuUser.style.display = "none"
+        }
+    }
+    
+    window.onload = validar()
+
     var areas = [];
     var contadorPares = 0;
     var idParAtual = "";
@@ -150,7 +159,14 @@
     var inDash = false;
     var idUsuario = sessionStorage.ID_USUARIO
 
-    
+    function sair() {
+        sessionStorage.EMAIL_USUARIO = "";
+        sessionStorage.NOME_USUARIO = "";
+        sessionStorage.ID_USUARIO = "";
+        sessionStorage.FK_EMPRESA = "";
+        sessionStorage.TIPO = "";
+    }
+
     function buscarAreas(idUsuario) {
         fetch(`/medidas/areas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
