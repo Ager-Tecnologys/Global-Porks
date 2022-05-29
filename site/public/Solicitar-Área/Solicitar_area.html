@@ -105,6 +105,7 @@
         var qtdPorcosVar = Number(input_qtdPorcos.value)
         var selectVar = id_select.value
         var fkEmpresaVar = sessionStorage.FK_EMPRESA
+        var idUsuarioVar = sessionStorage.ID_USUARIO
         var temperarura_minima = 0
         var temperarura_maxima = 0
         var temperetura_critica_minima = 0
@@ -170,7 +171,8 @@
                     temperarura_minimaServer: temperarura_minima,
                     temperarura_maximaServer: temperarura_maxima,
                     temperatura_critica_minimaServer: temperetura_critica_minima,
-                    temperatura_critica_maximaServer: temperetura_critica_maxima
+                    temperatura_critica_maximaServer: temperetura_critica_maxima,
+                    idUsuarioServer: idUsuarioVar
                 })
 
             }).then(function (resposta) {
@@ -191,6 +193,7 @@
                 console.log(`#ERRO: ${resposta}`);
 
             });
+
 
         }
 

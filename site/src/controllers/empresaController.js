@@ -221,6 +221,8 @@ function solicitarArea(req, res) {
   var qtdPorcos = req.body.qtdPorcosServer;
   var select_tipo_area = req.body.select_tipo_areaServer;
   var fkEmpresa = req.body.fkEmpresaServer;
+  var idUsuario = req.body.idUsuarioServer;
+  var fkArea = req.body.InstrucaoSql;
 
   var temperatura_minima = req.body.temperarura_minimaServer;
   var temperatura_maxima = req.body.temperarura_maximaServer;
@@ -257,7 +259,15 @@ function solicitarArea(req, res) {
         temperatura_critica_maxima
       )
       .then(function (resultado) {
-        res.json(resultado);
+        console.error("Resultado:" + resultado);
+        empresaModel.buscarUltimaArea().then(function (resultado) {
+          var fkArea = resultado[0].idArea;
+          empresaModel
+            .cadastrarVinculo(idUsuario, fkEmpresa, fkArea)
+            .then((resposta) => {
+              res.json(resposta);
+            });
+        });
       })
       .catch(function (erro) {
         console.log(erro);
