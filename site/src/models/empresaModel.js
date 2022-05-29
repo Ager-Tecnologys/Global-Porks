@@ -38,12 +38,12 @@ function selecionarFkEmpresa() {
     return database.executar(instrucao);
 }
 
-function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha, tipo, fkEmpresa) {
-    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, cpf, email, telefone, senha, tipo, fkEmpresa);
+function cadastrarUsuario(nome, sobrenome, cpf, email, telefone, senha, tipoUsuario, fkEmpresa) {
+    console.log("ACESSEI A EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, sobrenome, cpf, email, telefone, senha, tipoUsuario, fkEmpresa);
 
     var instrucao = `
         INSERT INTO usuario (Nome, Sobrenome, CPF, Email, Telefone, Senha, TipoUsuario, fkEmpresa) VALUES
-        ('${nome}', '${sobrenome}', '${cpf}', '${email}', '${telefone}', '${senha}', '${tipo}', '${fkEmpresa}');
+        ('${nome}', '${sobrenome}', '${cpf}', '${email}', '${telefone}', '${tipoUsuario}', '${senha}', '${fkEmpresa}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

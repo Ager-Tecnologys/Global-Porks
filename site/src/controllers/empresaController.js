@@ -170,8 +170,8 @@ function cadastrarUsuario(req, res) {
   var email = req.body.emailServer;
   var cpf = req.body.cpfServer;
   var telefone = req.body.telefoneServer;
+  var tipoUsuario = req.body.tipoUsuarioServer;
   var senha = req.body.senhaServer;
-  var tipo = req.body.tipoServer;
   var fkEmpresa = req.body.fkEmpresaServer;
 
   if (nome == undefined) {
@@ -184,10 +184,10 @@ function cadastrarUsuario(req, res) {
     res.status(400).send("Seu email está undefined!");
   } else if (telefone == undefined) {
     res.status(400).send("Seu telefone está undefined!");
+  } else if (tipoUsuario == undefined) {
+    res.status(400).send("Seu tipoUsuario está undefined!");
   } else if (senha == undefined) {
     res.status(400).send("Sua senha está undefined!");
-  } else if (tipo == undefined) {
-    res.status(400).send("Seu tipo está undefined!");
   } else if (fkEmpresa == undefined) {
     res.status(400).send("Sua fkEmpresa está undefined!");
   } else {
@@ -198,8 +198,8 @@ function cadastrarUsuario(req, res) {
         cpf,
         email,
         telefone,
+        tipoUsuario,
         senha,
-        tipo,
         fkEmpresa
       )
       .then(function (resultado) {

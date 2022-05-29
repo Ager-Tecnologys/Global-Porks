@@ -1,216 +1,220 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu de Usuário</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="../../favicon.ico">
-  </head>
-  <body onload="validarSessao()">
-    <div class="header">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu de Usuário</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../favicon.ico">
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="container logo">
+        <img src="imgs/Ager-recolor.png" />
+        <h1>AGER Technologies</h1>
+      </div>
+      <ul>
+        <li><a href="../index.html#aboutUs">Sobre nós</a></li>
+        <li><a href="../Simulador_Financeiro/Simulador.html">Orçamento</li>
+        <li><a href="../Produtos/Produtos.html">Produtos</li>
+        <li><a href="../Login/Tela-login.html">Entrar</a></li>
+      </ul>
+      <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
+    </div>
+  </div>
+
+  <div id="id_modal" class="modal">
+    <div id="id_content" class="content">
+      <header class="modalHeader">
+        <h2 id="titleErro">Erro!</h2>
+      </header>
       <div class="container">
-        <div class="container logo">
-          <img src="imgs/Ager-recolor.png" />
+        <p id="erroDesc"></p>
+      </div>
+
+      <footer class="modalFooter">
+        <button class="btn-fechar" onclick="fechar()">Fechar</button>
+      </footer>
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="container" id="formbox">
+
+      <div class="contBtn" id="btns">
+        <button onclick="add()">Adicionar Usuário</button>
+        <button onclick="edit()">Editar Usuários</button>
+      </div>
+
+      <h2 id="idTitle1">Dados</h2>
+      <div class="cont" id="addUser">
+
+        <div class="wrap">
+          <span>Nome:</span>
+          <input type="text" id="input_nome">
+        </div>
+        <div class="wrap">
+          <span>Sobrenome:</span>
+          <input type="text" id="input_sobrenome">
+        </div>
+        <div class="wrap">
+          <span>E-mail:</span>
+          <input type="text" id="input_email">
+        </div>
+        <div class="wrap">
+          <span>CPF:</span>
+          <input type="text" id="input_cpf">
+        </div>
+        <div class="wrap">
+          <span>Telefone:</span>
+          <input type="text" id="input_telefone">
+        </div>
+        <div class="wrap">
+          <span>Tipo do usuário</span>
+
+          <select id="select_tipo">
+            <option value="ADM">Padrão</option>
+            <option value="padrao">Administrador</option>
+          </select>
+        </div>
+        <div class="wrap">
+          <span>Senha:</span>
+          <input type="password" id="input_senha">
+        </div>
+        <div class="wrap">
+          <span>Confirmar Senha:</span>
+          <input type="password" id="input_confirmarSenha">
+        </div>
+        <div class="wrap btn">
+          <button onclick="voltar()">Voltar</button>
+          <button onclick="cadastrar()">Cadastrar</button>
+        </div>
+      </div>
+
+
+      <h2 id="idTitle2">Usuários</h2>
+      <div class="cont edit" id="editUser">
+        <div class="wrap">
+          <span class="titleId">Id</span>
+          <span class="titleNome">Nome</span>
+          <span class="titleTipo">Tipo</span>
+          <span>Editar</span>
+        </div>
+        <div class="wrap user">
+          <span class="id">01</span>
+          <span>Rafael Macedo</span>
+          <select id="inp_tipo">
+            <option value="pad">Padrão</option>
+            <option value="adm">Administrador</option>
+          </select>
+          <img src="imgs/settings.png">
+        </div>
+        <div class="wrap user">
+          <span class="id">02</span>
+          <span>Arthur Peraçolli</span>
+          <select id="inp_tipo">
+            <option value="adm">Administrador</option>
+            <option value="pad">Padrão</option>
+          </select>
+          <img src="imgs/settings.png">
+        </div>
+        <div class="wrap user">
+          <span class="id">03</span>
+          <span>Leonardo Tomé</span>
+          <select id="inp_tipo">
+            <option value="ADM">Administrador</option>
+            <option value="padrao">Padrão</option>
+          </select>
+          <img src="imgs/settings.png">
+        </div>
+        <div class="wrap user">
+          <span class="id">04</span>
+          <span>Aldry Longo</span>
+          <select id="inp_tipo">
+            <option value="pad">Padrão</option>
+            <option value="adm">Administrador</option>
+          </select>
+          <img src="imgs/settings.png">
+        </div>
+        <div class="wrap btn">
+          <button onclick="voltar()">Voltar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <div class="container">
+      <div class="container logo">
+        <a href="../index.html" style="text-decoration: none; color: #fff">
           <h1>AGER Technologies</h1>
-        </div>
+        </a>
+      </div>
+
+      <div class="container middle">
+        <button>Entrar</button>
         <ul>
-          <li><a href="../index.html#aboutUs">Sobre nós</a></li>
-          <li><a href="../Simulador_Financeiro/Simulador.html">Orçamento</li>
-          <li><a href="../Produtos/Produtos.html">Produtos</li>
-          <li><a href="../Login/Tela-login.html">Entrar</a></li>
+          <li>Informação</li>
+          <a href="../Suporte/Suporte.html" style="text-decoration: none; color: #fff">
+            <li>Suporte</li>
+          </a>
+          <li>Termos de uso</li>
         </ul>
-        <a class="btnCadastro" href="../Home-Page/home.html">Home</a>
-      </div>
-    </div>
-
-    <div id="id_modal" class="modal">
-        <div id="id_content" class="content">
-          <header class="modalHeader">
-            <h2 id="titleErro">Erro!</h2>
-          </header>
-          <div class="container">
-            <p id="erroDesc"></p>
-          </div>
-  
-          <footer class="modalFooter">
-            <button class="btn-fechar" onclick="fechar()">Fechar</button>
-          </footer>
-        </div>
       </div>
 
-    <div class="banner">
-        <div class="container" id="formbox">
+      <div class="container socials">
+        <img src="imgs/instagram.png" alt="" />
+        <img src="imgs/facebook.png" alt="" />
+        <img src="imgs/linkedin.png" alt="" />
+</body>
 
-            <div class="contBtn" id="btns">
-                <button onclick="add()">Adicionar Usuário</button>
-                <button onclick="edit()">Editar Usuários</button>
-            </div>
-
-                <h2 id="idTitle1">Dados</h2>
-            <div class="cont" id="addUser">
-               
-                <div class="wrap">
-                    <span>Nome:</span>
-                    <input type="text" id="input_nome">
-                </div>
-                <div class="wrap">
-                    <span>Sobrenome:</span>
-                    <input type="text" id="input_sobrenome">
-                </div>
-                <div class="wrap">
-                    <span>E-mail:</span>
-                    <input type="text" id="input_email">
-                </div>
-                <div class="wrap">
-                    <span>CPF:</span>
-                    <input type="text" id="input_cpf">
-                </div>
-                <div class="wrap">
-                    <span>Telefone:</span>
-                    <input type="text" id="input_telefone">
-                </div>
-                <div class="wrap">
-                  <span>Tipo do usuário</span>
-<<<<<<< HEAD
-                <select id="select_tipo">
-                  <option value="ADM">Padrão</option>
-                  <option value="PAD">Administrador</option>
-=======
-                <select id="inp_tipo">
-                  <option value="ADM">Padrão</option>
-                  <option value="padrao">Administrador</option>
->>>>>>> bc6035f1bbb0ab504afa53211eead48542ceb941
-                </select>
-              </div>
-                <div class="wrap">
-                    <span>Senha:</span>
-                    <input type="password" id="input_senha">
-                </div>
-                <div class="wrap">
-                    <span>Confirmar Senha:</span>
-                    <input type="password" id="input_confirmarSenha">
-                </div>
-                <div class="wrap btn">
-                    <button onclick="voltar()">Voltar</button>
-                    <button onclick="cadastrar()">Cadastrar</button>
-                </div>
-            </div>
-
-
-            <h2 id="idTitle2">Usuários</h2>
-            <div class="cont edit" id="editUser">
-                <div class="wrap">
-                    <span class="titleId">Id</span>
-                    <span class="titleNome">Nome</span>
-                    <span class="titleTipo">Tipo</span>
-                    <span>Editar</span>
-                </div>
-                <div class="wrap user">
-                    <span class="id">01</span>
-                    <span>Rafael Macedo</span>
-                    <select id="inp_tipo">
-                        <option value="pad">Padrão</option>
-                        <option value="adm">Administrador</option>
-                    </select>
-                    <img src="imgs/settings.png">
-                </div>
-                <div class="wrap user">
-                    <span class="id">02</span>
-                    <span>Arthur Peraçolli</span>
-                    <select id="inp_tipo">
-                        <option value="adm">Administrador</option>
-                        <option value="pad">Padrão</option>
-                    </select>
-                    <img src="imgs/settings.png">
-                </div>
-                <div class="wrap user">
-                    <span class="id">03</span>
-                    <span>Leonardo Tomé</span>
-                    <select id="inp_tipo">
-                        <option value="ADM">Administrador</option>
-                        <option value="padrao">Padrão</option>
-                    </select>
-                    <img src="imgs/settings.png">
-                </div>
-                <div class="wrap user">
-                    <span class="id">04</span>
-                    <span>Aldry Longo</span>
-                    <select id="inp_tipo">
-                        <option value="pad">Padrão</option>
-                        <option value="adm">Administrador</option>
-                    </select>
-                    <img src="imgs/settings.png">
-                </div>
-                <div class="wrap btn">
-                    <button onclick="voltar()">Voltar</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="footer">
-        <div class="container">
-          <div class="container logo">
-            <a href="../index.html" style="text-decoration: none; color: #fff">  <h1>AGER Technologies</h1> </a>
-          </div>
-  
-          <div class="container middle">
-            <button>Entrar</button>
-            <ul>
-              <li>Informação</li>
-              <a href="../Suporte/Suporte.html"  style="text-decoration: none; color: #fff"><li>Suporte</li></a>
-              <li>Termos de uso</li>
-            </ul>
-          </div>
-  
-          <div class="container socials">
-            <img src="imgs/instagram.png" alt="" />
-            <img src="imgs/facebook.png" alt="" />
-            <img src="imgs/linkedin.png" alt="" />
-  </body>
 </html>
 
 <script>
 
-    function add() {
-        btns.style.display = "none"
-        addUser.style.display = "flex"
-        idTitle1.style.display = "block"
-        formbox.style.height = "90%"
-    }
+  function add() {
+    btns.style.display = "none"
+    addUser.style.display = "flex"
+    idTitle1.style.display = "block"
+    formbox.style.height = "90%"
+  }
 
-    function voltar() {
-        btns.style.display = "flex"
-        addUser.style.display = "none"
-        idTitle1.style.display = "none"
-        editUser.style.display = "none"
-        idTitle2.style.display = "none"
-        formbox.style.height = "60%"
-        formbox.style.width = "30%"
-    }
+  function voltar() {
+    btns.style.display = "flex"
+    addUser.style.display = "none"
+    idTitle1.style.display = "none"
+    editUser.style.display = "none"
+    idTitle2.style.display = "none"
+    formbox.style.height = "60%"
+    formbox.style.width = "30%"
+  }
 
-    function edit() {
-        btns.style.display = "none"
-        editUser.style.display = "flex"
-        idTitle2.style.display = "block"
-        formbox.style.height = "90%" 
-        formbox.style.width = "40%"
-    }
+  function edit() {
+    btns.style.display = "none"
+    editUser.style.display = "flex"
+    idTitle2.style.display = "block"
+    formbox.style.height = "90%"
+    formbox.style.width = "40%"
+  }
 
-    function cadastrar() {
-        var nomeVar = input_nome.value
-        var sobrenomeVar = input_sobrenome.value
-        var emailVar = input_email.value
-        var cpfVar = input_cpf.value
-        var telefoneVar = input_telefone.value
-        var senhaVar = input_senha.value
-        var confirmarSenhaVar = input_confirmarSenha.value
-        var tipoVar = inp_tipo.value
-        var fkEmpresaVar = sessionStorage.FK_EMPRESA
+  function cadastrar() {
+
+    var nomeVar = input_nome.value;
+    var sobrenomeVar = input_sobrenome.value;
+    var emailVar = input_email.value;
+    var cpfVar = input_cpf.value;
+    var telefoneVar = input_telefone.value;
+    var senhaVar = input_senha.value;
+    var tipoUsuarioVar = select_tipo.value;
+    var confirmarSenhaVar = input_confirmarSenha.value;
+    var fkEmpresaVar = sessionStorage.FK_EMPRESA;
+    console.log(fkEmpresaVar);
 
     if (
       nomeVar == "" ||
@@ -219,9 +223,7 @@
       cpfVar == "" ||
       telefoneVar == "" ||
       senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      tipoVar == "" ||
-      fkEmpresaVar == ""
+      confirmarSenhaVar == ""
     ) {
 
       erroDesc.innerHTML = "Preencha todos os campos para continuar.";
@@ -233,7 +235,7 @@
       id_modal.style.display = "block";
 
       return false;
-    } else if (senhaVar != confirmacaoSenhaVar) {
+    } else if (senhaVar != confirmarSenhaVar) {
       erroDesc.innerHTML =
         "As senhas inseridas devem ser iguais para prosseguir!";
       id_modal.style.display = "block";
@@ -256,17 +258,16 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-           nomeServer: nomeVar,
-           sobrenomeServer: sobrenomeVar,
-           emailServer: emailVar,
-           cpfServer: cpfVar,
-           telefoneServer: telefoneVar,
-           senhaServer: senhaVar,
-           tipoServer: tipoVar,
-           fkEmpresaServer : fkEmpresaVar,
-        }),
-      })
-        .then(function (resposta) {
+          nomeServer: nomeVar,
+          sobrenomeServer: sobrenomeVar,
+          emailServer: emailVar,
+          cpfServer: cpfVar,
+          telefoneServer: telefoneVar,
+          tipoUsuarioServer: tipoUsuarioVar,
+          senhaServer: senhaVar,
+          fkEmpresaServer: fkEmpresaVar
+        })
+      }).then(function (resposta) {
           console.log("resposta: ", resposta);
 
           if (resposta.ok) {
@@ -275,10 +276,11 @@
             id_modal.style.display = "block";
             limparFormulario();
           } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
+            titleErro.innerHTML = "Erro!";
+            erroDesc.innerHTML = `Não foi possível realizar seu cadastro<br>`;
+            id_modal.style.display = "block";
           }
-        })
-        .catch(function (resposta) {
+        }).catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
         });
       return false;
