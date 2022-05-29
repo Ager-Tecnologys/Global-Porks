@@ -32,6 +32,18 @@ function buscarUltimasMedidas(idArea, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMedidasMensal(idArea) {
+    instrucaoSql = ''
+
+    instrucaoSql = `select top 5 fkAreaSensor as idArea, DATENAME(month, dtHora) as mes, round(avg(temperatura),1) as médiaTemp 
+    from dados where fkAreaSensor = ${idArea} 
+    group by DATENAME(month, dtHora), month(dtHora), fkAreaSensor 
+    order by month(dtHora) desc;`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarMedidasEmTempoReal(idArea) {
 
     instrucaoSql = ''
@@ -52,9 +64,26 @@ function buscarMedidasEmTempoReal(idArea) {
     return database.executar(instrucaoSql);
 }
 
+function buscaPercentTemp(idArea) {
+    instrucaoSql = ''
+
+    instrucaoSql = `
+        select count(temperatura) as qtd from dados join sensor on idSensor = fkSensor join areas on idArea = fkArea where (fkArea = ${idArea}) and (temperatura >= temperatura_Alta)
+        union
+        select count(temperatura) from dados join sensor on idSensor = fkSensor join areas on idArea = fkArea where (fkArea = ${idArea}) and (temperatura <= temperatura_Baixa)
+        union
+        select count(temperatura) from dados join sensor on idSensor = fkSensor join areas on idArea = fkArea where (fkArea = ${idArea}) and (temperatura > temperatura_Baixa) and (temperatura < temperatura_Alta);
+    `
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
+    buscarMedidasMensal,
     buscarMedidasEmTempoReal,
-    buscarAreas
+    buscarAreas,
+    buscaPercentTemp
 }

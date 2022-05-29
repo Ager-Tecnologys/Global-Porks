@@ -74,7 +74,7 @@
                         <canvas id="Chart2"></canvas>
                     </div>
 
-                    <div style="position: relative; height: 35vh; width: 20vw; margin-top: 5vh;">
+                    <div style="position: relative; height: 35vh; width: 25vw; margin-top: 5vh;">
                         <canvas style="height: 35vh" id="Chart3"></canvas>
                     </div>
                     <button class="btnRelatorio">Gerar Relatorio</button>
@@ -155,23 +155,23 @@
         fetch(`/medidas/areas/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log({resposta});
+                    // console.log({resposta});
                     for (var i = 0; i < resposta.length; i++) {
                         areas.push(resposta[i].idArea)
-                        console.log(`Areas:${areas}`)
+                        // console.log(`Areas:${areas}`)
                     }
                     mostrarAreas()
                     for (var i = 0; i < areas.length; i++) {
-                        console.log(`Rodou o for ${areas}`) 
+                        // console.log(`Rodou o for ${areas}`) 
                         atualizarCards(areas[i]); 
                     }
                 });
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+                // console.error('Nenhum dado encontrado ou erro na API');
             }
         })
         .catch(function (error) {
-            console.error(`Erro na obtenção dos dados de áreas: ${error.message}`);
+            // console.error(`Erro na obtenção dos dados de áreas: ${error.message}`);
         });
     }
     
@@ -234,8 +234,12 @@
 
     function trocarInDash(area) {
         inDash = !inDash
-        console.log(inDash);
-        if (inDash) obterDadosGrafico(area);
+        // console.log(inDash);
+        if (inDash) {
+            obterDadosGrafico(area)
+            obterDadosGraficoMes(area)
+            obterPercentDados(area)
+        };
     }
 
     function closeDash() {
@@ -247,7 +251,7 @@
     let proximaAtualizacao;
 
     function obterDadosGrafico(idArea) {
-        console.log(idArea)
+        // console.log(idArea)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
@@ -256,24 +260,24 @@
         fetch(`/medidas/ultimas/${idArea}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
                     plotarGrafico(resposta, idArea);
                 });
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+                // console.error('Nenhum dado encontrado ou erro na API');
             }
         })
         .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            // console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     }
 
     function plotarGrafico(resposta, idArea) {
-        console.log('iniciando plotagem do gráfico...');
-        console.log(resposta);
-        console.log(idArea);
+        // console.log('iniciando plotagem do gráfico...');
+        // console.log(resposta);
+        // console.log(idArea);
         
         var densidade =  resposta[0].areaTotal / resposta[0].qtd_porcos
 
@@ -334,7 +338,7 @@
             dados1.datasets[2].data.push(registro.tempMin);
         }
 
-        console.log(JSON.stringify(dados1));
+        // console.log(JSON.stringify(dados1));
 
         var ctx = Chart1.getContext('2d');
         window.grafico_linha = Chart.Line(ctx, {
@@ -346,7 +350,7 @@
                 stacked: false,
                 title: {
                     display: false,
-                    text: 'Dados capturados'
+                    text: 'Temperatura - Tempo Real'
                 },
                 scales: {
                     yAxes: [{
@@ -368,6 +372,136 @@
         setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
     }
 
+    function plotarGraficoMensal(resposta, idArea) {
+        var dados2 = {
+            labels: [],
+            datasets: [
+            {
+                label: "Temperatura Média/Mês:",
+                backgroundColor: "#FF4500",
+                borderColor: "#FF4500",
+                data: [],
+            },
+            ],
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados2.labels.push(registro.mes);
+            dados2.datasets[0].data.push(registro.médiaTemp);
+        }
+
+        console.log(dados2.datasets[0].data, dados2.labels);
+
+        var ctx = Chart2.getContext('2d');
+        window.grafico_barra = Chart.Bar(ctx, {
+            data: dados2,
+            options:{
+                responsive: true,
+                animation: { duration: 500 },
+                hoverMode: 'index',
+                stacked: false,
+                plugins: {
+                    title: {
+                        display: false,
+                        text: 'Média de Temperatura - Mês'
+                    }
+                }
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-temperaturaMedia',
+                    display: true,
+                ticks: {
+                    beginAtZero: true,
+                    max: 40,
+                    min: 0,
+                }
+                }]
+            }       
+        });
+
+        // Por alguma obra do destino não consigo passar min e max na construção do grafico
+        window.grafico_barra.options.scales.yAxes[0].ticks.max = 40
+        window.grafico_barra.options.scales.yAxes[0].ticks.min = 0
+        window.grafico_barra.update()
+    }
+
+    function obterDadosGraficoMes(idArea) {
+        fetch(`/medidas/graphMes/${idArea}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos (mês): ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+                    plotarGraficoMensal(resposta, idArea);
+                });
+            } else {
+                // console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            // console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
+    function plotarGraficoPercent(resposta, idArea) {
+        var dados3 = {
+            labels: ["Baixa","Ideal","Alta"],
+            datasets: [
+            {
+                label: "Porcentagem em Temperatura apropriada",
+                data: [],
+                backgroundColor: [
+                    "blue",
+                    "lightGreen",
+                    "red",
+                ],
+                hoverOffset: 4,
+            },
+            ],
+        };
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            dados3.datasets[0].data.push(registro.qtd);
+        }
+
+        console.log(dados3.datasets[0].data);
+
+        var ctx = Chart3.getContext('2d');
+        window.grafico_donut = Chart.Doughnut(ctx, {
+            data: dados3,
+            options:{
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Tempo em temperatura apropriada'
+                }    
+            }}
+        })
+
+        window.grafico_donut.update();
+    }
+
+    function obterPercentDados(idArea) {
+        fetch(`/medidas/percent/${idArea}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos (percent): ${JSON.stringify(resposta)}`);
+                    plotarGraficoPercent(resposta, idArea);
+                });
+            } else {
+                // console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            // console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+    }
+
     function resetCores() {
         critInf.style.backgroundColor = "transparent"
         critInf.style.color = "#3995eb"
@@ -387,10 +521,10 @@
         if (response.ok) {
             response.json().then(function (novoRegistro) {
 
-                console.log(inDash)
+                // console.log(inDash)
 
                 if (inDash) {
-                    console.log("Entrou no plot")
+                    // console.log("Entrou no plot")
                     // tirando e colocando valores no gráfico
                     dados1.labels.shift(); // apagar o primeiro
                     dados1.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
@@ -407,7 +541,7 @@
                     window.grafico_linha.update();
                 }
 
-                console.log(novoRegistro)
+                // console.log(novoRegistro)
 
                 if (novoRegistro[0].temperatura == null || novoRegistro[0].tempMin == null || novoRegistro[0].tempMax == null) {
                 } else {
@@ -457,13 +591,13 @@
                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
             });
         } else {
-            console.error('Nenhum dado encontrado ou erro na API');
+            // console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
         }
     })
         .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            // console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
     }
 
@@ -472,7 +606,7 @@
             fetch(`/medidas/tempo-real/${idArea}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-                    console.log(`Chegou na atualizar cards: ${JSON.stringify(novoRegistro)}`)
+                    // console.log(`Chegou na atualizar cards: ${JSON.stringify(novoRegistro)}`)
                     var areaX = "tempArea" + idArea
                     var limitAreaX = "limitesArea" + idArea
                     document.getElementById(areaX).innerHTML = `${novoRegistro[0].temperatura}°C`
@@ -500,13 +634,13 @@
                     }
                 })
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+                // console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idArea, dados1), 2000);
             }
             })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                // console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
         }, 2000);
     }
@@ -555,71 +689,3 @@
 
 </script>
 
-<!-- ChartJS -->
-
-<script>
-
-    const labels2 = ["Jan - 2022", "Fev - 2022", "Mar - 2022", "Abr - 2022", "Mai - 2022", "Jun - 2022"];
-    const labels3 = ["Alta","Ideal","Baixa"];
-   
-   const data2 = {
-     labels: labels2,
-     datasets: [
-       {
-         label: "Temperatura:",
-         backgroundColor: "rgb(255, 99, 132)",
-         borderColor: "rgb(255, 99, 132)",
-         data: [22, 24, 27, 23, 20, 18],
-       },
-     ],
-   };
-
-   const data3 = {
-     labels: labels3,
-     datasets: [
-       {
-         label: "Temperatura e Umidade Média",
-         data: [15, 80, 5],
-         backgroundColor: [
-             "red",
-             "lightGreen",
-            "blue",
-         ],
-         hoverOffset: 4,
-       },
-     ],
-   };
-
-     const config2 = {
-     type: "bar",
-     data: data2,
-     options:{
-       plugins: {
-           title: {
-               display: true,
-               text: 'Média de Temperatura - Mês'
-           }
-       }
-   }
-   };
-
-     const config3 = {
-     type: "doughnut",
-     data: data3,
-     options:{
-       plugins: {
-           title: {
-               display: true,
-               text: 'Tempo em temperatura apropriada'
-           }
-       }
-   }
-   };
-
-
-
-</script>
-<script>
-   const myChart2 = new Chart(document.getElementById("Chart2"), config2);
-   const myChart3 = new Chart(document.getElementById("Chart3"), config3);
-</script>

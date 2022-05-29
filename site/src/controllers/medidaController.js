@@ -33,6 +33,22 @@ function buscarUltimasMedidas(req, res) {
     });
 }
 
+function buscarMedidasMensal(req, res) {
+    var idArea = req.params.idArea;
+
+    medidaModel.buscarMedidasMensal(idArea).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as medidas mensais.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarMedidasEmTempoReal(req, res) {
 
@@ -53,9 +69,28 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function buscaPercentTemp(req, res) {
+    var idArea = req.params.idArea;
+
+    console.log(`Recuperando quantidades de dados`)
+
+    medidaModel.buscaPercentTemp(idArea).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarAreas,
+    buscarMedidasMensal,
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-
+    buscarMedidasEmTempoReal,
+    buscaPercentTemp
 }
